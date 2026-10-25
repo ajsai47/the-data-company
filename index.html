@@ -92,9 +92,13 @@
     margin: 0 auto;
     display: block;
     -webkit-mask-image:
-      linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%),
+      linear-gradient(to top, transparent 0%, #000 22%, #000 100%);
+    -webkit-mask-composite: source-in;
     mask-image:
-      linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%),
+      linear-gradient(to top, transparent 0%, #000 22%, #000 100%);
+    mask-composite: intersect;
   }
   .tearband .fade {
     position: absolute; inset: 0;
