@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — Study C: The Counting House</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #131109;
+    --bg-panel: #191610;
+    --fg: #EDE4CF;
+    --dim: #97896F;
+    --gold: #C6A15B;
+    --gold-dim: rgba(198, 161, 91, 0.45);
+    --rule: rgba(237, 228, 207, 0.16);
+    --rule-strong: rgba(237, 228, 207, 0.45);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "EB Garamond", Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    /* engraved hatch texture at edges */
+    background-image:
+      linear-gradient(rgba(237,228,207,0.018) 1px, transparent 1px);
+    background-size: 100% 5px;
+  }
+
+  ::selection { background: var(--gold); color: var(--bg); }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+
+  .mono {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dim);
+  }
+  .mono.gold { color: var(--gold); }
+
+  /* ————— header ————— */
+  header { border-bottom: 1px solid var(--rule-strong); position: relative; }
+  header::after {
+    content: "";
+    display: block;
+    border-bottom: 1px solid var(--rule);
+    margin-top: 3px;
+  }
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0 20px;
+  }
+  .wordmark {
+    font-family: "Fraunces", serif;
+    font-weight: 460;
+    font-size: 21px;
+    letter-spacing: 0.01em;
+    font-variation-settings: "opsz" 144;
+  }
+  .wordmark .period { color: var(--gold); }
+  nav { display: flex; gap: 32px; align-items: baseline; }
+  nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+  }
+  nav a:hover { color: var(--gold); }
+  nav a.cta { color: var(--gold); border-bottom: 1px solid var(--gold-dim); padding-bottom: 3px; }
+
+  /* ————— hero ————— */
+  .hero {
+    padding: 90px 0 84px;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 1fr 210px;
+    gap: 60px;
+    align-items: start;
+  }
+  .hero .eyebrow { margin-bottom: 30px; }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 330;
+    font-size: clamp(54px, 7.6vw, 108px);
+    line-height: 0.99;
+    letter-spacing: -0.02em;
+    font-variation-settings: "opsz" 144;
+  }
+  h1 em {
+    font-style: italic;
+    font-weight: 380;
+    color: var(--gold);
+  }
+  .hero .sub {
+    margin-top: 36px;
+    max-width: 540px;
+    font-size: 20px;
+    color: var(--dim);
+    line-height: 1.55;
+  }
+  .hero .actions { margin-top: 42px; display: flex; gap: 18px; }
+  .btn {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 28px;
+    border: 1px solid var(--rule-strong);
+    color: var(--fg);
+  }
+  .btn.solid { border-color: var(--gold); color: var(--gold); }
+  .btn:hover { background: var(--gold); border-color: var(--gold); color: var(--bg); }
+
+  /* ————— seal ————— */
+  .seal { margin-top: 8px; }
+  .seal svg { display: block; width: 190px; height: 190px; opacity: 0.9; }
+  .seal-cap { margin-top: 14px; text-align: center; }
+
+  /* ————— ornament rule ————— */
+  .orn {
+    display: flex; align-items: center; gap: 18px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--gold-dim);
+    font-size: 15px;
+  }
+  .orn::before, .orn::after {
+    content: ""; flex: 1; border-top: 1px solid var(--rule-strong);
+  }
+
+  /* ————— sections ————— */
+  section { padding: 76px 0; border-bottom: 1px solid var(--rule); }
+  .sec-head { text-align: center; margin-bottom: 54px; }
+  .sec-head .mono { margin-bottom: 16px; display: block; }
+  .sec-head h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 360;
+    font-size: clamp(32px, 4vw, 50px);
+    letter-spacing: -0.01em;
+    font-variation-settings: "opsz" 144;
+  }
+  .sec-head h2 em { font-style: italic; color: var(--gold); }
+
+  /* ————— process ————— */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .step {
+    text-align: center;
+    padding: 8px 26px 12px;
+    border-right: 1px solid var(--rule);
+  }
+  .step:last-child { border-right: none; }
+  .step .num { margin-bottom: 18px; }
+  .step h3 {
+    font-family: "Fraunces", serif;
+    font-weight: 420;
+    font-size: 26px;
+    margin-bottom: 14px;
+  }
+  .step p { font-size: 16.5px; color: var(--dim); line-height: 1.6; }
+
+  /* ————— drop cap letter ————— */
+  .letter { max-width: 720px; margin: 0 auto; }
+  .letter p:first-of-type::first-letter {
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: 4.4em;
+    line-height: 0.8;
+    float: left;
+    padding: 8px 14px 0 0;
+    color: var(--gold);
+  }
+  .letter p { margin-bottom: 1.3em; font-size: 19.5px; }
+  .letter .sig {
+    margin-top: 2em;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 26px;
+    color: var(--gold);
+  }
+
+  /* ————— ledger ————— */
+  .ledger {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+  }
+  .ledger caption {
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding-bottom: 18px;
+  }
+  .ledger th {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--gold);
+    text-align: left;
+    padding: 14px 18px 14px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .ledger td {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    text-align: left;
+    padding: 14px 18px 14px 0;
+    border-top: 1px solid var(--rule);
+    color: var(--fg);
+    white-space: nowrap;
+  }
+  .ledger td.rn { color: var(--gold); }
+  .ledger td.amt { text-align: right; padding-right: 0; color: var(--gold); }
+
+  /* ————— pull ————— */
+  .pull { padding: 96px 0; text-align: center; }
+  .pull .stars { color: var(--gold-dim); letter-spacing: 1em; text-indent: 1em; margin-bottom: 34px; }
+  .pull blockquote {
+    font-family: "Fraunces", serif;
+    font-weight: 330;
+    font-size: clamp(30px, 4.2vw, 52px);
+    line-height: 1.14;
+    letter-spacing: -0.015em;
+    max-width: 880px;
+    margin: 0 auto;
+    font-variation-settings: "opsz" 144;
+  }
+  .pull blockquote em { font-style: italic; color: var(--gold); }
+  .pull .attr { margin-top: 32px; }
+
+  /* ————— footer ————— */
+  footer { padding: 60px 0 44px; }
+  .foot-grid { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; }
+  .foot-wordmark {
+    font-family: "Fraunces", serif;
+    font-weight: 460;
+    font-size: 30px;
+    font-variation-settings: "opsz" 144;
+  }
+  .foot-wordmark .period { color: var(--gold); }
+  .foot-note { color: var(--dim); font-size: 16px; max-width: 360px; margin-top: 14px; }
+  .foot-legal { margin-top: 56px; display: flex; justify-content: space-between; }
+
+  .study {
+    margin-top: 44px; border: 1px dashed var(--rule-strong); padding: 20px 24px;
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; color: var(--dim); line-height: 1.8;
+  }
+  .study .t { color: var(--gold); margin-bottom: 10px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .swatches { display: flex; gap: 8px; margin: 12px 0; }
+  .sw { width: 52px; height: 30px; border: 1px solid var(--rule-strong); }
+  .sw.bg { background: var(--bg); } .sw.fg { background: var(--fg); } .sw.gd { background: var(--gold); }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; }
+    .seal { order: -1; }
+    .steps { grid-template-columns: 1fr; }
+    .step { border-right: none; border-bottom: 1px solid var(--rule); padding: 24px 0; }
+    .step:last-child { border-bottom: none; }
+    nav { display: none; }
+    .ledger { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap masthead">
+    <div class="wordmark">The Data Company<span class="period">.</span></div>
+    <nav>
+      <a href="#mandate">The Mandate</a>
+      <a href="#letter">A Letter</a>
+      <a href="#ledger">The Ledger</a>
+      <a href="#contact" class="cta">Private Inquiry</a>
+    </nav>
+    <span class="mono">Est. MMXXV</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow mono gold">A private brokerage for proprietary data</div>
+      <h1>Your archive,<br>taken to <em>market.</em></h1>
+      <p class="sub">The Data Company represents owners of proprietary data in exclusive licensing agreements with frontier AI laboratories. We appraise, we negotiate, we close — and the archive pays.</p>
+      <div class="actions">
+        <a class="btn solid" href="#contact">Request an appraisal</a>
+        <a class="btn" href="#mandate">Read the mandate</a>
+      </div>
+    </div>
+    <div class="seal">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="97" stroke="#C6A15B" stroke-width="1" opacity="0.8"/>
+        <circle cx="100" cy="100" r="90" stroke="#C6A15B" stroke-width="0.5" opacity="0.5"/>
+        <circle cx="100" cy="100" r="62" stroke="#C6A15B" stroke-width="1" opacity="0.8"/>
+        <path id="topArc" d="M 100,100 m -76,0 a 76,76 0 1,1 152,0 a 76,76 0 1,1 -152,0" fill="none"/>
+        <text font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="3.5" fill="#C6A15B">
+          <textPath href="#topArc" startOffset="2%">THE DATA COMPANY · EST. MMXXV · DATA, BROKERED ·</textPath>
+        </text>
+        <text x="100" y="96" text-anchor="middle" font-family="Fraunces, serif" font-size="30" font-weight="500" fill="#EDE4CF">TDC</text>
+        <text x="100" y="118" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="2" fill="#C6A15B">№ 001</text>
+        <line x1="55" y1="130" x2="145" y2="130" stroke="#C6A15B" stroke-width="0.5" opacity="0.6"/>
+        <text x="100" y="143" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="7.5" letter-spacing="1.5" fill="#97896F">EXCLUSIVE MANDATE</text>
+      </svg>
+      <div class="seal-cap mono">The house seal</div>
+    </div>
+  </div>
+
+  <div class="orn">✦&ensp;✦&ensp;✦</div>
+
+  <section id="mandate">
+    <div class="sec-head">
+      <span class="mono">Fig. I — The Mandate</span>
+      <h2>Four acts of <em>representation</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num mono gold">I.</div>
+        <h3>Appraisal</h3>
+        <p>What is the corpus worth to the laboratories training frontier models? Rarity, coverage, provenance — priced before it is pitched.</p>
+      </div>
+      <div class="step">
+        <div class="num mono gold">II.</div>
+        <h3>Mandate</h3>
+        <p>You grant exclusive representation. One broker, one process — the archive does not leak across the market.</p>
+      </div>
+      <div class="step">
+        <div class="num mono gold">III.</div>
+        <h3>Negotiation</h3>
+        <p>Qualified buyers, competed against one another under a disciplined process, to the best possible terms.</p>
+      </div>
+      <div class="step">
+        <div class="num mono gold">IV.</div>
+        <h3>Revenue</h3>
+        <p>The license closes; the archive pays. We earn on the outcome, never on the introduction.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="letter">
+    <div class="sec-head">
+      <span class="mono">Fig. II — A Letter to Data Owners</span>
+    </div>
+    <div class="letter">
+      <p>Every laboratory building a frontier model wants what you have. They will call it partnership, or access, or collaboration — and they will send a procurement team whose entire profession is paying less for it. Nobody in that room is compensated to get you more. That is the seat we sit in.</p>
+      <p>We are not a marketplace, and we are not a list. We take a small number of archives to market under exclusive mandate, we run the process ourselves, and we are paid on the terms we win — not on making the introduction.</p>
+      <p class="sig">— The Data Company</p>
+    </div>
+  </section>
+
+  <section id="ledger">
+    <div class="sec-head">
+      <span class="mono">Fig. III — The Ledger</span>
+      <h2>Selected <em>placements</em></h2>
+    </div>
+    <table class="ledger">
+      <caption>Representative engagements · illustrative</caption>
+      <thead>
+        <tr><th>№</th><th>Corpus</th><th>Class</th><th>Term</th><th>Counterparty</th><th style="text-align:right">Outcome</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rn">I</td><td>Natural history archive</td><td>Multimodal</td><td>Exclusive</td><td>Frontier laboratory</td><td class="amt">Licensed</td></tr>
+        <tr><td class="rn">II</td><td>Longitudinal finance records</td><td>Tabular</td><td>Exclusive</td><td>Frontier laboratory</td><td class="amt">Licensed</td></tr>
+        <tr><td class="rn">III</td><td>Broadcast footage library</td><td>Video</td><td>Field-limited</td><td>Foundation-model group</td><td class="amt">Licensed</td></tr>
+        <tr><td class="rn">IV</td><td>Specialist expert corpora</td><td>Text</td><td>Exclusive</td><td>Frontier laboratory</td><td class="amt">In negotiation</td></tr>
+        <tr><td class="rn">V</td><td>Sensor &amp; telemetry streams</td><td>Time-series</td><td>Term license</td><td>Applied research org</td><td class="amt">Licensed</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="pull">
+    <div class="stars">✦ ✦ ✦</div>
+    <blockquote>Data is the only asset class where the seller still walks in <em>unrepresented.</em></blockquote>
+    <p class="attr mono">The house position</p>
+  </section>
+
+  <footer id="contact">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-wordmark">The Data Company<span class="period">.</span></div>
+        <p class="foot-note">Representation for owners of proprietary data. Inquiries held in confidence.</p>
+      </div>
+      <a class="btn solid" href="mailto:desk@example.com">desk@thedatacompany</a>
+    </div>
+    <div class="foot-legal mono">
+      <span>© MMXXVI The Data Company</span>
+      <span>Data, brokered.</span>
+    </div>
+
+    <div class="study">
+      <div class="t">Study C — “The Counting House” · dark / classical-mercantile</div>
+      <div class="swatches"><div class="sw bg"></div><div class="sw fg"></div><div class="sw gd"></div></div>
+      Type: Fraunces (display) · EB Garamond (body) · IBM Plex Mono (data). Ground: #131109 warm black. Accent: brass #C6A15B. Wordmark: serif with terminal period. Motifs: house seal, roman numerals, drop cap letter, ornamental rules, gilt ledger.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

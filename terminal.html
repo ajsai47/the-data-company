@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — Study B: The Terminal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0A0B09;
+    --panel: #10120E;
+    --fg: #DCE3D7;
+    --dim: #6F776B;
+    --accent: #79E3A2;
+    --amber: #E2B45C;
+    --rule: rgba(220, 227, 215, 0.16);
+    --rule-strong: rgba(220, 227, 215, 0.5);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(rgba(220,227,215,0.05) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  ::selection { background: var(--accent); color: var(--bg); }
+
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 40px; }
+
+  .up { text-transform: uppercase; letter-spacing: 0.14em; }
+  .dim { color: var(--dim); }
+  .acc { color: var(--accent); }
+  .amb { color: var(--amber); }
+
+  /* ————— status bar ————— */
+  .statusbar {
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 0;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-right: 8px; animation: pulse 2.4s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+  .cursor { animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ————— header ————— */
+  header { border-bottom: 1px solid var(--rule-strong); }
+  .masthead {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 22px 0;
+  }
+  .wordmark {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+  }
+  .wordmark .brk { color: var(--accent); }
+  nav { display: flex; gap: 30px; }
+  nav a {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    text-decoration: none;
+  }
+  nav a:hover { color: var(--accent); }
+  nav a::before { content: "["; color: var(--dim); margin-right: 2px; }
+  nav a::after { content: "]"; color: var(--dim); margin-left: 2px; }
+  nav a.cta { color: var(--accent); }
+
+  /* ————— ticker ————— */
+  .ticker {
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 12px 0;
+    font-size: 12px;
+    color: var(--dim);
+  }
+  .ticker-inner { display: inline-block; animation: scroll 40s linear infinite; }
+  .ticker span { margin-right: 56px; }
+  .ticker .k { color: var(--accent); }
+  .ticker .v { color: var(--fg); }
+  @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ————— hero ————— */
+  .hero { padding: 100px 0 90px; border-bottom: 1px solid var(--rule); position: relative; }
+  .hero .eyebrow { font-size: 11px; color: var(--accent); margin-bottom: 30px; }
+  h1 {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: clamp(48px, 8vw, 110px);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+  h1 .serif {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 360;
+    text-transform: none;
+    letter-spacing: -0.01em;
+    color: var(--amber);
+    font-variation-settings: "opsz" 144;
+  }
+  .hero .sub {
+    margin-top: 38px;
+    max-width: 620px;
+    color: var(--dim);
+    font-size: 14px;
+  }
+  .hero .sub b { color: var(--fg); font-weight: 500; }
+  .hero .actions { margin-top: 40px; display: flex; gap: 16px; }
+  .btn {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 26px;
+    border: 1px solid var(--rule-strong);
+    color: var(--fg);
+  }
+  .btn.solid { border-color: var(--accent); color: var(--accent); }
+  .btn:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+
+  /* ————— sections ————— */
+  section { padding: 72px 0; border-bottom: 1px solid var(--rule); }
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 48px;
+    font-size: 11px;
+  }
+  .sec-head h2 { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; }
+  .sec-head h2 .acc { font-weight: 600; }
+
+  /* ————— ascii process ————— */
+  .flow {
+    border: 1px solid var(--rule);
+    background: var(--panel);
+    padding: 36px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .cell {
+    padding: 22px 24px 26px;
+    border-right: 1px dashed var(--rule);
+    position: relative;
+  }
+  .cell:last-child { border-right: none; }
+  .cell .idx { color: var(--accent); font-size: 11px; margin-bottom: 16px; }
+  .cell h3 {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 26px;
+    color: var(--fg);
+    margin-bottom: 14px;
+  }
+  .cell p { font-size: 12px; color: var(--dim); line-height: 1.7; }
+  .cell .arr {
+    position: absolute; right: -7px; top: 30px;
+    color: var(--dim); background: var(--panel); padding: 0 2px; z-index: 1;
+  }
+
+  /* ————— data table ————— */
+  .dtable { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .dtable caption {
+    text-align: left; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--dim); padding-bottom: 14px;
+  }
+  .dtable th {
+    text-align: left; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--dim); font-weight: 500;
+    border-top: 1px solid var(--rule-strong);
+    padding: 13px 16px 13px 0;
+  }
+  .dtable td {
+    padding: 13px 16px 13px 0;
+    border-top: 1px solid var(--rule);
+    white-space: nowrap;
+  }
+  .dtable tr:last-child td { border-bottom: 1px solid var(--rule-strong); }
+  .dtable td.k { color: var(--accent); }
+  .dtable td.amt { text-align: right; padding-right: 0; }
+  .dtable td.status-open { color: var(--amber); }
+  .dtable td.status-closed { color: var(--accent); }
+
+  /* ————— statement ————— */
+  .statement { padding: 96px 0; }
+  .statement p {
+    font-family: "Fraunces", serif;
+    font-weight: 340;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    max-width: 880px;
+    font-variation-settings: "opsz" 144;
+  }
+  .statement p em { font-style: italic; color: var(--amber); }
+  .statement .ref { margin-top: 28px; font-size: 11px; color: var(--dim); }
+
+  /* ————— footer ————— */
+  footer { padding: 52px 0 40px; font-size: 12px; }
+  .foot-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; align-items: flex-start; }
+  .foot-wordmark { font-weight: 600; font-size: 18px; letter-spacing: 0.3em; text-transform: uppercase; }
+  .foot-wordmark .brk { color: var(--accent); }
+  .foot-legal { margin-top: 52px; display: flex; justify-content: space-between; color: var(--dim); font-size: 11px; }
+
+  .study {
+    margin-top: 44px; border: 1px dashed var(--rule-strong); padding: 20px 24px;
+    font-size: 11px; color: var(--dim); line-height: 1.8;
+  }
+  .study .t { color: var(--accent); margin-bottom: 10px; }
+  .swatches { display: flex; gap: 8px; margin: 12px 0; }
+  .sw { width: 52px; height: 30px; border: 1px solid var(--rule-strong); }
+  .sw.bg { background: var(--bg); } .sw.fg { background: var(--fg); }
+  .sw.ac { background: var(--accent); } .sw.am { background: var(--amber); }
+
+  @media (max-width: 860px) {
+    .flow { grid-template-columns: 1fr; }
+    .cell { border-right: none; border-bottom: 1px dashed var(--rule); }
+    .cell:last-child { border-bottom: none; }
+    .cell .arr { display: none; }
+    nav { display: none; }
+    .dtable { display: block; overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap statusbar up dim">
+  <span><span class="dot"></span>MARKET OPEN — DATA DESK ACTIVE</span>
+  <span>TDX&nbsp;·&nbsp;FEED 001&nbsp;·&nbsp;<span class="acc">SYNCED</span><span class="cursor">▮</span></span>
+</div>
+
+<header>
+  <div class="wrap masthead">
+    <div class="wordmark"><span class="brk">[</span>&nbsp;THE DATA COMPANY&nbsp;<span class="brk">]</span></div>
+    <nav>
+      <a href="#flow">Process</a>
+      <a href="#book">Book</a>
+      <a href="#note">Position</a>
+      <a href="#contact" class="cta">Initiate</a>
+    </nav>
+  </div>
+</header>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span><span class="k">CORPUS:</span> <span class="v">NATURAL HISTORY ARCHIVE</span> — EXCL — <span class="acc">LICENSED</span></span>
+    <span><span class="k">CORPUS:</span> <span class="v">BROADCAST FOOTAGE LIBRARY</span> — FIELD-LTD — <span class="acc">LICENSED</span></span>
+    <span><span class="k">CORPUS:</span> <span class="v">SPECIALIST EXPERT CORPORA</span> — EXCL — <span class="amb">IN NEGOTIATION</span></span>
+    <span><span class="k">CORPUS:</span> <span class="v">SENSOR / TELEMETRY STREAMS</span> — TERM — <span class="acc">LICENSED</span></span>
+    <span><span class="k">MANDATE:</span> <span class="v">EXCLUSIVE REPRESENTATION ONLY</span></span>
+    <span><span class="k">CORPUS:</span> <span class="v">NATURAL HISTORY ARCHIVE</span> — EXCL — <span class="acc">LICENSED</span></span>
+    <span><span class="k">CORPUS:</span> <span class="v">BROADCAST FOOTAGE LIBRARY</span> — FIELD-LTD — <span class="acc">LICENSED</span></span>
+    <span><span class="k">CORPUS:</span> <span class="v">SPECIALIST EXPERT CORPORA</span> — EXCL — <span class="amb">IN NEGOTIATION</span></span>
+    <span><span class="k">CORPUS:</span> <span class="v">SENSOR / TELEMETRY STREAMS</span> — TERM — <span class="acc">LICENSED</span></span>
+    <span><span class="k">MANDATE:</span> <span class="v">EXCLUSIVE REPRESENTATION ONLY</span></span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow up">// A private brokerage for proprietary data</div>
+    <h1>Data in.<br><span class="serif">dollars</span> out.</h1>
+    <p class="sub">The Data Company represents owners of proprietary data in <b>exclusive licensing agreements</b> with frontier AI laboratories. Not a marketplace. Not procurement. <b>Representation.</b></p>
+    <div class="actions">
+      <a class="btn solid" href="#contact">Request appraisal</a>
+      <a class="btn" href="#flow">Read the book</a>
+    </div>
+  </div>
+
+  <section id="flow">
+    <div class="sec-head">
+      <h2><span class="acc">▸</span> EXECUTION PATH</h2>
+      <span class="dim">4 STAGES · SINGLE MANDATE</span>
+    </div>
+    <div class="flow">
+      <div class="cell">
+        <div class="idx">STAGE_01</div>
+        <h3>Appraisal</h3>
+        <p>What is the corpus worth to the labs training frontier models? Rarity, coverage, provenance — priced before it is pitched.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="cell">
+        <div class="idx">STAGE_02</div>
+        <h3>Mandate</h3>
+        <p>Exclusive representation. One broker, one process. The archive does not leak across the market.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="cell">
+        <div class="idx">STAGE_03</div>
+        <h3>Negotiation</h3>
+        <p>Qualified buyers competed against each other under a disciplined process. Terms, not introductions.</p>
+        <span class="arr">→</span>
+      </div>
+      <div class="cell">
+        <div class="idx">STAGE_04</div>
+        <h3>Revenue</h3>
+        <p>License closes. Archive pays. We earn on outcome.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="book">
+    <div class="sec-head">
+      <h2><span class="acc">▸</span> THE BOOK</h2>
+      <span class="dim">REPRESENTATIVE ENGAGEMENTS · ILLUSTRATIVE</span>
+    </div>
+    <table class="dtable">
+      <thead>
+        <tr><th>ID</th><th>Corpus</th><th>Class</th><th>Term</th><th>Counterparty</th><th style="text-align:right">Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="k">TDX-001</td><td>Natural history archive</td><td>MULTIMODAL</td><td>EXCL</td><td>Frontier laboratory</td><td class="amt status-closed">■ LICENSED</td></tr>
+        <tr><td class="k">TDX-002</td><td>Longitudinal finance records</td><td>TABULAR</td><td>EXCL</td><td>Frontier laboratory</td><td class="amt status-closed">■ LICENSED</td></tr>
+        <tr><td class="k">TDX-003</td><td>Broadcast footage library</td><td>VIDEO</td><td>FLD-LTD</td><td>Foundation-model group</td><td class="amt status-closed">■ LICENSED</td></tr>
+        <tr><td class="k">TDX-004</td><td>Specialist expert corpora</td><td>TEXT</td><td>EXCL</td><td>Frontier laboratory</td><td class="amt status-open">□ IN NEGOTIATION</td></tr>
+        <tr><td class="k">TDX-005</td><td>Sensor &amp; telemetry streams</td><td>TIME-SERIES</td><td>TERM</td><td>Applied research org</td><td class="amt status-closed">■ LICENSED</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="statement" id="note">
+    <p>Every lab wants your data. Nobody in the room is paid to get you <em>more</em> for it. That is the seat we sit in.</p>
+    <p class="ref up">— POSITION NOTE 001 / HOUSE</p>
+  </section>
+
+  <footer id="contact">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-wordmark"><span class="brk">[</span>&nbsp;THE DATA COMPANY&nbsp;<span class="brk">]</span></div>
+        <p class="dim" style="margin-top:14px; max-width:360px; font-size:12px">Representation for owners of proprietary data. Inquiries held in confidence.</p>
+      </div>
+      <a class="btn solid" href="mailto:desk@example.com">desk@thedatacompany ↗</a>
+    </div>
+    <div class="foot-legal up">
+      <span>© MMXXVI THE DATA COMPANY</span>
+      <span>EOF<span class="cursor">▮</span></span>
+    </div>
+
+    <div class="study">
+      <div class="t up">Study B — “The Terminal” · dark / data-native</div>
+      <div class="swatches"><div class="sw bg"></div><div class="sw fg"></div><div class="sw ac"></div><div class="sw am"></div></div>
+      Type: IBM Plex Mono (primary) · Fraunces italic (mercantile accents). Ground: #0A0B09. Accent: phosphor #79E3A2 + amber #E2B45C. Wordmark: bracketed mono caps. Motifs: status bar, ticker tape, staged flow, book of business, blinking cursor.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

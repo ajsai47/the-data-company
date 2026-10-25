@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — Imagery Vocabulary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --chrome-ink: #1B1B1B;
+    --chrome-dim: #8A8A8A;
+    --chrome-rule: #E4E4E4;
+    --blue: #1E60B5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FFFFFF;
+    color: var(--chrome-ink);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+  header.board { padding: 64px 0 44px; border-bottom: 1px solid var(--chrome-ink); }
+  .board .kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome-dim); }
+  .board h1 {
+    font-family: "Fraunces", serif; font-weight: 340;
+    font-size: clamp(32px, 4.6vw, 52px); letter-spacing: -0.015em; margin: 16px 0 16px;
+  }
+  .board h1 em { font-style: italic; }
+  .board .intro { max-width: 660px; color: var(--chrome-dim); font-size: 13px; line-height: 1.8; }
+
+  /* ————— reference entries ————— */
+  .ref { padding: 60px 0; border-bottom: 1px solid var(--chrome-rule); display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; align-items: start; }
+  .ref .imgwrap { position: relative; }
+  .ref img { width: 100%; display: block; border: 1px solid var(--chrome-rule); }
+  .ref .imgwrap .watermark {
+    position: absolute; top: 10px; left: 10px;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    background: rgba(0,0,0,0.65); color: #fff; padding: 4px 8px;
+  }
+  .ref .meta .no { font-size: 11px; color: var(--chrome-dim); letter-spacing: 0.14em; }
+  .ref .meta h2 {
+    font-family: "Fraunces", serif; font-weight: 420; font-size: 30px;
+    letter-spacing: -0.01em; margin: 12px 0 8px;
+  }
+  .ref .meta h2 em { font-style: italic; }
+  .ref .motif { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; }
+  .ref .desc { font-size: 12.5px; line-height: 1.8; color: var(--chrome-ink); margin-bottom: 22px; }
+  .ref .uses { font-size: 11px; line-height: 1.9; color: var(--chrome-dim); border-top: 1px dashed var(--chrome-rule); padding-top: 16px; }
+  .ref .uses b { color: var(--chrome-ink); font-weight: 500; }
+
+  /* ————— synthesis ————— */
+  .synthesis { padding: 70px 0; border-bottom: 1px solid var(--chrome-ink); }
+  .synthesis h2 { font-family: "Fraunces", serif; font-weight: 380; font-size: clamp(28px, 3.6vw, 44px); letter-spacing: -0.01em; margin-bottom: 40px; }
+  .synthesis h2 em { font-style: italic; }
+  .vocgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--chrome-ink); }
+  .voc { padding: 26px 24px 30px; border-right: 1px solid var(--chrome-rule); border-bottom: 1px solid var(--chrome-ink); }
+  .voc:last-child { border-right: none; }
+  .voc .tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+  .voc p { font-size: 11.5px; line-height: 1.75; color: var(--chrome-dim); }
+  .synthesis .take { margin-top: 40px; max-width: 700px; font-size: 13px; line-height: 1.9; color: var(--chrome-ink); }
+  .synthesis .take em { font-family: "Fraunces", serif; font-size: 15px; }
+
+  .mapping { margin-top: 44px; }
+  .mapping table { width: 100%; border-collapse: collapse; }
+  .mapping td, .mapping th {
+    text-align: left; padding: 13px 16px 13px 0;
+    border-top: 1px solid var(--chrome-rule);
+    font-size: 11.5px; vertical-align: top; line-height: 1.6;
+  }
+  .mapping th { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--chrome-dim); border-top: 1px solid var(--chrome-ink); font-weight: 500; }
+  .mapping td.site { color: var(--chrome-ink); }
+  .mapping td.mtf { color: var(--blue); white-space: nowrap; }
+
+  footer.board { padding: 46px 0 60px; }
+  .board .foot { max-width: 700px; font-size: 12px; color: var(--chrome-dim); line-height: 1.8; }
+  .backlink { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--chrome-ink); text-decoration: none; border-bottom: 1px solid var(--chrome-ink); }
+
+  @media (max-width: 860px) {
+    .ref { grid-template-columns: 1fr; }
+    .vocgrid { grid-template-columns: 1fr 1fr; }
+    .voc:nth-child(2n) { border-right: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="board">
+    <div class="kicker">The Data Company · Imagery vocabulary</div>
+    <h1>What the references <em>say</em></h1>
+    <p class="intro">Five references, decoded. Read together they describe a specific language: classical matter rendered in digital textures — engraving, halftone, pixel, wireframe — and a recurring subject: <b>the moment of contact</b> where value changes hands.</p>
+  </header>
+
+  <!-- 1 -->
+  <section class="ref">
+    <div class="imgwrap">
+      <img src="refs/franklin-eyes.jpg" alt="Engraved Benjamin Franklin eyes through torn paper">
+      <span class="watermark">ref · concept</span>
+    </div>
+    <div class="meta">
+      <div class="no">R.1</div>
+      <h2>Money <em>watching</em></h2>
+      <div class="motif">Engraved currency · the tear</div>
+      <p class="desc">Franklin's eyes — the $100 bill's intaglio portrait — looking through torn paper. Engraving as presence: the currency is awake, evaluating. For a brokerage this is <em>appraisal</em> depicted — the instrument that sees what you're holding.</p>
+      <p class="uses"><b>Lives at:</b> the appraisal moment — "Find how much your data is worth" under the gaze of the instrument itself. Also a candidate for the letter or a banner break.<br><b>Note:</b> stock image (watermarked); final would need licensing or a recreated tear effect over PD currency engraving.</p>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section class="ref">
+    <div class="imgwrap">
+      <img src="refs/touch-spark.jpg" alt="Robot hand and human hand touching with spark, stippled on black starfield">
+    </div>
+    <div class="meta">
+      <div class="no">R.2</div>
+      <h2>The <em>touch</em></h2>
+      <div class="motif">Contact moment · human × machine</div>
+      <p class="desc">The Creation of Adam recast: human hand reaching to a robotic hand, a spark at the contact point, stipple-engraved on a starfield. Same subject as your pixelated version — but the "other side" is explicitly machine. The deal as first contact.</p>
+      <p class="uses"><b>Lives at:</b> hero candidate — arguably the most literal "data meets dollars" image. Stippled black ground suggests a dark hero variant.<br><b>Note:</b> reference only; recreate via commission or composite — PD engraving of a hand + rendered machine hand.</p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section class="ref">
+    <div class="imgwrap">
+      <img src="refs/handshake-halftone.jpg" alt="Halftone hand shaking wireframe hand with technical annotations">
+    </div>
+    <div class="meta">
+      <div class="no">R.3</div>
+      <h2>The deal, <em>annotated</em></h2>
+      <div class="motif">Handshake · halftone → wireframe · UI chrome</div>
+      <p class="desc">A handshake where one party is halftone dots and the other is wireframe mesh — analog meeting digital — wrapped in technical annotation: "security*", "trust001", "approved", orbit circles, a single orange node. This is the most complete reference: <em>the brokerage's entire business in one image</em>, and the annotation layer is a design vocabulary you could own outright.</p>
+      <p class="uses"><b>Lives at:</b> the negotiation/mandate section — the moment the mandate is signed. The annotation chrome ("appraisal*", "mandate_01", "closed") could become a recurring device across all figures.<br><b>Note:</b> reference only; the annotation vocabulary is yours to take, the image itself needs recreation.</p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section class="ref">
+    <div class="imgwrap">
+      <img src="refs/engraved-eye.jpg" alt="Macro close-up of intaglio engraved eye">
+    </div>
+    <div class="meta">
+      <div class="no">R.4</div>
+      <h2>Intaglio <em>macro</em></h2>
+      <div class="motif">Engraving texture as field</div>
+      <p class="desc">Extreme close-up of currency engraving — hatching dense enough to read as pure texture, almost like signal noise. Engraving at macro scale becomes abstract data: line-work indistinguishable from code.</p>
+      <p class="uses"><b>Lives at:</b> texture bands — section dividers, footer grounds, plate edges. Anywhere the page needs "material."<br><b>Note:</b> easily recreated — PD currency engravings photographed/cropped at macro scale, or generated hatching.</p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section class="ref">
+    <div class="imgwrap">
+      <img src="refs/halftone-portrait.png" alt="Halftone dot portrait on black">
+    </div>
+    <div class="meta">
+      <div class="no">R.5</div>
+      <h2>Dithered <em>portrait</em></h2>
+      <div class="motif">Halftone · the analog→digital bridge</div>
+      <p class="desc">A portrait rendered entirely in halftone dots on black — the image held in a suspended state between photograph and data. The dither IS the fusion: nothing classical, nothing digital, just the threshold between them.</p>
+      <p class="uses"><b>Lives at:</b> portraits — of sellers, of corpus subjects, of "the archive" personified. A plate style for figurative moments.<br><b>Note:</b> trivially reproducible — any photograph run through ordered-dither/halftone.</p>
+    </div>
+  </section>
+
+  <!-- synthesis -->
+  <section class="synthesis">
+    <h2>The <em>system</em></h2>
+    <div class="vocgrid">
+      <div class="voc">
+        <div class="tag">Subject</div>
+        <p>The contact moment — hands touching, shaking, appraising. A brokerage's whole business is the instant value changes hands.</p>
+      </div>
+      <div class="voc">
+        <div class="tag">Texture</div>
+        <p>Halftone, stipple, intaglio hatching, pixel blocks — the dither as the bridge between classical matter and data.</p>
+      </div>
+      <div class="voc">
+        <div class="tag">Chrome</div>
+        <p>Technical annotation — "trust001", "security*", "approved" — orbit diagrams and nodes as a designed layer over the figures.</p>
+      </div>
+      <div class="voc">
+        <div class="tag">Ground</div>
+        <p>Four of five sit on black. The images are vaults — dark chambers inside a light institutional page.</p>
+      </div>
+    </div>
+
+    <p class="take">The structure this implies: <em>the page is paper; the pictures are vaults.</em> Keep the charter document on white — serif, hairlines, positions. Let every image be a dark chamber: halftone, engraved, annotated. The contrast between light document and dark imagery is itself the fusion — institution on the surface, transaction underneath.</p>
+
+    <div class="mapping">
+      <table>
+        <tr><th style="width:26%">Site moment</th><th style="width:24%">Motif</th><th>Reference</th></tr>
+        <tr><td class="site">Hero — the thesis</td><td class="mtf">The touch</td><td>Pixelated Creation (built) or R.2's human×machine variant</td></tr>
+        <tr><td class="site">Appraisal CTA — "what it's worth"</td><td class="mtf">Money watching</td><td>R.1 Franklin through the tear / R.4 macro eye</td></tr>
+        <tr><td class="site">Mandate &amp; negotiation</td><td class="mtf">The deal, annotated</td><td>R.3 handshake; annotation chrome as house device</td></tr>
+        <tr><td class="site">Section dividers / plates</td><td class="mtf">Intaglio macro · dither</td><td>R.4 texture bands, R.5 halftone figures</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <footer class="board">
+    <p class="foot">
+      <b>Licensing honesty:</b> all five are taste references, not shippable assets — R.1 is watermarked stock. The motifs are free to own; the images need recreation (commissioned composite, or public-domain engraving + generated dither/halftone). The pixelated Creation and the BEP/Getty plates already in the mock are cleared.<br><br>
+      <a class="backlink" href="index.html">← Homepage</a>&ensp;·&ensp;<a class="backlink" href="index.html">All studies</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — We turn data into dollars.</title>
+<meta name="description" content="Sell-side representation for owners of proprietary data. We appraise, negotiate, and shop exclusive licensing agreements to frontier AI laboratories. You keep ownership; you decide.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Data Company">
+<meta property="og:title" content="The Data Company — We turn your data into dollars.">
+<meta property="og:description" content="Everyone is making money off the AI revolution — you should too. Representation for owners of proprietary data in exclusive agreements with frontier AI laboratories.">
+<meta property="og:image" content="https://the-data-company.vercel.app/refs/franklin-eyes.jpg">
+<meta property="og:url" content="https://the-data-company.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Data Company — We turn your data into dollars.">
+<meta name="twitter:description" content="Sell-side representation for owners of proprietary data. Broker, not buyer — you keep ownership, you decide.">
+<meta name="twitter:image" content="https://the-data-company.vercel.app/refs/franklin-eyes.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62.5..125,100..900;1,62.5..125,100..900&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ice: #E6F2FF;
+    --ice-bright: #EFF7FF;
+    --ink: #25384C;
+    --ink-soft: #4E6580;
+    --ink-faint: #7E97AE;
+    --blue: #1E60B5;
+    --sky: #86C1FF;
+    --rule: rgba(37, 56, 76, 0.22);
+    --rule-faint: rgba(37, 56, 76, 0.12);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FFFFFF;
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 20px;
+    line-height: 1.62;
+    font-variant-numeric: oldstyle-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--blue); color: #fff; }
+
+  .mono {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-variant-numeric: lining-nums;
+  }
+
+  /* ————— header ————— */
+  header.top {
+    position: relative; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 44px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand .mark { width: 28px; height: 28px; display: block; }
+  .brand .name {
+    font-family: "Fraunces", serif;
+    font-weight: 420;
+    font-variant: small-caps;
+    font-size: 14.5px;
+    letter-spacing: 0.26em;
+    line-height: 1.35;
+  }
+  nav.topnav { display: flex; gap: 38px; padding-top: 4px; }
+  nav.topnav a {
+    font-family: "Archivo", sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  nav.topnav a:hover { color: var(--blue); }
+
+  /* ————— hero: the watcher ————— */
+  .hero { position: relative; }
+  .tearband {
+    position: relative;
+    overflow: hidden;
+    margin-top: -40px;
+  }
+  .tearband img {
+    width: 76%; height: auto;
+    margin: 0 auto;
+    display: block;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    mask-image:
+      linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+  .tearband .fade {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(255,255,255,0.4) 0%, transparent 14%);
+    pointer-events: none;
+  }
+  .tearband .cap {
+    position: absolute; right: 20px; bottom: 18px; z-index: 2;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(37,56,76,0.55);
+    text-align: right; line-height: 1.7;
+  }
+  .hero-body {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 0 44px 64px;
+    margin-top: calc(-18vh + 58px);
+  }
+  .hero-copy { max-width: 960px; margin: 0 auto; }
+  .thesis {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 520;
+    font-size: clamp(30px, 3.9vw, 58px);
+    line-height: 1.05;
+    white-space: nowrap;
+    letter-spacing: -0.018em;
+    font-variation-settings: "opsz" 144;
+  }
+  .hero h1 em { font-style: italic; }
+  .hero .lede {
+    margin: 20px auto 0;
+    max-width: 480px;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .cta-row { display: flex; gap: 14px; justify-content: center; }
+  .cta {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 14px 24px;
+    color: var(--ink);
+  }
+  .cta.solid { background: var(--ink); color: #fff; }
+  .cta.ghost { border: 1px solid var(--ink); }
+  .cta:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .cta.solid:hover { background: var(--blue); }
+
+  /* ————— document ————— */
+  .sheet { max-width: 780px; margin: 0 auto; padding: 0 44px; }
+
+  figure { margin: 70px 0 0; }
+  .pair figure { margin: 0; }
+  .tearfig img {
+    width: 88%;
+    margin: 0 auto;
+    display: block;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 6%, #000 94%, transparent 100%);
+  }
+  .plate { border: 1px solid var(--rule); padding: 10px; background: var(--ice-bright); }
+  .plate img { width: 100%; display: block; filter: grayscale(1) contrast(1.02); mix-blend-mode: multiply; }
+  .vault { border: 1px solid var(--ink); padding: 8px; background: #fff; }
+  .vault img { width: 100%; display: block; }
+  figcaption {
+    margin-top: 14px; display: flex; justify-content: space-between; gap: 24px;
+    font-size: 15px; color: var(--ink-faint); line-height: 1.5;
+  }
+  figcaption .no { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; padding-top: 3px; color: var(--blue); }
+
+  .sect { display: flex; align-items: baseline; gap: 20px; margin: 90px 0 44px; }
+  .sect::before, .sect::after { content: ""; flex: 1; border-top: 1px solid var(--rule); }
+  .sect h2 {
+    font-family: "Fraunces", serif; font-weight: 380; font-variant: small-caps;
+    font-size: 17px; letter-spacing: 0.3em; text-indent: 0.3em; white-space: nowrap;
+  }
+  .asterism { text-align: center; color: var(--sky); font-size: 19px; letter-spacing: 1em; text-indent: 1em; margin: 80px 0; }
+
+  .prop { display: grid; grid-template-columns: 52px 1fr; gap: 20px; margin-bottom: 34px; }
+  .prop .rn { font-family: "Fraunces", serif; font-weight: 340; font-variant: small-caps; font-size: 23px; color: var(--blue); padding-top: 1px; }
+  .prop p { font-size: 21px; }
+
+  .letter .salut { font-variant: small-caps; letter-spacing: 0.12em; font-size: 19px; margin-bottom: 26px; }
+  .letter p { margin-bottom: 1.35em; }
+  .letter p.body:first-of-type::first-letter {
+    font-family: "Fraunces", serif; font-weight: 380;
+    font-size: 2.6em; line-height: 1; color: var(--blue);
+  }
+
+  .letter .sig { margin-top: 2.2em; display: flex; justify-content: center; }
+  .letter .sig .name { font-family: "Fraunces", serif; font-style: italic; font-weight: 360; font-size: 28px; }
+  .letter .sig .stamp {
+    width: 74px; height: 74px; border: 1.5px solid var(--blue); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "IBM Plex Mono", monospace; font-size: 8px; letter-spacing: 0.18em;
+    color: var(--blue); transform: rotate(-8deg); opacity: 0.85;
+    text-align: center; line-height: 1.5;
+  }
+
+  .book { margin-top: 10px; }
+  .entry {
+    display: grid; grid-template-columns: 46px 1fr auto; gap: 18px;
+    padding: 22px 0; border-top: 1px solid var(--rule-faint); align-items: baseline;
+  }
+  .entry:first-child { border-top: 1px solid var(--rule); }
+  .entry:last-child { border-bottom: 1px solid var(--rule); }
+  .entry .no { font-variant: small-caps; font-size: 18px; color: var(--blue); }
+  .entry .corpus { font-size: 20px; }
+  .entry .corpus .desc { display: block; font-size: 15.5px; color: var(--ink-faint); margin-top: 4px; line-height: 1.5; font-style: italic; }
+  .entry .out { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); white-space: nowrap; text-align: right; }
+  .entry .out b { color: var(--ink); font-weight: 500; }
+  .book .post { margin-top: 18px; text-align: right; font-size: 15px; font-style: italic; color: var(--ink-faint); }
+
+  .pair {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+    align-items: start;
+  }
+  .pair-letter { grid-template-columns: 1.18fr 0.82fr; }
+  .wide-pair {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    gap: 64px;
+    padding: 0 44px;
+    margin-top: 80px;
+    align-items: start;
+  }
+  .wide-pair .tearfig img { width: 100%; }
+  .pair-oath { grid-template-columns: 662px 380px; justify-content: center; }
+  .pair-oath .tearfig { align-self: stretch; margin-top: 90px; }
+  .pair-oath .tearfig img { height: calc((100% - 70px) * 0.87); width: auto; margin: 0 auto; }
+  .pair-oath .letter { max-width: 662px; text-align: center; }
+
+  .duties ol { list-style: none; counter-reset: d; }
+  .duties li {
+    counter-increment: d; padding: 16px 0 16px 58px;
+    border-top: 1px solid var(--rule-faint); position: relative; font-size: 18.5px;
+  }
+  .duties li:last-child { border-bottom: 1px solid var(--rule-faint); }
+  .duties li::before {
+    content: "§ " counter(d); position: absolute; left: 0; top: 19px;
+    font-family: "IBM Plex Mono", monospace; font-size: 10.5px; letter-spacing: 0.1em; color: var(--blue);
+  }
+  .duties li b { font-weight: 500; font-variant: small-caps; letter-spacing: 0.06em; }
+
+  .dek {
+    max-width: 520px; margin: 6px auto 0; text-align: center;
+    font-size: 19px; line-height: 1.6; color: var(--ink-soft);
+  }
+  .intake { max-width: 540px; margin: 50px auto 0; }
+  .intake .fld { margin-bottom: 32px; }
+  .intake label {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 4px;
+  }
+  .intake input, .intake textarea {
+    width: 100%; box-sizing: border-box;
+    border: 0; border-bottom: 1px solid var(--rule);
+    background: transparent; outline: none;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 19px; color: var(--ink);
+    padding: 8px 0 12px;
+  }
+  .intake input:focus, .intake textarea:focus { border-bottom-color: var(--ink); }
+  .intake input::placeholder, .intake textarea::placeholder { color: var(--ink-faint); font-style: italic; }
+  .intake textarea { resize: vertical; min-height: 96px; line-height: 1.55; }
+  .intake button {
+    display: block; margin: 44px auto 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 15px 34px; background: var(--ink); color: #fff;
+    border: 0; cursor: pointer;
+  }
+  .intake button:hover { background: var(--blue); }
+  /* ————— closing hero: the appraisal ————— */
+  .end-hero { text-align: center; padding: 0 44px 90px; }
+  .end-hero h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 520;
+    font-size: clamp(30px, 3.9vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+    font-variation-settings: "opsz" 144;
+    margin-top: 36px;
+  }
+  .end-hero h1 em { font-style: italic; }
+  .end-hero .lede {
+    margin: 20px auto 0;
+    max-width: 1060px;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .end-hero .cta-row { display: flex; gap: 14px; justify-content: center; }
+
+  .faq { margin-top: 14px; }
+  .faq .qa { border-top: 1px solid var(--rule-faint); }
+  .faq .qa:first-child { border-top: 1px solid var(--rule); }
+  .faq .qa:last-child { border-bottom: 1px solid var(--rule); }
+  .faq .q {
+    list-style: none; cursor: pointer; position: relative;
+    padding: 24px 56px 24px 0;
+    font-variant: small-caps; letter-spacing: 0.05em; font-size: 19px; font-weight: 500;
+  }
+  .faq .q::-webkit-details-marker { display: none; }
+  .faq .q::after {
+    content: "+"; position: absolute; right: 6px; top: 24px;
+    font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--blue);
+  }
+  .faq .qa[open] .q::after { content: "−"; }
+  .faq .q:hover { color: var(--blue); }
+  .faq .a { font-size: 18px; line-height: 1.6; color: var(--ink-soft); padding: 0 56px 26px 0; margin: 0; }
+
+  /* ————— the slip: torn-paper appraisal overlay ————— */
+  .veil {
+    position: fixed; inset: 0; z-index: 40;
+    background: rgba(37,56,76,0.22);
+    opacity: 0; pointer-events: none; transition: opacity 0.35s;
+  }
+  .veil.on { opacity: 1; pointer-events: auto; }
+  .slip {
+    position: fixed; left: 50%; top: 50%; z-index: 50;
+    width: min(560px, 92vw);
+    background: #fff;
+    padding: 56px 52px 48px;
+    transform: translate(-50%, -47%) rotate(-0.5deg);
+    clip-path: polygon(1.5% 0%, 6% 2%, 11% 0.4%, 17% 2.4%, 24% 0%, 31% 1.8%, 38% 0.3%, 45% 2%, 52% 0%, 59% 2.2%, 66% 0.5%, 73% 2%, 80% 0.4%, 87% 1.8%, 93% 0.2%, 98.5% 1.5%, 100% 3%, 99.1% 9%, 100% 16%, 98.8% 23%, 100% 31%, 99% 39%, 100% 48%, 98.7% 56%, 100% 64%, 99% 72%, 100% 81%, 98.8% 89%, 100% 96%, 96.5% 100%, 91% 98.4%, 85% 100%, 78% 97.8%, 70% 100%, 62% 98.3%, 54% 100%, 46% 98.5%, 38% 100%, 30% 98.1%, 22% 100%, 14% 98.3%, 7% 100%, 1.8% 98.5%, 0% 95%, 1.1% 89%, 0% 81%, 1.2% 73%, 0% 65%, 1% 57%, 0% 49%, 1.2% 41%, 0% 33%, 1% 26%, 0% 18%, 1.2% 10%, 0% 4%);
+    filter: drop-shadow(0 34px 70px rgba(37,56,76,0.35));
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.38s, transform 0.38s cubic-bezier(0.2, 0.9, 0.25, 1.15);
+  }
+  .slip.on {
+    opacity: 1; pointer-events: auto;
+    transform: translate(-50%, -50%) rotate(-0.5deg);
+  }
+  .slip .x {
+    position: absolute; top: 20px; right: 26px;
+    background: none; border: 0; cursor: pointer;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; letter-spacing: 0.1em;
+    color: var(--ink-faint);
+  }
+  .slip .x:hover { color: var(--blue); }
+  .slip .slip-head {
+    text-align: center;
+    font-family: "Fraunces", serif; font-variant: small-caps;
+    font-weight: 380; font-size: 30px; letter-spacing: 0.22em; text-indent: 0.22em;
+    margin-bottom: 10px;
+  }
+  .slip .slip-sub {
+    text-align: center; font-size: 16.5px; font-style: italic; line-height: 1.55;
+    color: var(--ink-soft); margin-bottom: 26px;
+  }
+  .slip .intake { max-width: none; margin-top: 0; }
+  .slip .chips {
+    display: flex; justify-content: center; gap: 8px 18px; flex-wrap: wrap;
+    margin-bottom: 34px;
+  }
+  .slip .chips span {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--blue); white-space: nowrap;
+  }
+  .slip .chips span::before { content: "· "; color: var(--ink-faint); }
+  .slip .chips span:first-child::before { content: ""; }
+  .emailerr {
+    display: none; margin-top: 8px; text-align: center;
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.1em;
+    color: #a33;
+  }
+  .emailerr.show { display: block; }
+  .chips {
+    display: flex; justify-content: center; gap: 8px 18px; flex-wrap: wrap;
+    margin: 26px auto 0;
+  }
+  .chips span {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--blue); white-space: nowrap;
+  }
+  .chips span::before { content: "· "; color: var(--ink-faint); }
+  .chips span:first-child::before { content: ""; }
+
+  footer { margin-top: 100px; border-top: 3px double var(--ink); }
+  .inquiry {
+    max-width: 780px; margin: 0 auto; padding: 70px 44px 60px; text-align: center;
+  }
+  .inquiry .wm { font-family: "Fraunces", serif; font-weight: 340; font-variant: small-caps; font-size: 27px; letter-spacing: 0.3em; text-indent: 0.3em; }
+  .inquiry p { margin: 20px auto 30px; max-width: 460px; font-size: 18px; color: var(--ink-soft); }
+  .subform .lbl {
+    font-family: "Archivo", sans-serif;
+    font-size: 13px; margin-bottom: 12px; color: var(--ink);
+  }
+  .subform .row { display: flex; max-width: 420px; margin: 0 auto; }
+  .subform input {
+    flex: 1;
+    font-family: "Archivo", sans-serif;
+    font-size: 13px;
+    padding: 13px 16px;
+    border: 1px solid var(--sky);
+    border-right: none;
+    background: #fff;
+    color: var(--ink);
+    outline: none;
+  }
+  .subform input::placeholder { color: var(--ink-faint); }
+  .subform button {
+    font-family: "Archivo", sans-serif;
+    font-size: 13px;
+    padding: 13px 20px;
+    border: 1px solid var(--sky);
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .subform button:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .colophon {
+    max-width: 780px; margin: 0 auto; padding: 0 44px 10px;
+    display: flex; justify-content: space-between; gap: 24px;
+    font-size: 13.5px; color: var(--ink-faint); line-height: 1.65;
+  }
+  .colophon .src { max-width: 430px; }
+  .footnav { display: flex; gap: 30px; justify-content: center; margin-top: 34px; flex-wrap: wrap; }
+  .footnav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink-soft); text-decoration: none;
+  }
+  .footnav a:hover { color: var(--blue); }
+
+  /* ————— the seal: persistent appraisal mark ————— */
+  .seal {
+    position: fixed; right: 26px; bottom: 26px; z-index: 30;
+    display: flex; align-items: center; gap: 9px;
+    background: var(--ink); padding: 15px 22px; cursor: pointer;
+    clip-path: polygon(1.5% 0%, 6% 2%, 11% 0.4%, 17% 2.4%, 24% 0%, 31% 1.8%, 38% 0.3%, 45% 2%, 52% 0%, 59% 2.2%, 66% 0.5%, 73% 2%, 80% 0.4%, 87% 1.8%, 93% 0.2%, 98.5% 1.5%, 100% 3%, 99.1% 9%, 100% 16%, 98.8% 23%, 100% 31%, 99% 39%, 100% 48%, 98.7% 56%, 100% 64%, 99% 72%, 100% 81%, 98.8% 89%, 100% 96%, 96.5% 100%, 91% 98.4%, 85% 100%, 78% 97.8%, 70% 100%, 62% 98.3%, 54% 100%, 46% 98.5%, 38% 100%, 30% 98.1%, 22% 100%, 14% 98.3%, 7% 100%, 1.8% 98.5%, 0% 95%, 1.1% 89%, 0% 81%, 1.2% 73%, 0% 65%, 1% 57%, 0% 49%, 1.2% 41%, 0% 33%, 1% 26%, 0% 18%, 1.2% 10%, 0% 4%);
+    filter: drop-shadow(0 8px 14px rgba(28,44,68,.26)) drop-shadow(0 1px 3px rgba(28,44,68,.16));
+    opacity: 0; transform: translateY(14px);
+    pointer-events: none; transition: opacity .4s, transform .4s;
+  }
+  .seal.on { opacity: 1; transform: none; pointer-events: auto; }
+  .seal:hover { transform: translateY(-2px); }
+  .seal svg { width: 15px; height: 15px; flex: none; }
+  .seal .lbl {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #fff;
+    white-space: nowrap;
+  }
+  .seal:hover .lbl { color: var(--sky); }
+  @media (max-width: 900px) { .seal { right: 14px; bottom: 14px; } }
+
+  @media (max-width: 900px) {
+    header.top { padding: 18px 24px; flex-wrap: wrap; row-gap: 14px; }
+    .brand .name { white-space: nowrap; letter-spacing: 0.2em; font-size: 13px; }
+    nav.topnav { width: 100%; justify-content: center; gap: 18px; }
+    nav.topnav a { font-size: 12px; }
+    .tearband { margin-top: 30px; }
+    .tearband img { width: 94%; }
+    .hero-body { padding: 0 24px 44px; margin-top: -1vh; }
+    .hero h1 { font-size: clamp(28px, 7.4vw, 46px); white-space: normal; }
+    .sheet { padding: 0 24px; }
+    .asterism { margin: 36px 0; }
+    .sect { margin: 52px 0 32px; }
+    .end-hero h1 { font-size: clamp(26px, 6.8vw, 46px); }
+    .end-hero .tearfig { margin-top: 48px !important; }
+    .end-hero .tearfig img { width: 99% !important; }
+    .pair { grid-template-columns: 1fr; gap: 40px; }
+    .wide-pair { grid-template-columns: 1fr; gap: 16px; padding: 0 24px; margin-top: 32px; }
+    .wide-pair .tearfig { margin: 0; }
+
+    .pair-oath { grid-template-columns: 1fr; justify-content: start; }
+    .pair-oath .tearfig { order: -1; align-self: auto; margin-top: 0; }
+    .pair-oath .tearfig img { height: auto; width: 70%; }
+    .colophon { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <svg class="mark" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="13.5" stroke="#25384C" stroke-width="1.1"/>
+      <path d="M16 4 L18.5 13.5 L28 16 L18.5 18.5 L16 28 L13.5 18.5 L4 16 L13.5 13.5 Z" fill="#1E60B5"/>
+      <circle cx="16" cy="16" r="2.2" fill="#25384C"/>
+    </svg>
+    <span class="name">The Data Company</span>
+  </div>
+  <nav class="topnav">
+    <a href="#principles">Principles</a>
+    <a href="#oath">Oath</a>
+    <a href="#appraisal" data-slip>Appraisal</a>
+    <a href="#faq">Questions</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="tearband">
+    <img src="refs/franklin-eyes.jpg" alt="Engraved currency portrait eyes looking through torn paper">
+    <div class="fade"></div>
+  </div>
+  <div class="hero-body">
+    <div class="hero-copy">
+      <!-- <div class="thesis">Data is the last unrepresented asset class</div> -->
+      <h1>We turn your data into <em>dollars.</em></h1>
+      <p class="lede">Everyone is making money off the AI revolution — you should too. We represent owners of proprietary data in exclusive licensing agreements with frontier AI laboratories.</p>
+      <div class="cta-row" style="margin-top:34px">
+        <a class="cta solid" href="#appraisal" data-slip>Get a quote</a>
+        <a class="cta ghost" href="#oath">Read our oath</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wide-pair" id="principles">
+  <figure class="tearfig">
+    <img src="refs/hands-tear.jpg" alt="Engraved hand reaching through torn paper toward a wireframe digital hand">
+  </figure>
+  <div>
+    <div class="sect"><h2>Principles</h2></div>
+    <div class="prop">
+      <span class="rn">I.</span>
+      <p>Archives are the keys to the next order of intelligence. Their owners hold a producing asset — the last great asset still sold <em>without representation</em>.</p>
+    </div>
+    <div class="prop">
+      <span class="rn">II.</span>
+      <p>Two worlds meet in this market: those who built the archives, and those who build the machines. Between them stands a wide delta of language, precedent, and power — and this market has a history of taking advantage of its sellers.</p>
+    </div>
+    <div class="prop">
+      <span class="rn">III.</span>
+      <p>We navigate that crossing on the seller's behalf — appraising, negotiating, closing — so that <em>no owner makes the passage alone</em>.</p>
+    </div>
+    <div class="prop">
+      <span class="rn">IV.</span>
+      <p>Though the market is nearly automated, its advantage remains <em>human</em> — judgment, presence, and the handshake, held by people answerable to the seller alone.</p>
+    </div>
+  </div>
+</div>
+
+<div class="sheet">
+
+    <div class="asterism">⁂</div>
+
+  </div>
+
+  <div class="wide-pair pair-oath">
+      <div class="letter">
+        <div class="sect" id="oath"><h2>Our Oath</h2></div>
+        <p class="body">Every laboratory building a frontier model wants what you hold — because what you hold is the missing substrate of the next order of intelligence. Human judgment. Ambiguous work resolved well. Years of operational excellence, recorded. That record is the requirement — and you hold the keys.</p>
+        <p>Our office is simple to state: to win you the highest value and the strongest protections for the assets you hold. We are your broker — we negotiate on your behalf so that you are never taken advantage of, and so that you are rewarded for what your business has built.</p>
+        <p>And we take one oath, and it runs to the seller alone. We hold nothing of our own to sell, and we answer to no buyer. Every asset class has had its brokers — those who used the client, and those who stood for the client. We swear to be the latter.</p>
+        <p>Our founder came to this seat by an uncommon road — from building the largest nonprofit community in the world teaching people AI, to working alongside the frontier laboratories on engineering, development, and go-to-market. That work earned the trust of more than a million people. The Data Company exists so that the owners of data are paid their share of what comes next — everyone is making money off the AI revolution, and you should too.</p>
+        <div class="sig">
+          <span class="name">The Data Company</span>
+        </div>
+      </div>
+      <figure class="tearfig">
+        <img src="refs/justice-tear.jpg" alt="Engraved figure of Lady Justice with scales and sword seen through torn paper">
+      </figure>
+  </div>
+
+<div class="sheet">
+
+    <div class="asterism">⁂</div>
+
+  </div>
+
+  <div class="end-hero" id="appraisal">
+    <figure class="tearfig" style="margin-top:100px">
+      <img src="refs/money-press.jpg" alt="Binary data feeding through an engraved printing press, emerging as a hundred-dollar bill" style="width:65%">
+    </figure>
+    <div class="end-copy">
+      <h1>Your company&rsquo;s data could be worth <em>$100K–$5M.</em></h1>
+      <p class="lede">Your data could be worth millions. Answer a few questions and we&rsquo;ll show you an estimated value range — <em>takes only two minutes.</em></p>
+      <div class="cta-row" style="margin-top:38px">
+        <a class="cta solid" href="#appraisal" data-slip>Get a quote</a>
+        <a class="cta ghost" href="#faq">Questions</a>
+      </div>
+    </div>
+  </div>
+
+<div class="sheet">
+
+    <div class="sect" id="faq" style="margin-top:20px"><h2>Frequently Asked Questions</h2></div>
+
+    <div class="faq">
+      <details class="qa">
+        <summary class="q">What does the appraisal cost?</summary>
+        <p class="a">Nothing. A preliminary appraisal is an estimate of the market, offered without obligation. We are paid on outcomes — never on the introduction.</p>
+      </details>
+      <details class="qa">
+        <summary class="q">Do you buy data yourselves?</summary>
+        <p class="a">No. We hold no inventory. We represent owners of proprietary archives under exclusive mandate, and our fee runs against the terms we win.</p>
+      </details>
+      <details class="qa">
+        <summary class="q">What is an exclusive mandate?</summary>
+        <p class="a">One archive under one representation. Nothing leaks across the market — and every buyer knows the corpus crosses the table once.</p>
+      </details>
+      <details class="qa">
+        <summary class="q">What kind of data belongs here?</summary>
+        <p class="a">Proprietary record: human judgment, resolved ambiguity, operational excellence — the corpora laboratories cannot synthesize. Rarity, coverage, and provenance decide the price.</p>
+      </details>
+      <details class="qa">
+        <summary class="q">Who sits across the table?</summary>
+        <p class="a">Frontier AI laboratories and foundation-model groups — buyers whose procurement desks are paid to pay less. We sit on the seller's side of that table.</p>
+      </details>
+      <details class="qa">
+        <summary class="q">Is my inquiry held in confidence?</summary>
+        <p class="a">Held in confidence, appraised before answered. Your archive enters the market under your mandate and closes under your terms.</p>
+      </details>
+    </div>
+
+  </div>
+
+  <footer id="contact">
+    <div class="inquiry">
+      <div class="wm">The Data Company</div>
+      <p>Representation for owners of proprietary data. Inquiries held in confidence; appraised before answered.</p>
+      <nav class="footnav">
+        <a href="#principles">Principles</a>
+        <a href="#oath">Oath</a>
+        <a href="#appraisal" data-slip>Appraisal</a>
+        <a href="#faq">Questions</a>
+        <a href="mailto:hello@thedata.company">Contact</a>
+      </nav>
+    </div>
+    <div class="colophon">
+      <span>© 2026 The Data Company · San Francisco, CA · SOC-2 compliant</span>
+    </div>
+  </footer>
+
+<button class="seal" id="seal" aria-label="Get a quote">
+  <svg viewBox="0 0 32 32" fill="none">
+    <circle cx="16" cy="16" r="13.5" stroke="#fff" stroke-width="1.6"/>
+    <path d="M16 4 L18.5 13.5 L28 16 L18.5 18.5 L16 28 L13.5 18.5 L4 16 L13.5 13.5 Z" fill="#4C92E4"/>
+    <circle cx="16" cy="16" r="2.2" fill="#fff"/>
+  </svg>
+  <span class="lbl">Get a quote</span>
+</button>
+
+<div class="veil" id="veil"></div>
+<div class="slip" id="slip" role="dialog" aria-label="Get a quote">
+  <button class="x" id="x">✕ &nbsp;close</button>
+  <div class="slip-head">Get a Quote</div>
+  <div class="slip-sub">Your data could be worth millions. Answer a few questions and we&rsquo;ll show you an estimated value range — takes only two minutes.</div>
+  <div class="chips">
+    <span>You keep ownership</span>
+    <span>We never hold your data</span>
+    <span>Just an estimate, not an offer</span>
+  </div>
+  <form class="intake" id="gate">
+    <div class="fld">
+      <label>Work email</label>
+      <input type="email" id="gate-email" placeholder="you@company.com" autocomplete="email">
+      <div class="emailerr" id="emailerr">Enter a valid email to continue.</div>
+    </div>
+    <button type="submit">Continue →</button>
+  </form>
+</div>
+
+<script>
+  const veil = document.getElementById('veil'), slip = document.getElementById('slip');
+  const openSlip = e => { if (e) e.preventDefault(); veil.classList.add('on'); slip.classList.add('on'); };
+  const closeSlip = () => { veil.classList.remove('on'); slip.classList.remove('on'); };
+  document.querySelectorAll('[data-slip]').forEach(a => a.addEventListener('click', openSlip));
+  veil.addEventListener('click', closeSlip);
+  document.getElementById('x').addEventListener('click', closeSlip);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeSlip(); });
+
+  const seal = document.getElementById('seal');
+  seal.addEventListener('click', openSlip);
+  let pastHero = false, atEnd = false;
+  const sealSync = () => seal.classList.toggle('on', pastHero && !atEnd);
+  new IntersectionObserver(e => { pastHero = !e[0].isIntersecting; sealSync(); }).observe(document.querySelector('.hero'));
+  new IntersectionObserver(e => { atEnd = e[0].isIntersecting; sealSync(); }).observe(document.querySelector('.end-hero'));
+
+  document.getElementById('gate').addEventListener('submit', e => {
+    e.preventDefault();
+    const input = document.getElementById('gate-email');
+    const v = input.value.trim();
+    const err = document.getElementById('emailerr');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) { err.classList.add('show'); return; }
+    err.classList.remove('show');
+    sessionStorage.setItem('tdc_quote', JSON.stringify({ email: v }));
+    window.location.href = 'quote.html';
+  });
+</script>
+
+</body>
+</html>

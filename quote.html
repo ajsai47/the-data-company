@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — Get a Quote</title>
+<meta name="description" content="An indicative estimate of your company's operating data — broker, not buyer. You keep ownership; you decide.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Newsreader:ital,opsz,wght@0,6..72,400..500;1,6..72,400..500&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #25384C;
+    --ink-soft: rgba(37,56,76,0.78);
+    --ink-faint: rgba(37,56,76,0.5);
+    --rule: rgba(37,56,76,0.32);
+    --rule-faint: rgba(37,56,76,0.14);
+    --blue: #1E60B5;
+    --sky: rgba(134,193,255,0.5);
+    --ice: #E6F2FF;
+    --paper: #fff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 19px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--ice); }
+
+  header.top {
+    position: relative; z-index: 10;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 44px;
+  }
+  .brand { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--ink); }
+  .brand .mark { width: 28px; height: 28px; display: block; }
+  .brand .name {
+    font-family: "Fraunces", serif;
+    font-weight: 420;
+    font-variant: small-caps;
+    font-size: 14.5px;
+    letter-spacing: 0.26em;
+  }
+  .back {
+    font-family: "Archivo", sans-serif; font-size: 14px;
+    color: var(--ink); text-decoration: none;
+  }
+  .back:hover { color: var(--blue); }
+
+  .stage {
+    max-width: 640px; margin: 0 auto;
+    padding: 60px 44px 120px;
+  }
+
+  .stepmark {
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 30px;
+  }
+  .step h1 {
+    text-align: center;
+    font-family: "Fraunces", serif; font-weight: 350;
+    font-variant: small-caps;
+    font-size: 34px; letter-spacing: 0.14em; text-indent: 0.14em;
+    margin-bottom: 14px;
+  }
+  .step .sub {
+    text-align: center; font-size: 17.5px; font-style: italic;
+    color: var(--ink-soft); margin-bottom: 44px;
+  }
+
+  .fld { margin-bottom: 30px; }
+  .fld label {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 4px;
+  }
+  .fld input, .fld textarea {
+    width: 100%; box-sizing: border-box;
+    border: 0; border-bottom: 1px solid var(--rule);
+    background: transparent; outline: none;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 19px; color: var(--ink);
+    padding: 8px 0 12px;
+  }
+  .fld input:focus, .fld textarea:focus { border-bottom-color: var(--ink); }
+  .fld input::placeholder { color: var(--ink-faint); font-style: italic; }
+
+  .opts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .opt {
+    font-family: "Archivo", sans-serif; font-size: 14px;
+    padding: 11px 18px;
+    border: 1px solid var(--rule); background: #fff;
+    color: var(--ink); cursor: pointer; user-select: none;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  .opt:hover { border-color: var(--ink); }
+  .opt.sel { border-color: var(--blue); background: var(--ice); }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+
+  .btn {
+    display: block; margin: 46px auto 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 15px 34px; background: var(--ink); color: #fff;
+    border: 0; cursor: pointer; text-decoration: none; text-align: center;
+    width: fit-content;
+  }
+  .btn:hover { background: var(--blue); }
+  .btn.ghost { background: none; color: var(--ink); border: 1px solid var(--rule); margin-top: 14px; }
+  .btn.ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+  .backlink {
+    display: block; margin: 22px auto 0; text-align: center;
+    font-family: "IBM Plex Mono", monospace; font-size: 10px;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ink-faint); background: none; border: 0; cursor: pointer;
+  }
+  .backlink:hover { color: var(--blue); }
+
+  .err {
+    display: none; margin-top: 8px;
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.08em;
+    color: #a33;
+  }
+  .err.show { display: block; }
+  .warn {
+    display: none; margin-top: 8px; font-size: 15px; font-style: italic;
+    color: var(--ink-soft);
+  }
+  .warn.show { display: block; }
+
+  /* ————— result ————— */
+  .result .eyebrow {
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 26px;
+  }
+  .result .band {
+    text-align: center;
+    font-family: "Fraunces", serif; font-weight: 330;
+    font-size: clamp(44px, 8vw, 76px);
+    letter-spacing: -0.01em; line-height: 1;
+    margin-bottom: 30px;
+  }
+  .result .band em { font-style: italic; font-weight: 300; color: var(--ink-faint); }
+  .result .conf {
+    text-align: center;
+    font-family: "IBM Plex Mono", monospace; font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint);
+    margin-bottom: 34px;
+  }
+  .result .rbody { text-align: center; font-size: 18px; color: var(--ink-soft); max-width: 480px; margin: 0 auto 12px; }
+  .result .disclaim {
+    margin-top: 44px; padding-top: 26px; border-top: 1px solid var(--rule-faint);
+    font-size: 14px; line-height: 1.65; font-style: italic; color: var(--ink-faint);
+    text-align: center;
+  }
+  .consent {
+    display: flex; align-items: flex-start; gap: 12px;
+    font-size: 15.5px; line-height: 1.5; color: var(--ink-soft);
+    margin-top: 6px; cursor: pointer;
+  }
+  .consent input { margin-top: 5px; accent-color: var(--blue); }
+
+  .step { display: none; }
+  .step.on { display: block; }
+
+  .done h1 { margin-bottom: 20px; }
+  .done .sub { margin-bottom: 10px; }
+
+  @media (max-width: 640px) {
+    header.top { padding: 18px 24px; }
+    .stage { padding: 40px 24px 90px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="brand" href="index.html">
+    <svg class="mark" viewBox="0 0 32 32" fill="none">
+      <circle cx="16" cy="16" r="13.5" stroke="#25384C" stroke-width="1.1"/>
+      <path d="M16 4 L18.5 13.5 L28 16 L18.5 18.5 L16 28 L13.5 18.5 L4 16 L13.5 13.5 Z" fill="#1E60B5"/>
+      <circle cx="16" cy="16" r="2.2" fill="#25384C"/>
+    </svg>
+    <span class="name">The Data Company</span>
+  </a>
+  <a class="back" href="index.html">← Return</a>
+</header>
+
+<div class="stage">
+
+  <!-- 1 · email -->
+  <div class="step" data-step="1">
+    <div class="stepmark">I · Petition</div>
+    <h1>Get a Quote</h1>
+    <p class="sub">Your data could be worth millions. Answer a few questions and we'll show you an estimated value range — then you decide if we shop buyers.</p>
+    <div class="fld">
+      <label>Work email</label>
+      <input type="email" id="f-email" placeholder="you@company.com" autocomplete="email">
+      <div class="err" data-err>Enter a valid email to continue.</div>
+      <div class="warn" data-warn>A company domain is preferred — personal addresses may slow review.</div>
+    </div>
+    <button class="btn" data-next>Continue →</button>
+  </div>
+
+  <!-- 2 · company -->
+  <div class="step" data-step="2">
+    <div class="stepmark">II · The Firm</div>
+    <h1>Who holds it</h1>
+    <p class="sub">The party the mandate would run to.</p>
+    <div class="fld"><label>Full name</label><input type="text" id="f-name" placeholder="Your name"><div class="err" data-err>Required.</div></div>
+    <div class="fld"><label>Company</label><input type="text" id="f-company" placeholder="Legal or trading name"><div class="err" data-err>Required.</div></div>
+    <div class="fld"><label>Website</label><input type="url" id="f-website" placeholder="company.com"><div class="err" data-err>Required.</div></div>
+    <div class="fld">
+      <label>Your role — optional</label>
+      <div class="opts" data-single="role">
+        <label class="opt">Founder / CEO<input type="radio" name="role" value="Founder/CEO"></label>
+        <label class="opt">Ops<input type="radio" name="role" value="Ops"></label>
+        <label class="opt">Legal<input type="radio" name="role" value="Legal"></label>
+        <label class="opt">Data<input type="radio" name="role" value="Data"></label>
+        <label class="opt">Other<input type="radio" name="role" value="Other"></label>
+      </div>
+    </div>
+    <button class="btn" data-next>Continue →</button>
+    <button class="backlink" data-back>← Back</button>
+  </div>
+
+  <!-- 3 · scale & geo -->
+  <div class="step" data-step="3">
+    <div class="stepmark">III · The Measure</div>
+    <h1>Scale &amp; seat</h1>
+    <p class="sub">How long the archive has run, and where it lives.</p>
+    <div class="fld">
+      <label>Years operating</label>
+      <div class="opts" data-single="years">
+        <label class="opt">&lt;1<input type="radio" name="years" value="<1"></label>
+        <label class="opt">1–2<input type="radio" name="years" value="1-2"></label>
+        <label class="opt">3–5<input type="radio" name="years" value="3-5"></label>
+        <label class="opt">6–10<input type="radio" name="years" value="6-10"></label>
+        <label class="opt">10+<input type="radio" name="years" value="10+"></label>
+      </div>
+      <div class="err" data-err>Required.</div>
+    </div>
+    <div class="fld">
+      <label>Headcount</label>
+      <div class="opts" data-single="headcount">
+        <label class="opt">1–9<input type="radio" name="headcount" value="1-9"></label>
+        <label class="opt">10–29<input type="radio" name="headcount" value="10-29"></label>
+        <label class="opt">30–99<input type="radio" name="headcount" value="30-99"></label>
+        <label class="opt">100–249<input type="radio" name="headcount" value="100-249"></label>
+        <label class="opt">250+<input type="radio" name="headcount" value="250+"></label>
+      </div>
+      <div class="err" data-err>Required.</div>
+    </div>
+    <div class="fld">
+      <label>Primary geography</label>
+      <div class="opts" data-single="geography">
+        <label class="opt">US<input type="radio" name="geography" value="US"></label>
+        <label class="opt">UK<input type="radio" name="geography" value="UK"></label>
+        <label class="opt">Canada<input type="radio" name="geography" value="Canada"></label>
+        <label class="opt">EU<input type="radio" name="geography" value="EU"></label>
+        <label class="opt">Other<input type="radio" name="geography" value="Other"></label>
+      </div>
+      <div class="err" data-err>Required.</div>
+    </div>
+    <button class="btn" data-next>Continue →</button>
+    <button class="backlink" data-back>← Back</button>
+  </div>
+
+  <!-- 4 · systems -->
+  <div class="step" data-step="4">
+    <div class="stepmark">IV · The Surfaces</div>
+    <h1>Where it lives</h1>
+    <p class="sub">Select what your team actually uses. No connections required — we never touch your systems.</p>
+    <div class="fld">
+      <div class="opts" data-multi="systems">
+        <label class="opt">Slack / Teams<input type="checkbox" value="slack_teams"></label>
+        <label class="opt">Email / Workspace / M365<input type="checkbox" value="email_suite"></label>
+        <label class="opt">CRM (Salesforce, HubSpot…)<input type="checkbox" value="crm"></label>
+        <label class="opt">Support (Zendesk, Intercom…)<input type="checkbox" value="support"></label>
+        <label class="opt">Docs / Drive / Notion<input type="checkbox" value="docs"></label>
+        <label class="opt">Product analytics / events<input type="checkbox" value="analytics"></label>
+        <label class="opt">Code hosting (GitHub…)<input type="checkbox" value="code"></label>
+        <label class="opt">Design tools (Figma…)<input type="checkbox" value="design"></label>
+        <label class="opt">Ticketing / project (Jira…)<input type="checkbox" value="ticketing"></label>
+        <label class="opt">Other<input type="checkbox" value="other"></label>
+      </div>
+      <div class="warn" data-warn>No surfaces selected — the estimate will be thin. Continue anyway?</div>
+    </div>
+    <button class="btn" data-next>Continue →</button>
+    <button class="backlink" data-back>← Back</button>
+  </div>
+
+  <!-- 5 · fit -->
+  <div class="step" data-step="5">
+    <div class="stepmark">V · The Corpus</div>
+    <h1>What it is</h1>
+    <p class="sub">The shape of the record a buyer would license.</p>
+    <div class="fld">
+      <label>Niche</label>
+      <div class="opts" data-multi="niche">
+        <label class="opt">AI<input type="checkbox" value="ai"></label>
+        <label class="opt">SaaS<input type="checkbox" value="saas"></label>
+        <label class="opt">Gaming<input type="checkbox" value="gaming"></label>
+        <label class="opt">Code<input type="checkbox" value="code"></label>
+        <label class="opt">Other<input type="checkbox" value="other"></label>
+      </div>
+    </div>
+    <div class="fld">
+      <label>Data types</label>
+      <div class="opts" data-multi="data_types">
+        <label class="opt">Ops history<input type="checkbox" value="ops"></label>
+        <label class="opt">Support transcripts<input type="checkbox" value="support_tx"></label>
+        <label class="opt">CRM pipelines<input type="checkbox" value="crm_pipes"></label>
+        <label class="opt">Codebase + PRs<input type="checkbox" value="codebase"></label>
+        <label class="opt">Design files<input type="checkbox" value="design_files"></label>
+        <label class="opt">Game telemetry<input type="checkbox" value="telemetry"></label>
+        <label class="opt">Analytics events<input type="checkbox" value="events"></label>
+        <label class="opt">Docs / wikis<input type="checkbox" value="wikis"></label>
+      </div>
+    </div>
+    <button class="btn" data-next>See my estimate →</button>
+    <button class="backlink" data-back>← Back</button>
+  </div>
+
+  <!-- 6 · result -->
+  <div class="step result" data-step="6">
+    <div class="eyebrow">Indicative estimate · Not an offer</div>
+    <div class="band" id="band">$—<em>–</em>$—</div>
+    <div class="conf" id="conf">Confidence — low</div>
+    <p class="rbody">Based on what you shared. Real offers depend on scope, quality, and buyer demand. We shop multiple buyers; you always decide.</p>
+    <p class="rbody"><em>Broker, not buyer. You decide.</em></p>
+    <button class="btn" data-next>Text it to me →</button>
+    <button class="btn ghost" id="emailsum">Email me the summary</button>
+    <button class="backlink" data-back>← Back</button>
+    <p class="disclaim">This is an indicative estimate based on the answers you provided. It is not an offer, quote commitment, or guarantee of any payment. Actual outcomes depend on data scope, quality, rights, and buyer demand. The Data Company is a sell-side broker: we may shop multiple buyers; you keep ownership unless and until you approve a license; we do not take custody of your data through this form.</p>
+  </div>
+
+  <!-- 7 · text it to me -->
+  <div class="step" data-step="7">
+    <div class="stepmark">VI · Delivery</div>
+    <h1>Text it to me</h1>
+    <p class="sub">The estimate, and the next step, to your phone.</p>
+    <div class="fld">
+      <label>Phone</label>
+      <input type="tel" id="f-phone" placeholder="+1 (___) ___-____" autocomplete="tel">
+      <div class="err" data-err>Enter a valid phone number.</div>
+    </div>
+    <label class="consent">
+      <input type="checkbox" id="f-consent">
+      <span>I consent to receive a one-time SMS with my estimate from The Data Company. Reply STOP to opt out.</span>
+    </label>
+    <div class="err" data-err id="consent-err" style="margin-top:14px">Consent is required to send the estimate.</div>
+    <button class="btn" data-next>Text my estimate →</button>
+    <button class="backlink" data-back>← Back</button>
+  </div>
+
+  <!-- 8 · done -->
+  <div class="step done" data-step="8">
+    <div class="stepmark">VII · Entered</div>
+    <h1>Received</h1>
+    <p class="sub" id="donemsg">Sent. Next — we review fit and, if it makes sense, shop buyers. You decide every step.</p>
+    <p class="sub"><em>Broker, not buyer. You decide.</em></p>
+    <a class="btn" href="index.html">Done →</a>
+    <button class="backlink" id="refer">Refer a company →</button>
+  </div>
+
+</div>
+
+<script>
+// ————— estimate config — single object, editable —————
+const estimateConfig = {
+  version: "v1.0",
+  base: { "1-9":[25000,80000], "10-29":[60000,180000], "30-99":[120000,400000], "100-249":[250000,800000], "250+":[400000,1500000] },
+  years: { "<1":0.55, "1-2":0.75, "3-5":1.00, "6-10":1.15, "10+":1.25 },
+  geo: { "US":1.00, "UK":0.90, "Canada":0.90, "EU":0.85, "Other":0.70 },
+  systemsPer: 0.04, systemsCap: 0.28,
+  bonus: { code: 0.08, crmOrSupport: 0.06, analytics: 0.05 },
+  nicheOne: 1.10, nicheTwo: 1.15,
+  widthMin: 2.2, widthMax: 3.5, capHigh: 4000000, roundTo: 5000,
+  nicheSet: ["ai","saas","gaming","code"]
+};
+
+const DISCLAIMER = "Indicative estimate — not an offer.";
+
+// ————— state —————
+let st = {};
+try { st = JSON.parse(sessionStorage.getItem('tdc_quote') || '{}'); } catch(e) {}
+const save = () => sessionStorage.setItem('tdc_quote', JSON.stringify(st));
+const track = (ev, data) => {
+  const log = JSON.parse(localStorage.getItem('tdc_events') || '[]');
+  log.push({ ev, data, t: Date.now() });
+  localStorage.setItem('tdc_events', JSON.stringify(log));
+};
+
+const steps = [...document.querySelectorAll('.step')];
+let cur = 0;
+function show(i) {
+  steps.forEach(s => s.classList.remove('on'));
+  cur = i; steps[i].classList.add('on');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const first = steps[i].querySelector('input[type="text"],input[type="email"],input[type="url"],input[type="tel"]');
+  if (first) setTimeout(() => first.focus({ preventScroll: true }), 250);
+}
+function stepOf() { return +steps[cur].dataset.step; }
+
+// restore email from slip gate
+if (st.email) document.getElementById('f-email').value = st.email;
+
+// restore field values on back-nav
+function restore() {
+  ['email','full_name','company_name','website','phone'].forEach(k => {
+    const el = document.getElementById('f-' + ({full_name:'name',company_name:'company'}[k]||k));
+    if (el && st[k]) el.value = st[k];
+  });
+  document.querySelectorAll('.opts').forEach(group => {
+    const key = group.dataset.single || group.dataset.multi;
+    const vals = Array.isArray(st[key]) ? st[key] : [st[key]];
+    group.querySelectorAll('.opt').forEach(o => {
+      const on = vals.includes(o.querySelector('input').value);
+      o.classList.toggle('sel', on);
+      o.querySelector('input').checked = on;
+    });
+  });
+}
+
+// option groups
+document.querySelectorAll('.opts').forEach(group => {
+  group.addEventListener('click', e => {
+    if (e.target.tagName === 'INPUT') return; // label forwards a click to the input — don't handle twice
+    const lab = e.target.closest('.opt');
+    if (!lab) return;
+    const input = lab.querySelector('input');
+    const single = group.dataset.single;
+    if (single) {
+      group.querySelectorAll('.opt').forEach(o => o.classList.remove('sel'));
+      lab.classList.add('sel');
+      st[single] = input.value; save();
+    } else {
+      const multi = group.dataset.multi;
+      lab.classList.toggle('sel');
+      input.checked = lab.classList.contains('sel');
+      st[multi] = [...group.querySelectorAll('.opt.sel input')].map(i => i.value);
+      save();
+    }
+  });
+});
+
+const PERSONAL = /^(gmail|yahoo|hotmail|outlook|aol|icloud|proton|mail|hey)\.(com|net|me|co)$/i;
+
+function validEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+
+function next() {
+  const s = stepOf();
+  const el = sel => steps[cur].querySelector(sel);
+  if (s === 1) {
+    const v = el('#f-email').value.trim();
+    if (!validEmail(v)) { el('[data-err]').classList.add('show'); return; }
+    el('[data-err]').classList.remove('show');
+    el('[data-warn]').classList.toggle('show', PERSONAL.test(v.split('@')[1]||''));
+    st.email = v; save(); track('quote_email_submitted', {email: v});
+  }
+  if (s === 2) {
+    const name = el('#f-name').value.trim(), co = el('#f-company').value.trim(), web = el('#f-website').value.trim();
+    let ok = true;
+    [[name,0],[co,1],[web,2]].forEach(([v,i]) => {
+      const errs = steps[cur].querySelectorAll('[data-err]');
+      errs[i].classList.toggle('show', !v); if (!v) ok = false;
+    });
+    if (!ok) return;
+    st.full_name = name; st.company_name = co;
+    st.website = /^https?:\/\//i.test(web) ? web : 'https://' + web;
+    save();
+  }
+  if (s === 3) {
+    const errs = steps[cur].querySelectorAll('[data-err]');
+    let ok = true;
+    ['years','headcount','geography'].forEach((k,i) => { errs[i].classList.toggle('show', !st[k]); if (!st[k]) ok = false; });
+    if (!ok) return;
+  }
+  if (s === 4) {
+    const w = el('[data-warn]');
+    if (!st.systems || !st.systems.length) {
+      if (!w.classList.contains('show')) { w.classList.add('show'); return; }
+    }
+    track('quote_step_completed', {step: 4});
+  }
+  if (s === 5) { compute(); track('quote_step_completed', {step: 5}); }
+  if (s === 7) {
+    const ph = el('#f-phone').value.trim();
+    const phOk = /^\+?[\d\s\-().]{7,18}$/.test(ph);
+    const errs = steps[cur].querySelectorAll('[data-err]');
+    errs[0].classList.toggle('show', !phOk);
+    errs[1].classList.toggle('show', !el('#f-consent').checked);
+    if (!phOk || !el('#f-consent').checked) return;
+    st.phone = ph; st.sms_consent = true; save();
+    track('quote_text_me_submitted', {phone: ph});
+    persistLead();
+  }
+  show(cur + 1);
+}
+
+function persistLead() {
+  const leads = JSON.parse(localStorage.getItem('tdc_leads') || '[]');
+  leads.push({ ...st, band: st.band_label, config_version: estimateConfig.version, utm: new URLSearchParams(location.search).toString(), ts: Date.now() });
+  localStorage.setItem('tdc_leads', JSON.stringify(leads));
+}
+
+function round(n, to) { return Math.round(n / to) * to; }
+function fmtK(n) { return '$' + (n >= 1e6 ? (n/1e6).toFixed(1).replace(/\.0$/,'') + 'M' : (n/1000) + 'K'); }
+
+function compute() {
+  const c = estimateConfig;
+  const base = c.base[st.headcount] || c.base['1-9'];
+  let low = base[0] * (c.years[st.years]||1) * (c.geo[st.geography]||1);
+  let high = base[1] * (c.years[st.years]||1) * (c.geo[st.geography]||1);
+  let mid = (low + high) / 2;
+  const sys = st.systems || [];
+  let boost = Math.min(c.systemsCap, c.systemsPer * sys.length);
+  if (sys.includes('code')) boost += c.bonus.code;
+  if (sys.includes('crm') || sys.includes('support')) boost += c.bonus.crmOrSupport;
+  if (sys.includes('analytics')) boost += c.bonus.analytics;
+  mid *= (1 + boost);
+  const niches = (st.niche||[]).filter(n => c.nicheSet.includes(n));
+  mid *= niches.length >= 2 ? c.nicheTwo : niches.length === 1 ? c.nicheOne : 1;
+  low = mid / 1.6; high = mid * 1.6;
+  if (high < low * c.widthMin) high = low * c.widthMin;
+  if (high > low * c.widthMax) high = low * c.widthMax;
+  low = round(low, c.roundTo); high = Math.min(round(high, c.roundTo), c.capHigh);
+
+  const thin = st.years === '<1' && st.headcount === '1-9' && sys.length < 2;
+  if (thin) { low = 10000; high = 40000; st.confidence = 'low — speculative'; }
+  else st.confidence = 'medium';
+
+  st.band_low = low; st.band_high = high;
+  st.band_label = fmtK(low) + '–' + fmtK(high);
+  save();
+
+  document.getElementById('band').innerHTML = fmtK(low) + '<em>–</em>' + fmtK(high);
+  document.getElementById('conf').textContent = 'Confidence — ' + st.confidence;
+  if (!st._saved) { st._saved = true; save(); persistLead(); }
+  if (thin) {
+    steps[5].querySelector('.rbody').textContent =
+      'Likely below our current buyer demand floor — this band is speculative. We still review every petition; talk to us.';
+  }
+  track('quote_estimate_viewed', { band: st.band_label, config_version: c.version });
+}
+
+document.querySelectorAll('[data-next]').forEach(b => b.addEventListener('click', next));
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.closest('.step') && e.target.tagName !== 'BUTTON') {
+    e.preventDefault(); next();
+  }
+});
+document.querySelectorAll('[data-back]').forEach(b => b.addEventListener('click', () => { restore(); show(cur - 1); }));
+
+document.getElementById('emailsum').addEventListener('click', function() {
+  this.textContent = 'Queued to ' + (st.email || 'your email');
+});
+document.getElementById('refer').addEventListener('click', function() {
+  this.textContent = 'Referral program opening soon';
+});
+
+restore();
+track('quote_started', {});
+show(st.email ? 1 : 0); // if email came from the slip gate, skip screen 1
+</script>
+
+</body>
+</html>

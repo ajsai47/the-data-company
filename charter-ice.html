@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — The Charter, in Ice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Cosmos-anchored cold tokens */
+    --paper: #E6F2FF;
+    --paper-card: #EFF7FF;
+    --ink: #25384C;
+    --ink-soft: #4E6580;
+    --ink-faint: #7E97AE;
+    --seal: #1E60B5;
+    --sky: #86C1FF;
+    --rule: rgba(37, 56, 76, 0.3);
+    --rule-faint: rgba(37, 56, 76, 0.14);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 20px;
+    line-height: 1.62;
+    font-variant-numeric: oldstyle-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--seal); color: var(--paper); }
+
+  .sheet { max-width: 780px; margin: 0 auto; padding: 0 44px; }
+
+  .caps {
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+  }
+  .mono {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-variant-numeric: lining-nums;
+  }
+
+  /* ————— masthead ————— */
+  .masthead {
+    padding: 54px 0 30px;
+    text-align: center;
+    border-bottom: 3px double var(--ink);
+  }
+  .masthead .over { font-size: 15px; color: var(--ink-soft); margin-bottom: 22px; letter-spacing: 0.22em; }
+  .wordmark {
+    font-family: "Fraunces", serif;
+    font-weight: 340;
+    font-variant: small-caps;
+    font-size: 32px;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    font-variation-settings: "opsz" 144;
+  }
+  .masthead .under {
+    margin-top: 22px;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .masthead .under .mono { color: var(--ink-faint); font-size: 10px; }
+  .masthead nav { display: flex; gap: 26px; }
+  .masthead nav a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-soft); text-decoration: none;
+  }
+  .masthead nav a:hover { color: var(--seal); }
+
+  /* ————— title ————— */
+  .title { padding: 78px 0 70px; text-align: center; }
+  .title .docno { color: var(--seal); margin-bottom: 30px; }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 310;
+    font-size: clamp(40px, 6.4vw, 64px);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    font-variation-settings: "opsz" 144;
+  }
+  h1 em { font-style: italic; }
+  .lede {
+    margin: 38px auto 0;
+    max-width: 560px;
+    font-size: 21px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  /* ————— figures ————— */
+  figure { margin: 64px 0; }
+  .plate {
+    border: 1px solid var(--rule);
+    padding: 10px;
+    background: var(--paper-card);
+  }
+  .plate img {
+    width: 100%;
+    display: block;
+    /* duotone the engraving onto the ice paper */
+    filter: grayscale(1) contrast(1.02);
+    mix-blend-mode: multiply;
+  }
+  figcaption {
+    margin-top: 14px;
+    display: flex; justify-content: space-between; gap: 24px;
+    font-size: 15px;
+    color: var(--ink-faint);
+    line-height: 1.5;
+  }
+  figcaption .no { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; white-space: nowrap; padding-top: 3px; color: var(--seal); }
+
+  /* ————— propositions ————— */
+  .propositions { padding: 20px 0 10px; }
+  .prop { display: grid; grid-template-columns: 52px 1fr; gap: 20px; margin-bottom: 34px; }
+  .prop .rn {
+    font-family: "Fraunces", serif;
+    font-weight: 340;
+    font-variant: small-caps;
+    font-size: 23px;
+    color: var(--seal);
+    padding-top: 1px;
+  }
+  .prop p { font-size: 21px; }
+  .prop p em { font-style: italic; }
+
+  /* ————— rules & marks ————— */
+  .sect {
+    display: flex; align-items: baseline; gap: 20px;
+    margin: 76px 0 40px;
+  }
+  .sect::before, .sect::after {
+    content: ""; flex: 1; border-top: 1px solid var(--rule);
+  }
+  .sect h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 380;
+    font-variant: small-caps;
+    font-size: 17px;
+    letter-spacing: 0.3em;
+    text-indent: 0.3em;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .asterism { text-align: center; color: var(--sky); font-size: 19px; letter-spacing: 1em; text-indent: 1em; margin: 70px 0; }
+
+  /* ————— letter ————— */
+  .letter { max-width: 640px; margin: 0 auto; }
+  .letter .salut { font-variant: small-caps; letter-spacing: 0.12em; font-size: 19px; margin-bottom: 26px; }
+  .letter p { margin-bottom: 1.35em; }
+  .letter p.body:first-of-type::first-letter {
+    font-family: "Fraunces", serif;
+    font-weight: 380;
+    font-size: 74px;
+    line-height: 0.78;
+    float: left;
+    padding: 10px 12px 0 0;
+    color: var(--seal);
+  }
+  .letter .sig {
+    margin-top: 2.2em;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+  .letter .sig .name {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 360;
+    font-size: 28px;
+  }
+  .letter .sig .stamp {
+    width: 74px; height: 74px;
+    border: 1.5px solid var(--seal);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 8px; letter-spacing: 0.18em;
+    color: var(--seal);
+    transform: rotate(-8deg);
+    opacity: 0.85;
+    text-align: center; line-height: 1.5;
+  }
+
+  /* ————— ledger ————— */
+  .book { margin-top: 10px; }
+  .entry {
+    display: grid;
+    grid-template-columns: 46px 1fr auto;
+    gap: 18px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule-faint);
+    align-items: baseline;
+  }
+  .entry:first-child { border-top: 1px solid var(--rule); }
+  .entry:last-child { border-bottom: 1px solid var(--rule); }
+  .entry .no {
+    font-variant: small-caps;
+    font-size: 18px;
+    color: var(--seal);
+  }
+  .entry .corpus { font-size: 20px; }
+  .entry .corpus .desc {
+    display: block;
+    font-size: 15.5px;
+    color: var(--ink-faint);
+    margin-top: 4px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .entry .out {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    text-align: right;
+  }
+  .entry .out b { color: var(--ink); font-weight: 500; }
+  .book .post {
+    margin-top: 18px;
+    text-align: right;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--ink-faint);
+  }
+
+  /* ————— duties ————— */
+  .duties { max-width: 640px; margin: 0 auto; }
+  .duties ol { list-style: none; counter-reset: d; }
+  .duties li {
+    counter-increment: d;
+    padding: 18px 0 18px 64px;
+    border-top: 1px solid var(--rule-faint);
+    position: relative;
+    font-size: 19.5px;
+  }
+  .duties li:last-child { border-bottom: 1px solid var(--rule-faint); }
+  .duties li::before {
+    content: "§ " counter(d);
+    position: absolute; left: 0; top: 20px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.1em;
+    color: var(--seal);
+  }
+  .duties li b { font-weight: 500; font-variant: small-caps; letter-spacing: 0.06em; }
+
+  /* ————— colophon ————— */
+  footer {
+    margin-top: 90px;
+    border-top: 3px double var(--ink);
+    padding: 36px 0 60px;
+  }
+  .inquiry {
+    text-align: center;
+    margin-bottom: 54px;
+  }
+  .inquiry .wm { font-family: "Fraunces", serif; font-weight: 340; font-variant: small-caps; font-size: 26px; letter-spacing: 0.3em; text-indent: 0.3em; }
+  .inquiry p { margin: 18px auto 26px; max-width: 440px; font-size: 18px; color: var(--ink-soft); }
+  .inquiry a {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--seal); text-decoration: none;
+    border-bottom: 1px solid var(--seal); padding-bottom: 3px;
+  }
+  .colophon {
+    display: flex; justify-content: space-between; gap: 24px;
+    font-size: 13.5px; color: var(--ink-faint); line-height: 1.65;
+  }
+  .colophon .src { max-width: 420px; }
+
+  @media (max-width: 680px) {
+    .masthead .under { flex-direction: column; gap: 14px; align-items: center; }
+    .prop { grid-template-columns: 40px 1fr; }
+    .entry { grid-template-columns: 34px 1fr; }
+    .entry .out { grid-column: 2; text-align: left; }
+    .colophon { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <div class="masthead">
+    <div class="over caps">Est. MMXXV · A private brokerage</div>
+    <div class="wordmark">The Data Company</div>
+    <div class="under">
+      <span class="mono">Charter № I</span>
+      <nav>
+        <a href="#positions">Positions</a>
+        <a href="#letter">Letter</a>
+        <a href="#ledger">Ledger</a>
+        <a href="#inquiry">Inquiry</a>
+      </nav>
+      <span class="mono">Held in confidence</span>
+    </div>
+  </div>
+
+  <div class="title">
+    <div class="docno mono">— The House Position —</div>
+    <h1>Data is the last <em>unrepresented</em> asset class.</h1>
+    <p class="lede">The Data Company represents owners of proprietary data in exclusive licensing agreements with frontier AI laboratories. Appraisal, negotiation, closing — a broker's duty, a seller's interest.</p>
+  </div>
+
+  <figure>
+    <div class="plate">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/BEP-SMILLIE%20(James%20David)-Civilization.jpg?width=1400" alt="Engraved allegorical vignette titled Civilization">
+    </div>
+    <figcaption>
+      <span class="no">Plate I</span>
+      <span><em>Civilization.</em> Vignette die engraved by James David Smillie for the Bureau of Engraving &amp; Printing, late XIX&nbsp;c. Commerce allegorized before it was computed.</span>
+    </figcaption>
+  </figure>
+
+  <div class="sect" id="positions"><h2>Positions</h2></div>
+
+  <div class="propositions">
+    <div class="prop">
+      <span class="rn">I.</span>
+      <p>That frontier intelligence is trained on archives — and that the owners of those archives now hold a <em>producing asset</em>, whether or not they have priced it as one.</p>
+    </div>
+    <div class="prop">
+      <span class="rn">II.</span>
+      <p>That this asset is sold today without representation. The buyer fields a procurement desk, a legal team, and a price sheet. The seller fields an inbox.</p>
+    </div>
+    <div class="prop">
+      <span class="rn">III.</span>
+      <p>That between them sits the broker — whose duty runs to the seller alone: to appraise the corpus, to carry it to market under mandate, and to return with <em>terms</em>, not introductions.</p>
+    </div>
+  </div>
+
+  <div class="asterism">⁂</div>
+
+  <div class="sect" id="letter"><h2>A Letter to Data Owners</h2></div>
+
+  <div class="letter">
+    <p class="salut">To the owners of archives —</p>
+    <p class="body">Every laboratory building a frontier model wants what you hold. They will call it partnership, or access, or collaboration — and they will send a procurement desk whose entire profession is paying less for it. Nobody in that room is compensated to get you more. That is the seat we sit in.</p>
+    <p>We are not a marketplace, and we are not a list. We take a small number of archives to market under exclusive mandate, run the process ourselves, and are paid on the terms we win — never on making the introduction.</p>
+    <p>If your data has been approached before, appraise it before you answer. If it has not, it will be.</p>
+    <div class="sig">
+      <span class="name">The Data Company</span>
+      <span class="stamp">TDC<br>MMXXV</span>
+    </div>
+  </div>
+
+  <div class="asterism">⁂</div>
+
+  <div class="sect" id="ledger"><h2>From the Ledger</h2></div>
+
+  <div class="book">
+    <div class="entry">
+      <span class="no">I.</span>
+      <span class="corpus">Natural history plate archive<span class="desc">40,000 lithographed plates, 1815–1910 · exclusive mandate</span></span>
+      <span class="out">Frontier laboratory · <b>Licensed</b></span>
+    </div>
+    <div class="entry">
+      <span class="no">II.</span>
+      <span class="corpus">Longitudinal credit records<span class="desc">Three decades of tabular history · exclusive mandate</span></span>
+      <span class="out">Frontier laboratory · <b>Licensed</b></span>
+    </div>
+    <div class="entry">
+      <span class="no">III.</span>
+      <span class="corpus">Broadcast footage library<span class="desc">9,000 hrs catalogued video · field-limited term</span></span>
+      <span class="out">Foundation-model group · <b>Licensed</b></span>
+    </div>
+    <div class="entry">
+      <span class="no">IV.</span>
+      <span class="corpus">Specialist expert corpora<span class="desc">Annotated professional text · exclusive mandate</span></span>
+      <span class="out">Frontier laboratory · <b>In negotiation</b></span>
+    </div>
+    <div class="entry">
+      <span class="no">V.</span>
+      <span class="corpus">Industrial telemetry streams<span class="desc">Continuous sensor record · term license</span></span>
+      <span class="out">Applied research org · <b>Licensed</b></span>
+    </div>
+    <p class="post">— entered in the book, and paid.</p>
+  </div>
+
+  <figure>
+    <div class="plate">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/1889%20Sending%20Coffee%20Quotations%20over%20Ticker%20System%20Scribners%20OM.JPG?width=1400" alt="1889 engraving of coffee quotations being sent over the ticker system">
+    </div>
+    <figcaption>
+      <span class="no">Plate II</span>
+      <span><em>Sending coffee quotations over the ticker system.</em> Scribner's, 1889. Commodity data was a trade before it was a dataset.</span>
+    </figcaption>
+  </figure>
+
+  <div class="sect"><h2>The Duties of the House</h2></div>
+
+  <div class="duties">
+    <ol>
+      <li><b>Appraisal.</b> To price the corpus before it is pitched — its rarity, its coverage, its provenance.</li>
+      <li><b>Mandate.</b> To carry one archive under one exclusive representation, so nothing leaks across the market.</li>
+      <li><b>Negotiation.</b> To compete qualified buyers against one another, and to refuse the first fair price for the best obtainable one.</li>
+      <li><b>Revenue.</b> To be paid on the outcome, and never on the introduction.</li>
+    </ol>
+  </div>
+
+  <footer>
+    <div class="inquiry" id="inquiry">
+      <div class="wm">The Data Company</div>
+      <p>Representation for owners of proprietary data. Inquiries held in confidence; appraised before answered.</p>
+      <a href="mailto:desk@thedatacompany">Write to the desk →</a>
+    </div>
+    <div class="colophon">
+      <span>© MMXXVI The Data Company</span>
+      <span class="src">Plates: Bureau of Engraving &amp; Printing vignette dies; Scribner's, 1889 — via Wikimedia Commons. Set in Fraunces &amp; Newsreader. Ground #E6F2FF · ink #25384C.</span>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

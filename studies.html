@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — Design Studies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4F2ED;
+    --ink: #1B1915;
+    --dim: #6E6A5E;
+    --rule: rgba(27, 25, 21, 0.2);
+    --rule-strong: rgba(27, 25, 21, 0.7);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--ink); color: var(--bg); }
+
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 40px; }
+
+  .up { text-transform: uppercase; letter-spacing: 0.16em; font-size: 11px; }
+  .dim { color: var(--dim); }
+
+  header { padding: 60px 0 40px; border-bottom: 1px solid var(--rule-strong); }
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 380;
+    font-size: clamp(34px, 5vw, 54px);
+    letter-spacing: -0.015em;
+    margin-top: 18px;
+    font-variation-settings: "opsz" 144;
+  }
+  h1 em { font-style: italic; }
+  .sub { margin-top: 16px; max-width: 560px; color: var(--dim); font-size: 13px; }
+
+  .studies { display: flex; flex-direction: column; }
+  .study {
+    display: grid;
+    grid-template-columns: 70px 1fr 1fr 120px;
+    gap: 32px;
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+    text-decoration: none;
+    color: var(--ink);
+    align-items: start;
+    transition: background 0.15s;
+  }
+  .study:hover { background: rgba(27,25,21,0.035); }
+  .study .no { font-size: 12px; color: var(--dim); padding-top: 6px; }
+  .study h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 420;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .study h2 em { font-style: italic; }
+  .study .mode { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); }
+  .study p { font-size: 12px; color: var(--dim); line-height: 1.7; }
+  .study .open { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; text-align: right; padding-top: 8px; }
+  .study:hover .open { text-decoration: underline; }
+
+  footer { padding: 50px 0 44px; }
+  .notes { max-width: 640px; font-size: 12px; color: var(--dim); line-height: 1.8; }
+  .notes b { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 720px) {
+    .study { grid-template-columns: 40px 1fr; }
+    .study p, .study .open { grid-column: 2; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="up dim">Design exploration · v1</div>
+    <h1>The Data Company — <em>three directions</em></h1>
+    <p class="sub">Three candidate design languages for a private brokerage that represents data owners in exclusive licensing agreements with frontier AI labs. Audience: sellers. Voice: institutional. Each study is a standalone mock landing with its own wordmark, type stack, palette, and component vocabulary.</p>
+    <p class="sub" style="margin-top:14px"><a href="palettes.html" style="color:#1B1915; border-bottom:1px solid #1B1915; text-decoration:none">→ Palette atlas</a> — nine referent-anchored color directions, explored before layout.</p>
+  </header>
+
+  <div class="studies">
+    <a class="study" href="index.html">
+      <span class="no">★</span>
+      <div>
+        <h2>The fused <em>homepage</em></h2>
+        <span class="mode">Leading candidate · asymmetric split hero</span>
+      </div>
+      <p>Compact split hero: thesis eyebrow ("Data is the last unrepresented asset class") + "We turn data into dollars." headline + appraisal form left; marble bust dissolving into rain bleeding off the right edge. The charter document continues below — plates, positions, letter, ledger — with a plate/duties pair side by side.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="charter.html">
+      <span class="no">D</span>
+      <div>
+        <h2>The <em>Charter</em></h2>
+        <span class="mode">Light · Document-first · classical restraint</span>
+      </div>
+      <p>Built content-first after the palette exercise: a 19th-c. prospectus as a single-column document — numbered positions, a letter to data owners, the ledger as book of record. Real Bureau of Engraving vignettes with provenance captions. Fraunces + EB Garamond, oxblood seal, near-monochrome.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="charter-cosmos.html">
+      <span class="no">E</span>
+      <div>
+        <h2>The Charter, <em>after Cosmos</em></h2>
+        <span class="mode">White · close emulation</span>
+      </div>
+      <p>The closest match to the real site: white page, atmospheric hero — a Getty marble bust of Germanicus dissolving into animated data rain under a pale-blue wash — light serif headline, utilitarian sans nav, plain email form. The document below carries the plates, positions, letter, and ledger.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="imagery.html">
+      <span class="no">R</span>
+      <div>
+        <h2>Imagery <em>vocabulary</em></h2>
+        <span class="mode">Reference moodboard · decoded</span>
+      </div>
+      <p>Five taste references decoded into a system: the contact moment (touch, handshake), halftone/dither as the analog→digital bridge, technical annotation chrome, and dark "vault" imagery inside a light page.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="fusion.html">
+      <span class="no">F</span>
+      <div>
+        <h2>Fusion <em>lab</em></h2>
+        <span class="mode">Renaissance × data · 4 compositions</span>
+      </div>
+      <p>Four flavors of the blend: marble bust into rain (the Cosmos move), banknote allegory into stream, an engraving dissolving left-to-right into pure data field, and the caduceus — Mercury's staff — centered as heraldic emblem inside the data.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="charter-ice.html">
+      <span class="no">E′</span>
+      <div>
+        <h2>The Charter, <em>in ice</em></h2>
+        <span class="mode">Cold · flat palette variant</span>
+      </div>
+      <p>Palette-only variant: the document fully bathed in #E6F2FF ice ground with #25384C slate ink — no photographic hero. Useful for comparing flat-cold vs. Cosmos's actual white-page structure.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="ledger.html">
+      <span class="no">A</span>
+      <div>
+        <h2>The <em>Ledger</em></h2>
+        <span class="mode">Light · Editorial-mercantile</span>
+      </div>
+      <p>Ivory paper, ink, banker's green. Fraunces + Newsreader + Plex Mono. Hairline rules, figure numbers, fleurons, a ruled book of placements. The literary end of the register — a house that publishes its own positions.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="terminal.html">
+      <span class="no">B</span>
+      <div>
+        <h2>The <em>Terminal</em></h2>
+        <span class="mode">Dark · Data-native</span>
+      </div>
+      <p>Near-black, phosphor green, amber marks. Plex Mono leads; Fraunces italic lands the mercantile moments. Status bar, ticker tape, execution path, book of business. The market rendered honestly — data in, dollars out.</p>
+      <span class="open">Open →</span>
+    </a>
+    <a class="study" href="counting-house.html">
+      <span class="no">C</span>
+      <div>
+        <h2>The <em>Counting House</em></h2>
+        <span class="mode">Dark · Classical-mercantile</span>
+      </div>
+      <p>Warm black, parchment, brass. Fraunces display + EB Garamond + gold mono. House seal, roman numerals, a drop-cap letter to data owners, gilt ledger. The Cosmos register tilted from philosophy toward trade.</p>
+      <span class="open">Open →</span>
+    </a>
+  </div>
+
+  <footer>
+    <div class="notes">
+      <b>Shared decisions across all three:</b> sell-side audience, institutional "we" voice, wordmark-led identity, ledger/placements table as the signature component, exclusive-mandate positioning. What changes is register: paper &amp; ink vs. trading terminal vs. counting house. Each study ends with its own type and palette notes.
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — Palette Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62.5..125,100..900;1,62.5..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..700&family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ————— neutral atlas chrome ————— */
+  :root {
+    --chrome-bg: #FFFFFF;
+    --chrome-ink: #1B1B1B;
+    --chrome-dim: #8A8A8A;
+    --chrome-rule: #E4E4E4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--chrome-bg);
+    color: var(--chrome-ink);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+  header.atlas { padding: 64px 0 48px; border-bottom: 1px solid var(--chrome-ink); }
+  .atlas .kicker { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome-dim); }
+  .atlas h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 380; font-size: clamp(32px, 4.6vw, 52px);
+    letter-spacing: -0.015em; margin: 16px 0 18px;
+  }
+  .atlas h1 em { font-style: italic; }
+  .atlas .intro { max-width: 640px; color: var(--chrome-dim); font-size: 13px; line-height: 1.8; }
+
+  /* ————— palette entry ————— */
+  .pal { border-bottom: 1px solid var(--chrome-rule); padding: 56px 0; }
+  .pal-meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    margin-bottom: 22px; flex-wrap: wrap; gap: 10px;
+  }
+  .pal-name {
+    font-family: "Fraunces", serif; font-size: 26px; font-weight: 450;
+  }
+  .pal-name .n { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--chrome-dim); margin-right: 14px; }
+  .pal-ref { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--chrome-dim); }
+
+  .pal-body { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: stretch; }
+
+  /* ————— specimen (rendered inside the palette) ————— */
+  .specimen {
+    padding: 36px 40px;
+    display: flex; flex-direction: column; gap: 26px;
+    min-height: 300px;
+  }
+  .spec-top {
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .spec-wm { white-space: nowrap; }
+  .spec-tag { white-space: nowrap; }
+  .spec-hero h3 { margin-bottom: 12px; }
+  .spec-row {
+    margin-top: auto;
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-size: 11px;
+  }
+  .spec-btn {
+    display: inline-block; padding: 10px 20px;
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  /* ————— meta column ————— */
+  .meta { display: flex; flex-direction: column; gap: 18px; }
+  .chips { display: flex; gap: 0; border: 1px solid var(--chrome-rule); }
+  .chip { flex: 1; padding: 0; }
+  .chip .fill { height: 44px; border-bottom: 1px solid var(--chrome-rule); }
+  .chip .hex {
+    font-size: 9.5px; letter-spacing: 0.04em; padding: 7px 8px;
+    color: var(--chrome-ink); text-align: center; white-space: nowrap;
+  }
+  .meta .role { font-size: 11.5px; line-height: 1.8; color: var(--chrome-ink); }
+  .meta .role b { font-weight: 500; }
+  .meta .fonts { font-size: 10.5px; color: var(--chrome-dim); letter-spacing: 0.04em; line-height: 1.7; }
+  .meta .why { font-size: 11.5px; color: var(--chrome-dim); line-height: 1.75; border-top: 1px dashed var(--chrome-rule); padding-top: 14px; }
+
+  /* ═══════════ PALETTE DEFINITIONS ═══════════ */
+
+  /* 1 — Salmon Page */
+  .pal-salmon .specimen {
+    background: #FFF1E5; color: #26221C;
+    font-family: "Newsreader", serif;
+    border-top: 3px solid #26221C;
+  }
+  .pal-salmon .spec-wm { font-family: "Fraunces", serif; font-weight: 600; font-size: 15px; letter-spacing: 0.3em; text-transform: uppercase; }
+  .pal-salmon .spec-tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #990F3D; }
+  .pal-salmon h3 { font-family: "Fraunces", serif; font-weight: 340; font-size: 46px; line-height: 1.0; letter-spacing: -0.02em; }
+  .pal-salmon h3 em { font-style: italic; color: #990F3D; }
+  .pal-salmon .cap { font-size: 15px; color: #6E6157; max-width: 420px; }
+  .pal-salmon .spec-btn { border: 1px solid #26221C; color: #26221C; font-family: "IBM Plex Mono", monospace; }
+  .pal-salmon .spec-row { border-top: 1px solid rgba(38,34,28,0.4); padding-top: 12px; font-family: "IBM Plex Mono", monospace; color: #6E6157; }
+  .pal-salmon .spec-row .g { color: #0D7680; }
+
+  /* 2 — Penguin Band */
+  .pal-penguin .specimen {
+    background: #F7F5EF; color: #1D1B17;
+    font-family: "Archivo", sans-serif;
+    border-top: 26px solid #FF5A1F;
+    border-bottom: 26px solid #FF5A1F;
+  }
+  .pal-penguin .spec-wm { font-family: "Archivo", sans-serif; font-weight: 800; font-stretch: 115%; font-size: 16px; letter-spacing: 0.06em; text-transform: uppercase; }
+  .pal-penguin .spec-tag { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #FF5A1F; font-weight: 600; }
+  .pal-penguin h3 { font-family: "Archivo", sans-serif; font-weight: 700; font-stretch: 112%; font-size: 44px; line-height: 0.98; letter-spacing: -0.03em; text-transform: uppercase; }
+  .pal-penguin h3 em { font-style: italic; font-weight: 300; font-stretch: 75%; color: #FF5A1F; }
+  .pal-penguin .cap { font-size: 14px; color: #57544C; max-width: 420px; }
+  .pal-penguin .spec-btn { background: #1D1B17; color: #F7F5EF; }
+  .pal-penguin .spec-row { border-top: 2px solid #1D1B17; padding-top: 12px; font-family: "IBM Plex Mono", monospace; color: #57544C; }
+  .pal-penguin .spec-row .g { color: #FF5A1F; }
+
+  /* 3 — Ticker Amber */
+  .pal-ticker .specimen {
+    background: #0D0D0D; color: #EDE9DE;
+    font-family: "IBM Plex Mono", monospace;
+    border-top: 2px solid #FFAA00;
+  }
+  .pal-ticker .spec-wm { font-weight: 600; font-size: 14px; letter-spacing: 0.28em; text-transform: uppercase; color: #FFAA00; }
+  .pal-ticker .spec-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #7A766B; }
+  .pal-ticker h3 { font-weight: 600; font-size: 40px; line-height: 1.05; letter-spacing: -0.02em; text-transform: uppercase; }
+  .pal-ticker h3 em { font-style: normal; color: #FFAA00; }
+  .pal-ticker .cap { font-size: 12.5px; color: #7A766B; max-width: 440px; }
+  .pal-ticker .spec-btn { border: 1px solid #FFAA00; color: #FFAA00; }
+  .pal-ticker .spec-row { border-top: 1px dashed rgba(237,233,222,0.3); padding-top: 12px; color: #7A766B; }
+  .pal-ticker .spec-row .g { color: #FFAA00; }
+
+  /* 4 — Double Ledger */
+  .pal-ledger .specimen {
+    background:
+      repeating-linear-gradient(to bottom, transparent 0 27px, rgba(63,94,140,0.25) 27px 28px),
+      linear-gradient(to right, transparent 0 58px, rgba(181,66,52,0.55) 58px 59px, transparent 59px 61px, rgba(181,66,52,0.55) 61px 62px, transparent 62px),
+      #F7F1E2;
+    color: #2C2418;
+    font-family: "Newsreader", serif;
+  }
+  .pal-ledger .spec-wm { font-family: "Newsreader", serif; font-weight: 700; font-size: 16px; letter-spacing: 0.06em; font-variant: small-caps; }
+  .pal-ledger .spec-tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #B54234; }
+  .pal-ledger h3 { font-family: "Newsreader", serif; font-weight: 400; font-size: 44px; line-height: 1.02; letter-spacing: -0.015em; font-variant-numeric: oldstyle-nums; }
+  .pal-ledger h3 em { font-style: italic; color: #3A5C40; }
+  .pal-ledger .cap { font-size: 15px; color: #6B5F4A; max-width: 420px; }
+  .pal-ledger .spec-btn { border: 1px solid #2C2418; color: #2C2418; font-family: "IBM Plex Mono", monospace; }
+  .pal-ledger .spec-row { border-top: 2px solid #2C2418; padding-top: 12px; font-family: "IBM Plex Mono", monospace; color: #6B5F4A; }
+  .pal-ledger .spec-row .g { color: #3A5C40; }
+
+  /* 5 — Intaglio */
+  .pal-intaglio .specimen {
+    background:
+      repeating-linear-gradient(115deg, rgba(18,59,42,0.05) 0 1px, transparent 1px 4px),
+      #EFE9D8;
+    color: #123B2A;
+    font-family: "EB Garamond", serif;
+    border: 1px solid #123B2A;
+    outline: 3px double #123B2A;
+    outline-offset: -8px;
+  }
+  .pal-intaglio .spec-wm { font-family: "EB Garamond", serif; font-weight: 700; font-size: 15px; letter-spacing: 0.34em; text-transform: uppercase; }
+  .pal-intaglio .spec-tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: #9E2B25; }
+  .pal-intaglio h3 { font-family: "Fraunces", serif; font-weight: 380; font-size: 46px; line-height: 1.0; letter-spacing: -0.015em; font-variation-settings: "opsz" 144; }
+  .pal-intaglio h3 em { font-style: italic; color: #9E2B25; }
+  .pal-intaglio .cap { font-size: 15px; color: #4A5B50; max-width: 420px; }
+  .pal-intaglio .spec-btn { background: #123B2A; color: #EFE9D8; }
+  .pal-intaglio .spec-row { border-top: 1px solid rgba(18,59,42,0.5); padding-top: 12px; font-family: "IBM Plex Mono", monospace; color: #4A5B50; }
+  .pal-intaglio .spec-row .g { color: #9E2B25; }
+
+  /* 6 — Prussian */
+  .pal-prussian .specimen {
+    background:
+      radial-gradient(rgba(237,242,240,0.12) 1px, transparent 1px),
+      #17395C;
+    background-size: 24px 24px, auto;
+    color: #EDF2F0;
+    font-family: "Archivo", sans-serif;
+    border-left: 4px solid #E5A83B;
+  }
+  .pal-prussian .spec-wm { font-weight: 700; font-stretch: 118%; font-size: 15px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .pal-prussian .spec-tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #E5A83B; }
+  .pal-prussian h3 { font-family: "Fraunces", serif; font-weight: 340; font-size: 46px; line-height: 1.0; letter-spacing: -0.02em; }
+  .pal-prussian h3 em { font-style: italic; color: #E5A83B; }
+  .pal-prussian .cap { font-size: 14px; color: rgba(237,242,240,0.65); max-width: 420px; }
+  .pal-prussian .spec-btn { border: 1px solid rgba(237,242,240,0.7); color: #EDF2F0; }
+  .pal-prussian .spec-row { border-top: 1px solid rgba(237,242,240,0.35); padding-top: 12px; font-family: "IBM Plex Mono", monospace; color: rgba(237,242,240,0.55); }
+  .pal-prussian .spec-row .g { color: #E5A83B; }
+
+  /* 7 — Mimeo */
+  .pal-mimeo .specimen {
+    background: #F4E4DC;
+    color: #443A78;
+    font-family: "IBM Plex Mono", monospace;
+    border: 1px dashed #443A78;
+    box-shadow: 8px 8px 0 #EFE9D8, 8px 8px 0 1px rgba(68,58,120,0.3);
+  }
+  .pal-mimeo .spec-wm { font-weight: 600; font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase; }
+  .pal-mimeo .spec-tag { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B23A48; border: 1.5px solid #B23A48; padding: 3px 8px; transform: rotate(-2deg); }
+  .pal-mimeo h3 { font-weight: 600; font-size: 38px; line-height: 1.05; letter-spacing: -0.02em; text-transform: uppercase; }
+  .pal-mimeo h3 em { font-style: italic; color: #B23A48; }
+  .pal-mimeo .cap { font-size: 12.5px; color: #6A6194; max-width: 440px; }
+  .pal-mimeo .spec-btn { background: #443A78; color: #F4E4DC; }
+  .pal-mimeo .spec-row { border-top: 1px dashed #443A78; padding-top: 12px; color: #6A6194; }
+  .pal-mimeo .spec-row .g { color: #B23A48; }
+
+  /* 8 — Baize Room */
+  .pal-baize .specimen {
+    background:
+      radial-gradient(rgba(236,227,206,0.035) 1px, transparent 1.5px),
+      #1E2C22;
+    background-size: 5px 5px, auto;
+    color: #ECE3CE;
+    font-family: "EB Garamond", serif;
+    border: 1px solid rgba(181,142,78,0.6);
+  }
+  .pal-baize .spec-wm { font-family: "Fraunces", serif; font-weight: 450; font-size: 18px; letter-spacing: 0.02em; }
+  .pal-baize .spec-wm::after { content: "."; color: #B58E4E; }
+  .pal-baize .spec-tag { font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #B58E4E; }
+  .pal-baize h3 { font-family: "Fraunces", serif; font-weight: 330; font-size: 46px; line-height: 1.0; letter-spacing: -0.02em; }
+  .pal-baize h3 em { font-style: italic; color: #B58E4E; }
+  .pal-baize .cap { font-size: 15px; color: #9FA78F; max-width: 420px; }
+  .pal-baize .spec-btn { border: 1px solid #B58E4E; color: #B58E4E; }
+  .pal-baize .spec-row { border-top: 1px solid rgba(236,227,206,0.3); padding-top: 12px; font-family: "IBM Plex Mono", monospace; color: #9FA78F; }
+  .pal-baize .spec-row .g { color: #B58E4E; }
+
+  /* 9 — Consular */
+  .pal-consular .specimen {
+    background: #EFEADB;
+    color: #1D2A45;
+    font-family: "Newsreader", serif;
+    border: 1px solid #1D2A45;
+    box-shadow: inset 0 0 0 5px #EFEADB, inset 0 0 0 6px rgba(29,42,69,0.5);
+  }
+  .pal-consular .spec-wm { font-family: "Newsreader", serif; font-weight: 700; font-size: 15px; letter-spacing: 0.26em; text-transform: uppercase; }
+  .pal-consular .spec-tag {
+    font-family: "IBM Plex Mono", monospace; font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #CF3B22; border: 2px solid #CF3B22;
+    padding: 4px 9px; transform: rotate(-3deg); border-radius: 3px; opacity: 0.9;
+  }
+  .pal-consular h3 { font-family: "Fraunces", serif; font-weight: 360; font-size: 46px; line-height: 1.0; letter-spacing: -0.015em; }
+  .pal-consular h3 em { font-style: italic; color: #CF3B22; }
+  .pal-consular .cap { font-size: 15px; color: #5A6273; max-width: 420px; }
+  .pal-consular .spec-btn { background: #1D2A45; color: #EFEADB; }
+  .pal-consular .spec-row { border-top: 1px solid rgba(29,42,69,0.5); padding-top: 12px; font-family: "IBM Plex Mono", monospace; color: #5A6273; }
+  .pal-consular .spec-row .g { color: #CF3B22; }
+
+  /* footer */
+  footer.atlas { padding: 50px 0 60px; }
+  .atlas .notes { max-width: 680px; font-size: 12px; color: var(--chrome-dim); line-height: 1.8; }
+  .backlink { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--chrome-ink); text-decoration: none; border-bottom: 1px solid var(--chrome-ink); }
+
+  @media (max-width: 900px) {
+    .pal-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="atlas">
+    <div class="kicker">The Data Company · Design exploration · Color first</div>
+    <h1>Palette <em>atlas</em></h1>
+    <p class="intro">Nine candidate palettes, each anchored to a real material or institution — owned color, not generated color. Every specimen renders the same header, headline, caption, and ledger line so the palette alone does the talking. The prior studies' palettes (ivory+green, phosphor-on-black, brass-on-black) are deliberately excluded.</p>
+  </header>
+
+  <!-- 1 — SALMON PAGE -->
+  <section class="pal pal-salmon">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">01</span>Salmon Page</div>
+      <div class="pal-ref">Financial broadsheet · FT paper pink</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">The Data Company</span><span class="spec-tag">Est. MMXXV</span></div>
+        <div class="spec-hero">
+          <h3>We turn data into <em>dollars.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>№ 001 — NATURAL HISTORY ARCHIVE — EXCL</span><span class="g">LICENSED</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#FFF1E5"></div><div class="hex">FFF1E5</div></div>
+          <div class="chip"><div class="fill" style="background:#26221C"></div><div class="hex">26221C</div></div>
+          <div class="chip"><div class="fill" style="background:#990F3D"></div><div class="hex">990F3D</div></div>
+          <div class="chip"><div class="fill" style="background:#0D7680"></div><div class="hex">0D7680</div></div>
+        </div>
+        <p class="role"><b>Paper pink, ink, claret, market-data teal.</b> The Financial Times ground — money as newsprint, not neon.</p>
+        <p class="fonts">Fraunces / Newsreader / Plex Mono</p>
+        <p class="why">Reads instantly "financial" without saying "bank." Editorial authority + market texture; light without being sterile. Serif-led, claret is the blood in the page.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 — PENGUIN BAND -->
+  <section class="pal pal-penguin">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">02</span>Penguin Band</div>
+      <div class="pal-ref">Mid-century paperback · tri-band jacket</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">The Data Company</span><span class="spec-tag">Paperback No. 001</span></div>
+        <div class="spec-hero">
+          <h3>We turn data into <em>dollars.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>№ 001 — NATURAL HISTORY ARCHIVE — EXCL</span><span class="g">LICENSED</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#F7F5EF"></div><div class="hex">F7F5EF</div></div>
+          <div class="chip"><div class="fill" style="background:#FF5A1F"></div><div class="hex">FF5A1F</div></div>
+          <div class="chip"><div class="fill" style="background:#1D1B17"></div><div class="hex">1D1B17</div></div>
+        </div>
+        <p class="role"><b>Off-white, signal orange, black.</b> Penguin Classics tri-band structure — color as architecture, not decoration.</p>
+        <p class="fonts">Archivo (expanded caps) / Plex Mono</p>
+        <p class="why">The most democratic of the set: paperback-smart, direct, cheap-looking on purpose. Orange bands give layout a spine. Bold mercantile without any tech signaling.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 — TICKER AMBER -->
+  <section class="pal pal-ticker">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">03</span>Ticker Amber</div>
+      <div class="pal-ref">Real trading terminals · Bloomberg amber, not phosphor</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">THE DATA COMPANY</span><span class="spec-tag">TDX · Feed 001</span></div>
+        <div class="spec-hero">
+          <h3>Data in. <em>Dollars</em> out.</h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>TDX-001 — NATURAL HISTORY — EXCL</span><span class="g">■ LICENSED</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#0D0D0D"></div><div class="hex">0D0D0D</div></div>
+          <div class="chip"><div class="fill" style="background:#EDE9DE"></div><div class="hex">EDE9DE</div></div>
+          <div class="chip"><div class="fill" style="background:#FFAA00"></div><div class="hex">FFAA00</div></div>
+          <div class="chip"><div class="fill" style="background:#7A766B"></div><div class="hex">7A766B</div></div>
+        </div>
+        <p class="role"><b>True black, warm white, amber.</b> Actual terminals are amber-on-black — phosphor green is the movie version.</p>
+        <p class="fonts">Plex Mono (primary) / Fraunces italic accents</p>
+        <p class="why">Corrects the generic "hacker green" into something real desks recognize. The insider's correction — buyers at labs will have seen Bloomberg; sellers feel the market.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 — DOUBLE LEDGER -->
+  <section class="pal pal-ledger">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">04</span>Double Ledger</div>
+      <div class="pal-ref">Account ledger paper · red/blue ruled column sheets</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">The Data Company</span><span class="spec-tag">Folio 001</span></div>
+        <div class="spec-hero">
+          <h3>We turn data into <em>dollars.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>№ 001 — NATURAL HISTORY ARCHIVE — EXCL</span><span class="g">Posted</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#F7F1E2"></div><div class="hex">F7F1E2</div></div>
+          <div class="chip"><div class="fill" style="background:#2C2418"></div><div class="hex">2C2418</div></div>
+          <div class="chip"><div class="fill" style="background:#B54234"></div><div class="hex">B54234</div></div>
+          <div class="chip"><div class="fill" style="background:#3F5E8C"></div><div class="hex">3F5E8C</div></div>
+          <div class="chip"><div class="fill" style="background:#3A5C40"></div><div class="hex">3A5C40</div></div>
+        </div>
+        <p class="role"><b>Vellum, iron-gall ink, red + blue ruling, posting green.</b> Real ledger paper has two red margin rules and blue columns — the ruling is the palette.</p>
+        <p class="fonts">Newsreader (old-style figures) / Plex Mono</p>
+        <p class="why">The most literal "bookkeeping" direction — the page looks like the artifact the business produces. No other AI company looks like an account ledger.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 — INTAGLIO -->
+  <section class="pal pal-intaglio">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">05</span>Intaglio</div>
+      <div class="pal-ref">Engraved currency &amp; stock certificates · intaglio ink</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">The Data Company</span><span class="spec-tag">№ 001</span></div>
+        <div class="spec-hero">
+          <h3>We turn data into <em>dollars.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>№ 001 — NATURAL HISTORY ARCHIVE — EXCL</span><span class="g">Negotiable</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#EFE9D8"></div><div class="hex">EFE9D8</div></div>
+          <div class="chip"><div class="fill" style="background:#123B2A"></div><div class="hex">123B2A</div></div>
+          <div class="chip"><div class="fill" style="background:#9E2B25"></div><div class="hex">9E2B25</div></div>
+        </div>
+        <p class="role"><b>Certificate cream, engraved green, seal red.</b> The colors of a stock certificate — ink pressed into paper, borders as engraving.</p>
+        <p class="fonts">Fraunces (high contrast) / EB Garamond / Plex Mono</p>
+        <p class="why">"Data into dollars" rendered literally — the site as a negotiable instrument. Guilloche borders, engraved caps, serial numbers. Trust through banknote vocabulary, not navy blue.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 — PRUSSIAN -->
+  <section class="pal pal-prussian">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">06</span>Prussian</div>
+      <div class="pal-ref">Blueprint / cyanotype · cadastral survey</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">THE DATA COMPANY</span><span class="spec-tag">Sheet 001</span></div>
+        <div class="spec-hero">
+          <h3>We turn data into <em>dollars.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>SHT-001 — NATURAL HISTORY — EXCL</span><span class="g">SURVEYED</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#17395C"></div><div class="hex">17395C</div></div>
+          <div class="chip"><div class="fill" style="background:#EDF2F0"></div><div class="hex">EDF2F0</div></div>
+          <div class="chip"><div class="fill" style="background:#E5A83B"></div><div class="hex">E5A83B</div></div>
+        </div>
+        <p class="role"><b>Blueprint blue, drafting white, survey amber.</b> Cyanotype — data as plan, territory, and measurement.</p>
+        <p class="fonts">Fraunces display / Archivo / Plex Mono</p>
+        <p class="why">Dark without going black; technical without going terminal. Blue is "surveyed territory" — fits a broker who maps what your data is worth. Risks reading nautical; the serif keeps it mercantile.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 — MIMEO -->
+  <section class="pal pal-mimeo">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">07</span>Mimeo</div>
+      <div class="pal-ref">Carbon copy / mimeograph · triplicate invoice paper</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">THE DATA COMPANY</span><span class="spec-tag">Copy No. 001</span></div>
+        <div class="spec-hero">
+          <h3>We turn data into <em>dollars.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>INV-001 — NATURAL HISTORY — EXCL</span><span class="g">PAID IN FULL</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#F4E4DC"></div><div class="hex">F4E4DC</div></div>
+          <div class="chip"><div class="fill" style="background:#443A78"></div><div class="hex">443A78</div></div>
+          <div class="chip"><div class="fill" style="background:#B23A48"></div><div class="hex">B23A48</div></div>
+          <div class="chip"><div class="fill" style="background:#6A6194"></div><div class="hex">6A6194</div></div>
+        </div>
+        <p class="role"><b>Duplicate-pink paper, mimeo purple, stamp red.</b> Invoices, receipts, carbon triplicate — the paperwork of money actually moving.</p>
+        <p class="fonts">Plex Mono (primary) / stamp caps</p>
+        <p class="why">The strangest of the set — paperwork vernacular. Purple ink is wholly unclaimed in this category. Risk: can read crafty/zine rather than serious money; would need ruthless typography to hold.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 — BAIZE ROOM -->
+  <section class="pal pal-baize">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">08</span>Baize Room</div>
+      <div class="pal-ref">Billiard cloth / members' room · wool, brass, ivory</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">The Data Company</span><span class="spec-tag">Members only</span></div>
+        <div class="spec-hero">
+          <h3>Your archive, taken to <em>market.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>№ 001 — NATURAL HISTORY ARCHIVE — EXCL</span><span class="g">Settled</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#1E2C22"></div><div class="hex">1E2C22</div></div>
+          <div class="chip"><div class="fill" style="background:#ECE3CE"></div><div class="hex">ECE3CE</div></div>
+          <div class="chip"><div class="fill" style="background:#B58E4E"></div><div class="hex">B58E4E</div></div>
+          <div class="chip"><div class="fill" style="background:#7A2E2E"></div><div class="hex">7A2E2E</div></div>
+        </div>
+        <p class="role"><b>Card-table green, ivory, worn brass.</b> The room where deals are actually made — felt, not gold leaf.</p>
+        <p class="fonts">Fraunces / EB Garamond / Plex Mono</p>
+        <p class="why">Near Counting House but honest: baize is wool, scuffed, played on. Signals discretion + the deal table. Distinct from gold-on-black luxury cliché if the brass stays dull.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 — CONSULAR -->
+  <section class="pal pal-consular">
+    <div class="pal-meta">
+      <div class="pal-name"><span class="n">09</span>Consular</div>
+      <div class="pal-ref">Passport &amp; consular documents · navy, cream, vermillion stamp</div>
+    </div>
+    <div class="pal-body">
+      <div class="specimen">
+        <div class="spec-top"><span class="spec-wm">The Data Company</span><span class="spec-tag">Admitted № 001</span></div>
+        <div class="spec-hero">
+          <h3>We turn data into <em>dollars.</em></h3>
+          <p class="cap">A private brokerage for proprietary data. Sellers represented; buyers competed.</p>
+        </div>
+        <a class="spec-btn" href="#">Request appraisal</a>
+        <div class="spec-row"><span>№ 001 — NATURAL HISTORY ARCHIVE — EXCL</span><span class="g">Ratified</span></div>
+      </div>
+      <div class="meta">
+        <div class="chips">
+          <div class="chip"><div class="fill" style="background:#EFEADB"></div><div class="hex">EFEADB</div></div>
+          <div class="chip"><div class="fill" style="background:#1D2A45"></div><div class="hex">1D2A45</div></div>
+          <div class="chip"><div class="fill" style="background:#CF3B22"></div><div class="hex">CF3B22</div></div>
+          <div class="chip"><div class="fill" style="background:#5A6273"></div><div class="hex">5A6273</div></div>
+        </div>
+        <p class="role"><b>Document cream, passport navy, vermillion stamp.</b> Treaty paper — agreements, seals, admission stamps.</p>
+        <p class="fonts">Fraunces / Newsreader / Plex Mono</p>
+        <p class="why">Licensing is the product; this is the palette of the signed instrument. Vermillion stamps give moments of violence-red on diplomatic ground. The most "sovereign" direction.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="atlas">
+    <p class="notes">
+      <b>How to read this:</b> every specimen uses identical content — wordmark, headline, caption, CTA, one ledger row — so differences are purely color, type pairing, and finish. Names in the margin are the referent each palette is borrowed from. If two attract you, the move is usually a ground from one + an accent from another (e.g. Salmon's paper with Consular's vermillion).<br><br>
+      <a class="backlink" href="index.html">← Back to studies</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Data Company — Fusion Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62.5..125,100..900;1,62.5..125,100..900&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ice: #E6F2FF;
+    --ice-bright: #EFF7FF;
+    --ink: #25384C;
+    --ink-soft: #4E6580;
+    --ink-faint: #7E97AE;
+    --blue: #1E60B5;
+    --sky: #86C1FF;
+    --rule: #E4E4E4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #fff;
+    color: var(--ink);
+    font-family: "Archivo", sans-serif;
+    font-size: 13px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+
+  header.lab { padding: 60px 0 40px; border-bottom: 1px solid var(--ink); }
+  .lab .kicker { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-faint); }
+  .lab h1 {
+    font-family: "Fraunces", serif; font-weight: 340;
+    font-size: clamp(30px, 4.4vw, 50px); letter-spacing: -0.015em; margin: 16px 0 14px;
+  }
+  .lab h1 em { font-style: italic; }
+  .lab .intro { max-width: 640px; color: var(--ink-soft); font-size: 13px; line-height: 1.8; }
+
+  /* ————— fusion panel ————— */
+  .fx-block { padding: 56px 0; border-bottom: 1px solid var(--rule); }
+  .fx-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; flex-wrap: wrap; gap: 8px; }
+  .fx-name { font-family: "Fraunces", serif; font-size: 24px; font-weight: 420; }
+  .fx-name .n { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--ink-faint); margin-right: 14px; }
+  .fx-note { font-size: 11px; color: var(--ink-faint); letter-spacing: 0.06em; max-width: 460px; text-align: right; line-height: 1.7; }
+
+  .fx {
+    position: relative;
+    height: 68vh;
+    min-height: 480px;
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--rule);
+  }
+
+  /* base imagery */
+  .fx img.base {
+    position: absolute;
+    filter: grayscale(1) brightness(1.08) contrast(0.85);
+  }
+
+  /* shared washes & fades */
+  .fx .wash {
+    position: absolute; inset: 0;
+    background: linear-gradient(115deg, rgba(255,255,255,0.9) 0%, rgba(230,242,255,0.55) 30%, rgba(134,193,255,0.35) 62%, rgba(70,140,220,0.5) 100%);
+    mix-blend-mode: multiply;
+  }
+  .fx .grid {
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(to right, rgba(255,255,255,0.5) 0 1px, transparent 1px 96px),
+      repeating-linear-gradient(to bottom, rgba(255,255,255,0.4) 0 1px, transparent 1px 96px);
+    mix-blend-mode: overlay;
+    opacity: 0.7;
+  }
+  .fx .rain { position: absolute; inset: 0; overflow: hidden; }
+  .fx .col {
+    position: absolute; top: -40%;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 10px; line-height: 1.9; letter-spacing: 0.25em;
+    writing-mode: vertical-rl; white-space: pre;
+    color: rgba(255,255,255,0.85);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%, black 72%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 72%, transparent);
+    animation: fall linear infinite;
+  }
+  @keyframes fall { from { transform: translateY(-6%); } to { transform: translateY(14%); } }
+
+  .fx .fade {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, #fff 0%, rgba(255,255,255,0.85) 12%, transparent 38%),
+      linear-gradient(to bottom, rgba(255,255,255,0.5), transparent 18%),
+      linear-gradient(to top, #fff 0%, rgba(255,255,255,0.55) 14%, transparent 42%);
+  }
+  .fx .glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 26% 30% at 46% 52%, rgba(255,255,255,0.85), transparent 70%),
+      radial-gradient(ellipse 18% 22% at 60% 30%, rgba(255,255,255,0.7), transparent 70%);
+  }
+
+  .fx .headline {
+    position: absolute; left: 40px; bottom: 40px; max-width: 560px;
+    font-family: "Fraunces", serif; font-weight: 310;
+    font-size: clamp(32px, 4.2vw, 54px); line-height: 1.05;
+    letter-spacing: -0.015em; color: var(--ink);
+  }
+  .fx .headline em { font-style: italic; }
+
+  /* ═══ F1 — bust → rain ═══ */
+  .fx.f1 img.base {
+    right: 4%; top: -8%; height: 116%; width: auto; opacity: 0.9;
+    -webkit-mask-image:
+      linear-gradient(to right, transparent 0%, black 34%, black 88%, transparent 100%),
+      linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to right, transparent 0%, black 34%, black 88%, transparent 100%),
+      linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+    mask-composite: intersect;
+  }
+
+  /* ═══ F2 — allegory → stream ═══ */
+  .fx.f2 img.base {
+    right: -2%; top: 4%; width: 68%; height: auto; opacity: 0.85;
+    filter: grayscale(1) brightness(1.14) contrast(0.8);
+    -webkit-mask-image: radial-gradient(ellipse 85% 90% at 60% 45%, black 40%, transparent 78%);
+    mask-image: radial-gradient(ellipse 85% 90% at 60% 45%, black 40%, transparent 78%);
+  }
+
+  /* ═══ F3 — the dissolve ═══ */
+  .fx.f3 img.base {
+    left: 0; top: 0; height: 100%; width: auto; opacity: 0.9;
+    filter: grayscale(1) brightness(1.1) contrast(0.85);
+    -webkit-mask-image: linear-gradient(to right, black 34%, transparent 72%);
+    mask-image: linear-gradient(to right, black 34%, transparent 72%);
+  }
+  .fx.f3 .dotfield {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(134,193,255,0.55) 1px, transparent 1.6px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(to right, transparent 30%, black 72%);
+    mask-image: linear-gradient(to right, transparent 30%, black 72%);
+  }
+  .fx.f3 .wash { background: linear-gradient(100deg, rgba(230,242,255,0.15) 0%, rgba(134,193,255,0.3) 55%, rgba(70,140,220,0.45) 100%); }
+  .fx.f3 .fade {
+    background:
+      linear-gradient(to bottom, rgba(255,255,255,0.55), transparent 20%),
+      linear-gradient(to top, #fff 0%, rgba(255,255,255,0.5) 13%, transparent 40%),
+      linear-gradient(to left, rgba(255,255,255,0.4), transparent 24%);
+  }
+  .fx.f3 .headline { right: 40px; left: auto; text-align: right; }
+
+  /* ═══ F4 — caduceus emblem ═══ */
+  .fx.f4 img.base {
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    height: 108%; width: auto; opacity: 0.8;
+    filter: grayscale(1) brightness(1.12) contrast(0.8);
+    -webkit-mask-image: radial-gradient(ellipse 55% 80% at 50% 50%, black 45%, transparent 82%);
+    mask-image: radial-gradient(ellipse 55% 80% at 50% 50%, black 45%, transparent 82%);
+  }
+  .fx.f4 .headline { left: 50%; transform: translateX(-50%); text-align: center; bottom: 34px; max-width: 700px; }
+
+  footer.lab { padding: 46px 0 60px; }
+  .lab .notes { max-width: 680px; font-size: 12px; color: var(--ink-faint); line-height: 1.8; }
+  .backlink { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); }
+
+  @media (max-width: 760px) {
+    .fx { height: 60vh; }
+    .fx .headline { left: 22px; right: 22px; bottom: 24px; }
+    .fx.f3 .headline { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="lab">
+    <div class="kicker">The Data Company · Fusion lab</div>
+    <h1>Renaissance × <em>data</em> — four compositions</h1>
+    <p class="intro">The same recipe — pale-blue wash, drifting glyph columns, white edge-fades — applied to four different subjects. What changes is the referent: marble, allegory, a dissolve, an emblem. Judge which fusion says "institution meets future" for a data brokerage.</p>
+  </header>
+
+  <!-- F1 -->
+  <section class="fx-block">
+    <div class="fx-meta">
+      <div class="fx-name"><span class="n">F.1</span>Marble into rain</div>
+      <div class="fx-note">The Cosmos move: sculpted antiquity dissolving into data. Subject: Germanicus, Getty Museum.</div>
+    </div>
+    <div class="fx f1">
+      <img class="base" src="https://commons.wikimedia.org/wiki/Special:FilePath/Bust%20of%20Germanicus%2C%20left%20profile%20-%20Getty%20Museum%20(2021.66).jpg?width=1400" alt="">
+      <div class="wash"></div><div class="grid"></div>
+      <div class="rain" data-from="0.3" data-to="1.0"></div>
+      <div class="glow"></div><div class="fade"></div>
+      <div class="headline">Data is the last <em>unrepresented</em> asset class.</div>
+    </div>
+  </section>
+
+  <!-- F2 -->
+  <section class="fx-block">
+    <div class="fx-meta">
+      <div class="fx-name"><span class="n">F.2</span>Allegory into stream</div>
+      <div class="fx-note">A banknote vignette — printed commerce — giving way to data. "Civilization," BEP die, c. 1890.</div>
+    </div>
+    <div class="fx f2">
+      <img class="base" src="https://commons.wikimedia.org/wiki/Special:FilePath/BEP-SMILLIE%20(James%20David)-Civilization.jpg?width=1600" alt="">
+      <div class="wash"></div><div class="grid"></div>
+      <div class="rain" data-from="0.15" data-to="1.0"></div>
+      <div class="glow"></div><div class="fade"></div>
+      <div class="headline">Commerce, <em>engraved</em> — then computed.</div>
+    </div>
+  </section>
+
+  <!-- F3 -->
+  <section class="fx-block">
+    <div class="fx-meta">
+      <div class="fx-name"><span class="n">F.3</span>The dissolve</div>
+      <div class="fx-note">The most literal gradient: engraving on the left disintegrates into pure data field on the right. "Concordia" — the allegory of agreement.</div>
+    </div>
+    <div class="fx f3">
+      <img class="base" src="https://commons.wikimedia.org/wiki/Special:FilePath/BEP-BURT-Concordia.jpg?width=1600" alt="">
+      <div class="dotfield"></div>
+      <div class="wash"></div><div class="grid"></div>
+      <div class="rain" data-from="0.45" data-to="1.0"></div>
+      <div class="fade"></div>
+      <div class="headline">Your archive, <em>taken to market.</em></div>
+    </div>
+  </section>
+
+  <!-- F4 -->
+  <section class="fx-block">
+    <div class="fx-meta">
+      <div class="fx-name"><span class="n">F.4</span>Caduceus</div>
+      <div class="fx-note">Mercury's staff — god of commerce and of messages — centered like a heraldic mark inside the data. The broker's emblem.</div>
+    </div>
+    <div class="fx f4">
+      <img class="base" src="https://commons.wikimedia.org/wiki/Special:FilePath/BEP-JONES-Caduceus.jpg?width=1400" alt="">
+      <div class="wash"></div><div class="grid"></div>
+      <div class="rain" data-from="0.0" data-to="1.0"></div>
+      <div class="glow"></div><div class="fade"></div>
+      <div class="headline">Data is the last <em>unrepresented</em> asset class.</div>
+    </div>
+  </section>
+
+  <footer class="lab">
+    <p class="notes">
+      All imagery public domain via Wikimedia Commons — Getty Museum, Bureau of Engraving &amp; Printing dies. The mechanism is repeatable: any classical artifact, washed pale and set against generated data fields. If a flavor lands, the next step is commissioning or carefully compositing a final hero image rather than relying on CSS.<br><br>
+      <a class="backlink" href="charter-cosmos.html">← Charter, after Cosmos</a>&ensp;·&ensp;<a class="backlink" href="index.html">All studies</a>
+    </p>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    const GLYPHS = '0123456789·:—+=$%&№§';
+    document.querySelectorAll('.rain').forEach(rain => {
+      const from = parseFloat(rain.dataset.from || '0');
+      const to = parseFloat(rain.dataset.to || '1');
+      const W = rain.clientWidth;
+      const cols = Math.floor(W / 34);
+      for (let i = 0; i < cols; i++) {
+        const frac = i / cols;
+        if (frac < from || frac > to) continue;
+        if (frac < from + 0.18 && Math.random() < 0.6) continue; // thin out near fade edge
+        const el = document.createElement('div');
+        el.className = 'col';
+        const len = 24 + Math.floor(Math.random() * 28);
+        let s = '';
+        for (let j = 0; j < len; j++) s += GLYPHS[Math.floor(Math.random() * GLYPHS.length)] + '\n';
+        el.textContent = s;
+        el.style.left = (i * 34 + Math.random() * 14) + 'px';
+        el.style.opacity = (0.12 + Math.random() * 0.4).toFixed(2);
+        el.style.animationDuration = (18 + Math.random() * 26) + 's';
+        el.style.animationDelay = (-Math.random() * 30) + 's';
+        if (Math.random() < 0.3) el.style.filter = 'blur(1px)';
+        if (Math.random() < 0.2) { el.style.color = 'rgba(230,242,255,0.9)'; el.style.opacity = '0.55'; }
+        rain.appendChild(el);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
