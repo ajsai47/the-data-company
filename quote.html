@@ -104,6 +104,8 @@
   .opt:hover { border-color: var(--ink); }
   .opt.sel { border-color: var(--blue); background: var(--ice); }
   .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .fld.cond { display: none; }
+  .fld.cond.show { display: block; }
 
   .btn {
     display: block; margin: 46px auto 0;
@@ -237,7 +239,7 @@
 
   <!-- 3 · scale & geo -->
   <div class="step" data-step="3">
-    <div class="stepmark">III · The Measure</div>
+    <div class="stepmark">III · Scale &amp; Footprint</div>
     <h1>Scale &amp; seat</h1>
     <p class="sub">How long the archive has run, and where it lives.</p>
     <div class="fld">
@@ -263,6 +265,16 @@
       <div class="err" data-err>Required.</div>
     </div>
     <div class="fld">
+      <label>Peak headcount — optional</label>
+      <div class="opts" data-single="peak_headcount">
+        <label class="opt">1–9<input type="radio" name="peak_headcount" value="1-9"></label>
+        <label class="opt">10–29<input type="radio" name="peak_headcount" value="10-29"></label>
+        <label class="opt">30–99<input type="radio" name="peak_headcount" value="30-99"></label>
+        <label class="opt">100–249<input type="radio" name="peak_headcount" value="100-249"></label>
+        <label class="opt">250+<input type="radio" name="peak_headcount" value="250+"></label>
+      </div>
+    </div>
+    <div class="fld">
       <label>Primary geography</label>
       <div class="opts" data-single="geography">
         <label class="opt">US<input type="radio" name="geography" value="US"></label>
@@ -273,13 +285,21 @@
       </div>
       <div class="err" data-err>Required.</div>
     </div>
+    <div class="fld cond" id="cond-english">
+      <label>Are your records mostly in English? — optional</label>
+      <div class="opts" data-single="english_records">
+        <label class="opt">Yes<input type="radio" name="english_records" value="yes"></label>
+        <label class="opt">No<input type="radio" name="english_records" value="no"></label>
+        <label class="opt">Unsure<input type="radio" name="english_records" value="unsure"></label>
+      </div>
+    </div>
     <button class="btn" data-next>Continue →</button>
     <button class="backlink" data-back>← Back</button>
   </div>
 
   <!-- 4 · systems -->
   <div class="step" data-step="4">
-    <div class="stepmark">IV · The Surfaces</div>
+    <div class="stepmark">IV · Systems</div>
     <h1>Where it lives</h1>
     <p class="sub">Select what your team actually uses. No connections required — we never touch your systems.</p>
     <div class="fld">
@@ -303,11 +323,11 @@
 
   <!-- 5 · fit -->
   <div class="step" data-step="5">
-    <div class="stepmark">V · The Corpus</div>
+    <div class="stepmark">V · Fit &amp; Posture</div>
     <h1>What it is</h1>
     <p class="sub">The shape of the record a buyer would license.</p>
     <div class="fld">
-      <label>Niche</label>
+      <label>Sector</label>
       <div class="opts" data-multi="niche">
         <label class="opt">AI<input type="checkbox" value="ai"></label>
         <label class="opt">SaaS<input type="checkbox" value="saas"></label>
@@ -315,11 +335,12 @@
         <label class="opt">Code<input type="checkbox" value="code"></label>
         <label class="opt">Other<input type="checkbox" value="other"></label>
       </div>
+      <div class="err" data-err>Required.</div>
     </div>
     <div class="fld">
-      <label>Data types</label>
+      <label>Data you hold</label>
       <div class="opts" data-multi="data_types">
-        <label class="opt">Ops history<input type="checkbox" value="ops"></label>
+        <label class="opt">Operating history<input type="checkbox" value="ops"></label>
         <label class="opt">Support transcripts<input type="checkbox" value="support_tx"></label>
         <label class="opt">CRM pipelines<input type="checkbox" value="crm_pipes"></label>
         <label class="opt">Codebase + PRs<input type="checkbox" value="codebase"></label>
@@ -328,6 +349,46 @@
         <label class="opt">Analytics events<input type="checkbox" value="events"></label>
         <label class="opt">Docs / wikis<input type="checkbox" value="wikis"></label>
       </div>
+      <div class="err" data-err>Required.</div>
+    </div>
+    <div class="fld cond" id="cond-code">
+      <label>Codebase scale — optional</label>
+      <div class="opts" data-single="code_commits">
+        <label class="opt">&lt;1K commits<input type="radio" name="code_commits" value="<1k"></label>
+        <label class="opt">1K+ commits<input type="radio" name="code_commits" value="1k+"></label>
+      </div>
+      <div class="opts" data-single="code_contributors" style="margin-top:10px">
+        <label class="opt">&lt;10 contributors<input type="radio" name="code_contributors" value="<10"></label>
+        <label class="opt">10+ contributors<input type="radio" name="code_contributors" value="10+"></label>
+      </div>
+    </div>
+    <div class="fld">
+      <label>Exclusivity — optional</label>
+      <div class="opts" data-single="exclusivity">
+        <label class="opt">Open to exclusive<input type="radio" name="exclusivity" value="open"></label>
+        <label class="opt">Prefer non-exclusive<input type="radio" name="exclusivity" value="non-exclusive"></label>
+        <label class="opt">Unsure<input type="radio" name="exclusivity" value="unsure"></label>
+      </div>
+    </div>
+    <div class="fld">
+      <label>Timeline — optional</label>
+      <div class="opts" data-single="timeline">
+        <label class="opt">Exploring<input type="radio" name="timeline" value="exploring"></label>
+        <label class="opt">Within 30 days<input type="radio" name="timeline" value="30days"></label>
+        <label class="opt">ASAP<input type="radio" name="timeline" value="asap"></label>
+      </div>
+    </div>
+    <div class="fld">
+      <label>Has anyone already approached you? — optional</label>
+      <div class="opts" data-single="prior_inbound">
+        <label class="opt">Yes<input type="radio" name="prior_inbound" value="yes"></label>
+        <label class="opt">No<input type="radio" name="prior_inbound" value="no"></label>
+        <label class="opt">Unsure<input type="radio" name="prior_inbound" value="unsure"></label>
+      </div>
+    </div>
+    <div class="fld">
+      <label>Anything else we should know? — optional</label>
+      <textarea id="f-notes" placeholder="Provenance, coverage, anything unusual about the archive"></textarea>
     </div>
     <button class="btn" data-next>See my estimate →</button>
     <button class="backlink" data-back>← Back</button>
@@ -432,6 +493,9 @@ function restore() {
       o.querySelector('input').checked = on;
     });
   });
+  const notes = document.getElementById('f-notes');
+  if (notes && st.notes) notes.value = st.notes;
+  if (typeof syncCond === 'function') syncCond();
 }
 
 // option groups
@@ -453,8 +517,17 @@ document.querySelectorAll('.opts').forEach(group => {
       st[multi] = [...group.querySelectorAll('.opt.sel input')].map(i => i.value);
       save();
     }
+    syncCond();
   });
 });
+
+// conditional fields
+function syncCond() {
+  const en = document.getElementById('cond-english');
+  if (en) en.classList.toggle('show', st.geography === 'Other');
+  const cd = document.getElementById('cond-code');
+  if (cd) cd.classList.toggle('show', (st.data_types || []).includes('codebase'));
+}
 
 const PERSONAL = /^(gmail|yahoo|hotmail|outlook|aol|icloud|proton|mail|hey)\.(com|net|me|co)$/i;
 
@@ -495,7 +568,16 @@ function next() {
     }
     track('quote_step_completed', {step: 4});
   }
-  if (s === 5) { compute(); track('quote_step_completed', {step: 5}); }
+  if (s === 5) {
+    const errs = steps[cur].querySelectorAll('[data-err]');
+    let ok = true;
+    errs[0].classList.toggle('show', !(st.niche || []).length);
+    errs[1].classList.toggle('show', !(st.data_types || []).length);
+    if (!(st.niche || []).length || !(st.data_types || []).length) ok = false;
+    if (!ok) return;
+    st.notes = el('#f-notes').value.trim(); save();
+    compute(); track('quote_step_completed', {step: 5});
+  }
   if (s === 7) {
     const ph = el('#f-phone').value.trim();
     const phOk = /^\+?[\d\s\-().]{7,18}$/.test(ph);
