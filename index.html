@@ -86,7 +86,7 @@
     overflow: hidden;
     margin-top: -40px;
   }
-  .tearband img {
+  .tearband img, .tearband video {
     width: 76%; height: auto;
     margin: 0 auto;
     display: block;
@@ -465,7 +465,7 @@
     nav.topnav { width: 100%; justify-content: center; gap: 18px; }
     nav.topnav a { font-size: 12px; }
     .tearband { margin-top: 30px; }
-    .tearband img { width: 94%; }
+    .tearband img, .tearband video { width: 94%; }
     .hero-body { padding: 0 24px 44px; margin-top: -1vh; }
     .hero h1 { font-size: clamp(28px, 7.4vw, 46px); white-space: normal; }
     .sheet { padding: 0 24px; }
@@ -507,7 +507,7 @@
 
 <div class="hero">
   <div class="tearband">
-    <img src="refs/franklin-eyes.jpg" alt="Engraved currency portrait eyes looking through torn paper">
+    <video src="refs/eyes-clip.mp4" poster="refs/franklin-eyes.jpg" autoplay muted loop playsinline aria-label="Engraved currency portrait eyes looking through torn paper"></video>
     <div class="fade"></div>
   </div>
   <div class="hero-body">
