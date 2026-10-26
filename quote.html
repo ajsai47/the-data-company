@@ -93,6 +93,17 @@
     font-size: 19px; color: var(--ink);
     padding: 8px 0 12px;
   }
+  .fld select {
+    width: 100%; box-sizing: border-box;
+    border: 0; border-bottom: 1px solid var(--rule); border-radius: 0;
+    background: transparent; outline: none;
+    font-family: "Newsreader", Georgia, serif; font-size: 19px; color: var(--ink);
+    padding: 8px 24px 12px 0;
+    appearance: none; -webkit-appearance: none; cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1.5l5 5 5-5" fill="none" stroke="%234E6580" stroke-width="1.5"/></svg>');
+    background-repeat: no-repeat; background-position: right 2px center;
+  }
+  .fld select:focus { border-bottom-color: var(--ink); }
   .fld input:focus, .fld textarea:focus { border-bottom-color: var(--ink); }
   .fld input::placeholder { color: var(--ink-faint); font-style: italic; }
 
@@ -104,15 +115,14 @@
     background: none; color: var(--ink); cursor: pointer; user-select: none;
     transition: color 0.15s;
   }
-  .opt::after {
-    content: ""; margin-left: auto; width: 16px; height: 16px; flex: none;
-    border: 1.5px solid var(--ink-soft); border-radius: 50%;
+  .opt::before {
+    content: ""; width: 14px; height: 14px; flex: none; margin-right: 14px;
+    border: 1.5px solid var(--ink-soft); border-radius: 2px;
     transition: background 0.15s, border-color 0.15s;
   }
-  .opts[data-multi] .opt::after { border-radius: 2px; }
   .opt:hover { color: var(--blue); }
   .opt.sel { color: var(--blue); }
-  .opt.sel::after { background: var(--blue); border-color: var(--blue); box-shadow: inset 0 0 0 3px #fff; }
+  .opt.sel::before { background: var(--blue); border-color: var(--blue); box-shadow: inset 0 0 0 2.5px #fff; }
   .opt input { display: none; }
   .fld.cond { display: none; }
   .fld.cond.show { display: block; }
@@ -246,13 +256,7 @@
     <div class="fld"><label>Website</label><input type="url" id="f-website" placeholder="company.com" autocomplete="url" inputmode="url"><div class="err" data-err>Required.</div></div>
     <div class="fld">
       <label>Your role <span class="opt-flag">optional</span></label>
-      <div class="opts" data-single="role">
-        <label class="opt">Founder / CEO<input type="radio" name="role" value="Founder/CEO"></label>
-        <label class="opt">Ops<input type="radio" name="role" value="Ops"></label>
-        <label class="opt">Legal<input type="radio" name="role" value="Legal"></label>
-        <label class="opt">Data<input type="radio" name="role" value="Data"></label>
-        <label class="opt">Other<input type="radio" name="role" value="Other"></label>
-      </div>
+      <select data-key="role"><option value="">Select</option><option value="Founder/CEO">Founder / CEO</option><option value="Ops">Ops</option><option value="Legal">Legal</option><option value="Data">Data</option><option value="Other">Other</option></select>
     </div>
     <button class="btn" data-next>Continue →</button>
     <button class="backlink" data-back>← Back</button>
@@ -265,54 +269,26 @@
     <p class="sub">How long the archive has run, and where it lives.</p>
     <div class="fld">
       <label>Years operating</label>
-      <div class="opts" data-single="years">
-        <label class="opt">&lt;1<input type="radio" name="years" value="<1"></label>
-        <label class="opt">1–2<input type="radio" name="years" value="1-2"></label>
-        <label class="opt">3–5<input type="radio" name="years" value="3-5"></label>
-        <label class="opt">6–10<input type="radio" name="years" value="6-10"></label>
-        <label class="opt">10+<input type="radio" name="years" value="10+"></label>
-      </div>
+      <select data-key="years"><option value="">Select</option><option value="<1">&lt;1</option><option value="1-2">1–2</option><option value="3-5">3–5</option><option value="6-10">6–10</option><option value="10+">10+</option></select>
       <div class="err" data-err>Required.</div>
     </div>
     <div class="fld">
       <label>Headcount</label>
-      <div class="opts" data-single="headcount">
-        <label class="opt">1–9<input type="radio" name="headcount" value="1-9"></label>
-        <label class="opt">10–29<input type="radio" name="headcount" value="10-29"></label>
-        <label class="opt">30–99<input type="radio" name="headcount" value="30-99"></label>
-        <label class="opt">100–249<input type="radio" name="headcount" value="100-249"></label>
-        <label class="opt">250+<input type="radio" name="headcount" value="250+"></label>
-      </div>
+      <select data-key="headcount"><option value="">Select</option><option value="1-9">1–9</option><option value="10-29">10–29</option><option value="30-99">30–99</option><option value="100-249">100–249</option><option value="250+">250+</option></select>
       <div class="err" data-err>Required.</div>
     </div>
     <div class="fld">
       <label>Peak headcount <span class="opt-flag">optional</span></label>
-      <div class="opts" data-single="peak_headcount">
-        <label class="opt">1–9<input type="radio" name="peak_headcount" value="1-9"></label>
-        <label class="opt">10–29<input type="radio" name="peak_headcount" value="10-29"></label>
-        <label class="opt">30–99<input type="radio" name="peak_headcount" value="30-99"></label>
-        <label class="opt">100–249<input type="radio" name="peak_headcount" value="100-249"></label>
-        <label class="opt">250+<input type="radio" name="peak_headcount" value="250+"></label>
-      </div>
+      <select data-key="peak_headcount"><option value="">Select</option><option value="1-9">1–9</option><option value="10-29">10–29</option><option value="30-99">30–99</option><option value="100-249">100–249</option><option value="250+">250+</option></select>
     </div>
     <div class="fld">
       <label>Primary geography</label>
-      <div class="opts" data-single="geography">
-        <label class="opt">US<input type="radio" name="geography" value="US"></label>
-        <label class="opt">UK<input type="radio" name="geography" value="UK"></label>
-        <label class="opt">Canada<input type="radio" name="geography" value="Canada"></label>
-        <label class="opt">EU<input type="radio" name="geography" value="EU"></label>
-        <label class="opt">Other<input type="radio" name="geography" value="Other"></label>
-      </div>
+      <select data-key="geography"><option value="">Select</option><option value="US">US</option><option value="UK">UK</option><option value="Canada">Canada</option><option value="EU">EU</option><option value="Other">Other</option></select>
       <div class="err" data-err>Required.</div>
     </div>
     <div class="fld cond" id="cond-english">
       <label>Are your records mostly in English? <span class="opt-flag">optional</span></label>
-      <div class="opts" data-single="english_records">
-        <label class="opt">Yes<input type="radio" name="english_records" value="yes"></label>
-        <label class="opt">No<input type="radio" name="english_records" value="no"></label>
-        <label class="opt">Unsure<input type="radio" name="english_records" value="unsure"></label>
-      </div>
+      <select data-key="english_records"><option value="">Select</option><option value="yes">Yes</option><option value="no">No</option><option value="unsure">Unsure</option></select>
     </div>
     <button class="btn" data-next>Continue →</button>
     <button class="backlink" data-back>← Back</button>
@@ -374,39 +350,21 @@
     </div>
     <div class="fld cond" id="cond-code">
       <label>Codebase scale <span class="opt-flag">optional</span></label>
-      <div class="opts" data-single="code_commits">
-        <label class="opt">&lt;1K commits<input type="radio" name="code_commits" value="<1k"></label>
-        <label class="opt">1K+ commits<input type="radio" name="code_commits" value="1k+"></label>
-      </div>
-      <div class="opts" data-single="code_contributors" style="margin-top:10px">
-        <label class="opt">&lt;10 contributors<input type="radio" name="code_contributors" value="<10"></label>
-        <label class="opt">10+ contributors<input type="radio" name="code_contributors" value="10+"></label>
-      </div>
+      <select data-key="code_commits"><option value="">Select</option><option value="<1k">&lt;1K commits</option><option value="1k+">1K+ commits</option></select>
+      <select data-key="code_contributors"><option value="">Select</option><option value="<10">&lt;10 contributors</option><option value="10+">10+ contributors</option></select>
     </div>
     <div class="grp">Posture — optional</div>
     <div class="fld">
       <label>Exclusivity <span class="opt-flag">optional</span></label>
-      <div class="opts" data-single="exclusivity">
-        <label class="opt">Open to exclusive<input type="radio" name="exclusivity" value="open"></label>
-        <label class="opt">Prefer non-exclusive<input type="radio" name="exclusivity" value="non-exclusive"></label>
-        <label class="opt">Unsure<input type="radio" name="exclusivity" value="unsure"></label>
-      </div>
+      <select data-key="exclusivity"><option value="">Select</option><option value="open">Open to exclusive</option><option value="non-exclusive">Prefer non-exclusive</option><option value="unsure">Unsure</option></select>
     </div>
     <div class="fld">
       <label>Timeline <span class="opt-flag">optional</span></label>
-      <div class="opts" data-single="timeline">
-        <label class="opt">Exploring<input type="radio" name="timeline" value="exploring"></label>
-        <label class="opt">Within 30 days<input type="radio" name="timeline" value="30days"></label>
-        <label class="opt">ASAP<input type="radio" name="timeline" value="asap"></label>
-      </div>
+      <select data-key="timeline"><option value="">Select</option><option value="exploring">Exploring</option><option value="30days">Within 30 days</option><option value="asap">ASAP</option></select>
     </div>
     <div class="fld">
       <label>Has anyone already approached you? <span class="opt-flag">optional</span></label>
-      <div class="opts" data-single="prior_inbound">
-        <label class="opt">Yes<input type="radio" name="prior_inbound" value="yes"></label>
-        <label class="opt">No<input type="radio" name="prior_inbound" value="no"></label>
-        <label class="opt">Unsure<input type="radio" name="prior_inbound" value="unsure"></label>
-      </div>
+      <select data-key="prior_inbound"><option value="">Select</option><option value="yes">Yes</option><option value="no">No</option><option value="unsure">Unsure</option></select>
     </div>
     <div class="fld">
       <label>Anything else we should know? <span class="opt-flag">optional</span></label>
@@ -517,6 +475,7 @@ function restore() {
       o.querySelector('input').checked = on;
     });
   });
+  document.querySelectorAll('select[data-key]').forEach(s => { s.value = st[s.dataset.key] || ''; });
   const notes = document.getElementById('f-notes');
   if (notes && st.notes) notes.value = st.notes;
   if (typeof syncCond === 'function') syncCond();
@@ -543,6 +502,11 @@ document.querySelectorAll('.opts').forEach(group => {
     }
     syncCond();
   });
+});
+
+// dropdowns
+document.querySelectorAll('select[data-key]').forEach(sel => {
+  sel.addEventListener('change', () => { st[sel.dataset.key] = sel.value; save(); syncCond(); });
 });
 
 // conditional fields
