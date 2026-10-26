@@ -121,7 +121,8 @@
   .opt:hover { border-color: var(--ink); }
   .opt.sel { border-color: var(--blue); background: var(--ice); color: var(--blue); }
   .opt input { display: none; }
-  .opt .lg { width: 18px; height: 18px; flex: none; margin-right: 12px; opacity: 0.9; }
+  .opt { flex: none; white-space: nowrap; }
+  .opt .lg { height: 16px; width: auto; max-width: 40px; object-fit: contain; flex: none; margin-right: 10px; }
   .acc { border-bottom: 1px solid var(--rule); }
   .acc-head {
     list-style: none; cursor: pointer;
@@ -131,6 +132,8 @@
     letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink);
   }
   .acc-head::-webkit-details-marker { display: none; }
+  .acc-head:focus { outline: none; }
+  .acc-head:focus-visible { outline: none; }
   .acc-head::after { content: "+"; margin-left: auto; color: var(--blue); font-size: 13px; }
   .acc[open] .acc-head::after { content: "−"; }
   .acc-head:hover { color: var(--blue); }
