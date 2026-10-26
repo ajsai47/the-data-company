@@ -124,6 +124,13 @@
   .opt.sel { color: var(--blue); }
   .opt.sel::before { background: var(--blue); border-color: var(--blue); box-shadow: inset 0 0 0 2.5px #fff; }
   .opt input { display: none; }
+  .opt .lg { width: 18px; height: 18px; flex: none; margin-right: 12px; opacity: 0.9; }
+  .cat {
+    padding: 24px 2px 10px;
+    font-family: "IBM Plex Mono", monospace; font-size: 9px;
+    letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-faint);
+  }
+  .cat:first-child { padding-top: 0; }
   .fld.cond { display: none; }
   .fld.cond.show { display: block; }
   .opt-flag {
@@ -298,19 +305,67 @@
   <div class="step" data-step="4">
     <div class="stepmark">IV · Systems</div>
     <h1>Where it lives</h1>
-    <p class="sub">Select what your team actually uses. No connections required — we never touch your systems.</p>
+    <p class="sub">Select as many as apply — no connections required, we never touch your systems.</p>
     <div class="fld">
       <div class="opts" data-multi="systems">
-        <label class="opt">Slack / Teams<input type="checkbox" value="slack_teams"></label>
-        <label class="opt">Email / Workspace / M365<input type="checkbox" value="email_suite"></label>
-        <label class="opt">CRM (Salesforce, HubSpot…)<input type="checkbox" value="crm"></label>
-        <label class="opt">Support (Zendesk, Intercom…)<input type="checkbox" value="support"></label>
-        <label class="opt">Docs / Drive / Notion<input type="checkbox" value="docs"></label>
-        <label class="opt">Product analytics / events<input type="checkbox" value="analytics"></label>
-        <label class="opt">Code hosting (GitHub…)<input type="checkbox" value="code"></label>
-        <label class="opt">Design tools (Figma…)<input type="checkbox" value="design"></label>
-        <label class="opt">Ticketing / project (Jira…)<input type="checkbox" value="ticketing"></label>
-        <label class="opt">Other<input type="checkbox" value="other"></label>
+        <div class="cat">Communication</div>
+        <label class="opt"><img class="lg" src="refs/logos/slack.svg" alt="" loading="lazy">Slack<input type="checkbox" value="slack"></label>
+        <label class="opt"><img class="lg" src="refs/logos/microsoftteams.svg" alt="" loading="lazy">Microsoft Teams<input type="checkbox" value="microsoftteams"></label>
+        <label class="opt"><img class="lg" src="refs/logos/zoom.svg" alt="" loading="lazy">Zoom<input type="checkbox" value="zoom"></label>
+        <label class="opt"><img class="lg" src="refs/logos/discord.svg" alt="" loading="lazy">Discord<input type="checkbox" value="discord"></label>
+        <label class="opt"><img class="lg" src="refs/logos/loom.svg" alt="" loading="lazy">Loom<input type="checkbox" value="loom"></label>
+        <div class="cat">Email &amp; calendar</div>
+        <label class="opt"><img class="lg" src="refs/logos/googledrive.svg" alt="" loading="lazy">Google Workspace<input type="checkbox" value="googledrive"></label>
+        <label class="opt"><img class="lg" src="refs/logos/microsoftoutlook.svg" alt="" loading="lazy">Microsoft 365<input type="checkbox" value="microsoftoutlook"></label>
+        <label class="opt"><img class="lg" src="refs/logos/calendly.svg" alt="" loading="lazy">Calendly<input type="checkbox" value="calendly"></label>
+        <div class="cat">CRM &amp; sales</div>
+        <label class="opt"><img class="lg" src="refs/logos/salesforce.svg" alt="" loading="lazy">Salesforce<input type="checkbox" value="salesforce"></label>
+        <label class="opt"><img class="lg" src="refs/logos/hubspot.svg" alt="" loading="lazy">HubSpot<input type="checkbox" value="hubspot"></label>
+        <label class="opt"><img class="lg" src="refs/logos/pipedrive.svg" alt="" loading="lazy">Pipedrive<input type="checkbox" value="pipedrive"></label>
+        <div class="cat">Support</div>
+        <label class="opt"><img class="lg" src="refs/logos/zendesk.svg" alt="" loading="lazy">Zendesk<input type="checkbox" value="zendesk"></label>
+        <label class="opt"><img class="lg" src="refs/logos/intercom.svg" alt="" loading="lazy">Intercom<input type="checkbox" value="intercom"></label>
+        <label class="opt"><img class="lg" src="refs/logos/freshdesk.svg" alt="" loading="lazy">Freshdesk<input type="checkbox" value="freshdesk"></label>
+        <div class="cat">Docs &amp; knowledge</div>
+        <label class="opt"><img class="lg" src="refs/logos/notion.svg" alt="" loading="lazy">Notion<input type="checkbox" value="notion"></label>
+        <label class="opt"><img class="lg" src="refs/logos/confluence.svg" alt="" loading="lazy">Confluence<input type="checkbox" value="confluence"></label>
+        <label class="opt"><img class="lg" src="refs/logos/googledocs.svg" alt="" loading="lazy">Google Docs<input type="checkbox" value="googledocs"></label>
+        <label class="opt"><img class="lg" src="refs/logos/dropbox.svg" alt="" loading="lazy">Dropbox<input type="checkbox" value="dropbox"></label>
+        <label class="opt"><img class="lg" src="refs/logos/box.svg" alt="" loading="lazy">Box<input type="checkbox" value="box"></label>
+        <label class="opt"><img class="lg" src="refs/logos/airtable.svg" alt="" loading="lazy">Airtable<input type="checkbox" value="airtable"></label>
+        <div class="cat">Analytics &amp; data</div>
+        <label class="opt"><img class="lg" src="refs/logos/mixpanel.svg" alt="" loading="lazy">Mixpanel<input type="checkbox" value="mixpanel"></label>
+        <label class="opt"><img class="lg" src="refs/logos/amplitude.svg" alt="" loading="lazy">Amplitude<input type="checkbox" value="amplitude"></label>
+        <label class="opt"><img class="lg" src="refs/logos/googleanalytics.svg" alt="" loading="lazy">Google Analytics<input type="checkbox" value="googleanalytics"></label>
+        <label class="opt"><img class="lg" src="refs/logos/segment.svg" alt="" loading="lazy">Segment<input type="checkbox" value="segment"></label>
+        <label class="opt"><img class="lg" src="refs/logos/posthog.svg" alt="" loading="lazy">PostHog<input type="checkbox" value="posthog"></label>
+        <div class="cat">Development &amp; hosting</div>
+        <label class="opt"><img class="lg" src="refs/logos/github.svg" alt="" loading="lazy">GitHub<input type="checkbox" value="github"></label>
+        <label class="opt"><img class="lg" src="refs/logos/gitlab.svg" alt="" loading="lazy">GitLab<input type="checkbox" value="gitlab"></label>
+        <label class="opt"><img class="lg" src="refs/logos/bitbucket.svg" alt="" loading="lazy">Bitbucket<input type="checkbox" value="bitbucket"></label>
+        <label class="opt"><img class="lg" src="refs/logos/vercel.svg" alt="" loading="lazy">Vercel<input type="checkbox" value="vercel"></label>
+        <label class="opt"><img class="lg" src="refs/logos/amazonwebservices.svg" alt="" loading="lazy">AWS<input type="checkbox" value="amazonwebservices"></label>
+        <div class="cat">Design</div>
+        <label class="opt"><img class="lg" src="refs/logos/figma.svg" alt="" loading="lazy">Figma<input type="checkbox" value="figma"></label>
+        <label class="opt"><img class="lg" src="refs/logos/canva.svg" alt="" loading="lazy">Canva<input type="checkbox" value="canva"></label>
+        <div class="cat">Project management</div>
+        <label class="opt"><img class="lg" src="refs/logos/jira.svg" alt="" loading="lazy">Jira<input type="checkbox" value="jira"></label>
+        <label class="opt"><img class="lg" src="refs/logos/linear.svg" alt="" loading="lazy">Linear<input type="checkbox" value="linear"></label>
+        <label class="opt"><img class="lg" src="refs/logos/asana.svg" alt="" loading="lazy">Asana<input type="checkbox" value="asana"></label>
+        <label class="opt"><img class="lg" src="refs/logos/trello.svg" alt="" loading="lazy">Trello<input type="checkbox" value="trello"></label>
+        <label class="opt"><img class="lg" src="refs/logos/monday.svg" alt="" loading="lazy">Monday.com<input type="checkbox" value="monday"></label>
+        <label class="opt"><img class="lg" src="refs/logos/clickup.svg" alt="" loading="lazy">ClickUp<input type="checkbox" value="clickup"></label>
+        <label class="opt"><img class="lg" src="refs/logos/basecamp.svg" alt="" loading="lazy">Basecamp<input type="checkbox" value="basecamp"></label>
+        <div class="cat">Back office</div>
+        <label class="opt"><img class="lg" src="refs/logos/quickbooks.svg" alt="" loading="lazy">QuickBooks<input type="checkbox" value="quickbooks"></label>
+        <label class="opt"><img class="lg" src="refs/logos/workday.svg" alt="" loading="lazy">Workday<input type="checkbox" value="workday"></label>
+        <label class="opt"><img class="lg" src="refs/logos/docusign.svg" alt="" loading="lazy">DocuSign<input type="checkbox" value="docusign"></label>
+        <label class="opt"><img class="lg" src="refs/logos/stripe.svg" alt="" loading="lazy">Stripe<input type="checkbox" value="stripe"></label>
+        <label class="opt"><img class="lg" src="refs/logos/shopify.svg" alt="" loading="lazy">Shopify<input type="checkbox" value="shopify"></label>
+        <label class="opt"><img class="lg" src="refs/logos/wordpress.svg" alt="" loading="lazy">WordPress<input type="checkbox" value="wordpress"></label>
+        <label class="opt"><img class="lg" src="refs/logos/webflow.svg" alt="" loading="lazy">Webflow<input type="checkbox" value="webflow"></label>
+        <label class="opt"><img class="lg" src="refs/logos/mailchimp.svg" alt="" loading="lazy">Mailchimp<input type="checkbox" value="mailchimp"></label>
+        <label class="opt">Other / not listed<input type="checkbox" value="other"></label>
       </div>
       <div class="warn" data-warn>No surfaces selected — the estimate will be thin. Continue anyway?</div>
     </div>
@@ -597,9 +652,9 @@ function compute() {
   let mid = (low + high) / 2;
   const sys = st.systems || [];
   let boost = Math.min(c.systemsCap, c.systemsPer * sys.length);
-  if (sys.includes('code')) boost += c.bonus.code;
-  if (sys.includes('crm') || sys.includes('support')) boost += c.bonus.crmOrSupport;
-  if (sys.includes('analytics')) boost += c.bonus.analytics;
+  if (sys.some(s=>['github','gitlab','bitbucket','vercel','amazonwebservices'].includes(s))) boost += c.bonus.code;
+  if (sys.some(s=>['salesforce','hubspot','pipedrive','zendesk','intercom','freshdesk'].includes(s))) boost += c.bonus.crmOrSupport;
+  if (sys.some(s=>['mixpanel','amplitude','googleanalytics','segment','posthog'].includes(s))) boost += c.bonus.analytics;
   mid *= (1 + boost);
   const niches = (st.niche||[]).filter(n => c.nicheSet.includes(n));
   mid *= niches.length >= 2 ? c.nicheTwo : niches.length === 1 ? c.nicheOne : 1;
