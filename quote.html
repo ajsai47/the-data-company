@@ -137,6 +137,33 @@
   .acc.miss .acc-head { color: #a33; }
   .acc-cnt { margin-left: 12px; font-size: 9px; letter-spacing: 0.1em; color: var(--blue); }
   .opt.none { color: var(--ink-faint); font-style: italic; }
+  /* ————— multi-select dropdown ————— */
+  .msel { position: relative; }
+  .msel-btn {
+    width: 100%; box-sizing: border-box; text-align: left;
+    border: 0; border-bottom: 1px solid var(--rule); background: transparent;
+    font-family: "Newsreader", Georgia, serif; font-size: 19px; color: var(--ink);
+    padding: 8px 24px 12px 0; cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="8" viewBox="0 0 12 8"><path d="M1 1.5l5 5 5-5" fill="none" stroke="%234E6580" stroke-width="1.5"/></svg>');
+    background-repeat: no-repeat; background-position: right 2px center;
+  }
+  .msel.open .msel-btn { border-bottom-color: var(--ink); }
+  .msel-btn .cnt { font-style: italic; color: var(--ink-faint); font-size: 15px; }
+  .msel-menu {
+    display: none; position: absolute; left: 0; right: 0; top: 100%; z-index: 20;
+    background: #fff; border: 1px solid var(--rule); margin-top: 6px;
+    box-shadow: 0 14px 34px rgba(28,44,68,.14); max-height: 320px; overflow-y: auto;
+  }
+  .msel.open .msel-menu { display: block; }
+  .mopt {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 16px; font-family: "Newsreader", Georgia, serif; font-size: 16.5px;
+    color: var(--ink); cursor: pointer; border-bottom: 1px solid var(--rule-faint);
+  }
+  .mopt:last-child { border-bottom: 0; }
+  .mopt:hover { background: var(--ice); }
+  .mopt input { width: 16px; height: 16px; accent-color: var(--blue); flex: none; }
+
   .fld.cond { display: none; }
   .fld.cond.show { display: block; }
   .opt-flag {
@@ -401,15 +428,18 @@
     </div>
     <div class="fld">
       <label>Data you hold</label>
-      <div class="opts" data-multi="data_types">
-        <label class="opt">Operating history<input type="checkbox" value="ops"></label>
-        <label class="opt">Support transcripts<input type="checkbox" value="support_tx"></label>
-        <label class="opt">CRM pipelines<input type="checkbox" value="crm_pipes"></label>
-        <label class="opt">Codebase + PRs<input type="checkbox" value="codebase"></label>
-        <label class="opt">Design files<input type="checkbox" value="design_files"></label>
-        <label class="opt">Game telemetry<input type="checkbox" value="telemetry"></label>
-        <label class="opt">Analytics events<input type="checkbox" value="events"></label>
-        <label class="opt">Docs / wikis<input type="checkbox" value="wikis"></label>
+      <div class="msel" id="msel-types">
+        <button type="button" class="msel-btn">Select all that apply</button>
+        <div class="msel-menu">
+          <label class="mopt"><input type="checkbox" value="ops">Operating history</label>
+          <label class="mopt"><input type="checkbox" value="support_tx">Support transcripts</label>
+          <label class="mopt"><input type="checkbox" value="crm_pipes">CRM pipelines</label>
+          <label class="mopt"><input type="checkbox" value="codebase">Codebase + PRs</label>
+          <label class="mopt"><input type="checkbox" value="design_files">Design files</label>
+          <label class="mopt"><input type="checkbox" value="telemetry">Game telemetry</label>
+          <label class="mopt"><input type="checkbox" value="events">Analytics events</label>
+          <label class="mopt"><input type="checkbox" value="wikis">Docs / wikis</label>
+        </div>
       </div>
       <div class="err" data-err>Required.</div>
     </div>
@@ -541,6 +571,11 @@ function restore() {
     });
   });
   document.querySelectorAll('select[data-key]').forEach(s => { s.value = st[s.dataset.key] || ''; });
+  const mselEl = document.getElementById('msel-types');
+  if (mselEl) {
+    mselEl.querySelectorAll('input').forEach(i => { i.checked = (st.data_types || []).includes(i.value); });
+    if (typeof mselSync === 'function') mselSync();
+  }
   document.querySelectorAll('.acc').forEach(a => {
     const n = a.querySelectorAll('.opt.sel').length;
     a.querySelector('.acc-cnt').textContent = n ? '· ' + n : '';
@@ -583,6 +618,21 @@ document.querySelectorAll('.opts').forEach(group => {
 document.querySelectorAll('select[data-key]').forEach(sel => {
   sel.addEventListener('change', () => { st[sel.dataset.key] = sel.value; save(); syncCond(); });
 });
+
+// multi-select dropdown
+const msel = document.getElementById('msel-types');
+const mbtn = msel.querySelector('.msel-btn');
+function mselSync() {
+  const n = (st.data_types || []).length;
+  mbtn.innerHTML = n ? `${n} selected <span class="cnt">— change</span>` : 'Select all that apply';
+}
+mbtn.addEventListener('click', e => { e.stopPropagation(); msel.classList.toggle('open'); });
+msel.addEventListener('change', () => {
+  st.data_types = [...msel.querySelectorAll('input:checked')].map(i => i.value);
+  save(); mselSync(); syncCond();
+});
+document.addEventListener('click', e => { if (!msel.contains(e.target)) msel.classList.remove('open'); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') msel.classList.remove('open'); });
 
 // conditional fields
 function syncCond() {
