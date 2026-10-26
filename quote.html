@@ -52,6 +52,9 @@
   }
   .back:hover { color: var(--blue); }
 
+  .rail { height: 1px; background: var(--rule-faint); position: relative; }
+  .rail .fill { position: absolute; inset: 0 auto 0 0; width: 0; background: var(--blue); transition: width .5s ease; }
+
   .stage {
     max-width: 640px; margin: 0 auto;
     padding: 60px 44px 120px;
@@ -96,7 +99,7 @@
   .opts { display: flex; flex-wrap: wrap; gap: 10px; }
   .opt {
     font-family: "Archivo", sans-serif; font-size: 14px;
-    padding: 11px 18px;
+    padding: 13px 20px;
     border: 1px solid var(--rule); background: #fff;
     color: var(--ink); cursor: pointer; user-select: none;
     transition: border-color 0.15s, background 0.15s;
@@ -106,6 +109,20 @@
   .opt input { position: absolute; opacity: 0; pointer-events: none; }
   .fld.cond { display: none; }
   .fld.cond.show { display: block; }
+  .opt-flag {
+    font-family: "Newsreader", Georgia, serif; font-style: italic;
+    text-transform: none; letter-spacing: 0;
+    color: var(--ink-faint); font-size: 12.5px;
+  }
+  .grp {
+    margin: 38px 0 8px; display: flex; align-items: center; gap: 14px;
+    font-family: "IBM Plex Mono", monospace; font-size: 9px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-faint);
+  }
+  .grp::after { content: ""; flex: 1; border-top: 1px solid var(--rule-faint); }
+  button:focus-visible, a:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
+  .step.on { animation: stepIn .45s ease; }
+  @keyframes stepIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
   .btn {
     display: block; margin: 46px auto 0;
@@ -198,6 +215,7 @@
   </a>
   <a class="back" href="index.html">← Return</a>
 </header>
+<div class="rail"><div class="fill" id="fill"></div></div>
 
 <div class="stage">
 
@@ -220,11 +238,11 @@
     <div class="stepmark">II · The Firm</div>
     <h1>Who holds it</h1>
     <p class="sub">The party the mandate would run to.</p>
-    <div class="fld"><label>Full name</label><input type="text" id="f-name" placeholder="Your name"><div class="err" data-err>Required.</div></div>
-    <div class="fld"><label>Company</label><input type="text" id="f-company" placeholder="Legal or trading name"><div class="err" data-err>Required.</div></div>
-    <div class="fld"><label>Website</label><input type="url" id="f-website" placeholder="company.com"><div class="err" data-err>Required.</div></div>
+    <div class="fld"><label>Full name</label><input type="text" id="f-name" placeholder="Your name" autocomplete="name"><div class="err" data-err>Required.</div></div>
+    <div class="fld"><label>Company</label><input type="text" id="f-company" placeholder="Legal or trading name" autocomplete="organization"><div class="err" data-err>Required.</div></div>
+    <div class="fld"><label>Website</label><input type="url" id="f-website" placeholder="company.com" autocomplete="url" inputmode="url"><div class="err" data-err>Required.</div></div>
     <div class="fld">
-      <label>Your role — optional</label>
+      <label>Your role <span class="opt-flag">optional</span></label>
       <div class="opts" data-single="role">
         <label class="opt">Founder / CEO<input type="radio" name="role" value="Founder/CEO"></label>
         <label class="opt">Ops<input type="radio" name="role" value="Ops"></label>
@@ -265,7 +283,7 @@
       <div class="err" data-err>Required.</div>
     </div>
     <div class="fld">
-      <label>Peak headcount — optional</label>
+      <label>Peak headcount <span class="opt-flag">optional</span></label>
       <div class="opts" data-single="peak_headcount">
         <label class="opt">1–9<input type="radio" name="peak_headcount" value="1-9"></label>
         <label class="opt">10–29<input type="radio" name="peak_headcount" value="10-29"></label>
@@ -286,7 +304,7 @@
       <div class="err" data-err>Required.</div>
     </div>
     <div class="fld cond" id="cond-english">
-      <label>Are your records mostly in English? — optional</label>
+      <label>Are your records mostly in English? <span class="opt-flag">optional</span></label>
       <div class="opts" data-single="english_records">
         <label class="opt">Yes<input type="radio" name="english_records" value="yes"></label>
         <label class="opt">No<input type="radio" name="english_records" value="no"></label>
@@ -352,7 +370,7 @@
       <div class="err" data-err>Required.</div>
     </div>
     <div class="fld cond" id="cond-code">
-      <label>Codebase scale — optional</label>
+      <label>Codebase scale <span class="opt-flag">optional</span></label>
       <div class="opts" data-single="code_commits">
         <label class="opt">&lt;1K commits<input type="radio" name="code_commits" value="<1k"></label>
         <label class="opt">1K+ commits<input type="radio" name="code_commits" value="1k+"></label>
@@ -362,8 +380,9 @@
         <label class="opt">10+ contributors<input type="radio" name="code_contributors" value="10+"></label>
       </div>
     </div>
+    <div class="grp">Posture — optional</div>
     <div class="fld">
-      <label>Exclusivity — optional</label>
+      <label>Exclusivity <span class="opt-flag">optional</span></label>
       <div class="opts" data-single="exclusivity">
         <label class="opt">Open to exclusive<input type="radio" name="exclusivity" value="open"></label>
         <label class="opt">Prefer non-exclusive<input type="radio" name="exclusivity" value="non-exclusive"></label>
@@ -371,7 +390,7 @@
       </div>
     </div>
     <div class="fld">
-      <label>Timeline — optional</label>
+      <label>Timeline <span class="opt-flag">optional</span></label>
       <div class="opts" data-single="timeline">
         <label class="opt">Exploring<input type="radio" name="timeline" value="exploring"></label>
         <label class="opt">Within 30 days<input type="radio" name="timeline" value="30days"></label>
@@ -379,7 +398,7 @@
       </div>
     </div>
     <div class="fld">
-      <label>Has anyone already approached you? — optional</label>
+      <label>Has anyone already approached you? <span class="opt-flag">optional</span></label>
       <div class="opts" data-single="prior_inbound">
         <label class="opt">Yes<input type="radio" name="prior_inbound" value="yes"></label>
         <label class="opt">No<input type="radio" name="prior_inbound" value="no"></label>
@@ -387,7 +406,7 @@
       </div>
     </div>
     <div class="fld">
-      <label>Anything else we should know? — optional</label>
+      <label>Anything else we should know? <span class="opt-flag">optional</span></label>
       <textarea id="f-notes" placeholder="Provenance, coverage, anything unusual about the archive"></textarea>
     </div>
     <button class="btn" data-next>See my estimate →</button>
@@ -414,7 +433,7 @@
     <p class="sub">The estimate, and the next step, to your phone.</p>
     <div class="fld">
       <label>Phone</label>
-      <input type="tel" id="f-phone" placeholder="+1 (___) ___-____" autocomplete="tel">
+      <input type="tel" id="f-phone" placeholder="+1 (___) ___-____" autocomplete="tel" inputmode="tel">
       <div class="err" data-err>Enter a valid phone number.</div>
     </div>
     <label class="consent">
@@ -430,7 +449,7 @@
   <div class="step done" data-step="8">
     <div class="stepmark">VII · Entered</div>
     <h1>Received</h1>
-    <p class="sub" id="donemsg">Sent. Next — we review fit and, if it makes sense, shop buyers. You decide every step.</p>
+    <p class="sub" id="donemsg">Your estimate is on its way. Next — we review fit and, if it makes sense, shop buyers. You decide every step.</p>
     <p class="sub"><em>Broker, not buyer. You decide.</em></p>
     <a class="btn" href="index.html">Done →</a>
     <button class="backlink" id="refer">Refer a company →</button>
@@ -470,6 +489,8 @@ function show(i) {
   steps.forEach(s => s.classList.remove('on'));
   cur = i; steps[i].classList.add('on');
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  const fill = document.getElementById('fill');
+  if (fill) fill.style.width = (cur / (steps.length - 1) * 100) + '%';
   const first = steps[i].querySelector('input[type="text"],input[type="email"],input[type="url"],input[type="tel"]');
   if (first) setTimeout(() => first.focus({ preventScroll: true }), 250);
 }
