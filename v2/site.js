@@ -1,27 +1,27 @@
 (function () {
   var nav = document.getElementById('nav');
   var hero = document.querySelector('[data-launch]');
-  var page = location.pathname.split('/').pop();
+  var page = location.pathname.split('/').pop() || 'home.html';
   var t = new URLSearchParams(location.search).get('t');
-  document.querySelectorAll('a[href$=".html"],a[href*=".html#"]').forEach(function (a) {
+  document.querySelectorAll('a[href]').forEach(function (a) {
     var h = a.getAttribute('href');
-    if (h.split('#')[0] === page) a.classList.add('on');
-    if (t && !/^https?:/.test(h)) {
+    if (!/\.html/.test(h) || /^https?:/.test(h)) return;
+    if (h.split(/[?#]/)[0] === page && a.closest('nav .links')) a.classList.add('on');
+    if (t) {
       var p = h.split('#');
       a.setAttribute('href', p[0] + (p[0].indexOf('?') > -1 ? '&' : '?') + 't=' + t + (p[1] ? '#' + p[1] : ''));
     }
   });
   var menu = nav && nav.querySelector('.menu');
   if (menu) menu.addEventListener('click', function () { nav.classList.toggle('open'); });
-  var links = nav && nav.querySelector('.links');
-  if (links) links.addEventListener('click', function (e) {
-    if (e.target === links) location.href = nav.querySelector('.btn').href;
-  });
-  var px = document.querySelectorAll('.phero .bg');
+  var bgs = [].slice.call(document.querySelectorAll('.scene .bg')).filter(function (b) { return !b.closest('.split'); });
   function f() {
-    var lim = hero ? hero.offsetHeight - innerHeight * 1.1 : innerHeight * 0.6;
+    var lim = hero ? hero.offsetHeight - innerHeight * 1.05 : innerHeight * 0.5;
     if (nav) nav.classList.toggle('solid', scrollY > lim);
-    px.forEach(function (b) { b.style.setProperty('--y', (scrollY * 0.18).toFixed(1)); });
+    bgs.forEach(function (b) {
+      var r = b.parentNode.getBoundingClientRect();
+      if (r.bottom > 0 && r.top < innerHeight) b.style.setProperty('--y', (r.top * -0.06).toFixed(1));
+    });
     requestAnimationFrame(f);
   }
   requestAnimationFrame(f);

@@ -8,13 +8,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link id="fonts" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="themes.js"></script>
-<link rel="preload" as="image" href="media/launch-poster.jpg">
 <link rel="stylesheet" href="site.css">
 </head>
 <body>
 <nav id="nav">
   <a class="wm" href="home.html">The <b>Data</b> Company</a>
-  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a></div>
+  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a class="cta" href="appraisal.html">Free appraisal →</a></div>
   <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
 </nav>
 
@@ -23,18 +22,18 @@
     <video data-src="media/launch.mp4" data-src-mobile="media/launch-mobile.mp4" poster="media/launch-poster.jpg" muted playsinline preload="auto"></video>
     <div class="copy">
       <div class="phase on" data-from="-1" data-to=".3">
-        <div class="label">Portfolio recovery for early-stage investors</div>
+        <div class="k label"><i>00</i><span>Portfolio recovery for early-stage investors</span></div>
         <h1 class="d">Your written-off companies <em>still have value.</em></h1>
         <p class="sub">TDC helps early-stage VCs recover value from wound-down portfolio companies by licensing their data to AI buyers. We never hold the data, and the seller always decides.</p>
         <div class="ctas"><a class="btn" href="appraisal.html">Get a free appraisal <span class="ar"></span></a><a class="btn line" href="how-it-works.html">How it works</a></div>
       </div>
       <div class="phase" data-from=".3" data-to=".66">
-        <div class="label">Ignition</div>
+        <div class="k label"><i>T+1</i><span>Ignition</span></div>
         <h2 class="d">A write-off doesn't have to be <em>the last entry.</em></h2>
         <p class="sub">What a company built often outlives the company: years of operating records, engineering history, and domain data that AI teams can't get anywhere else.</p>
       </div>
       <div class="phase" data-from=".66">
-        <div class="label">Ascent</div>
+        <div class="k label"><i>T+2</i><span>Ascent</span></div>
         <h2 class="d">Recover value from the companies <em>that didn't make it.</em></h2>
         <div class="ctas"><a class="btn" href="appraisal.html">Get a free appraisal <span class="ar"></span></a></div>
       </div>
@@ -44,94 +43,100 @@
   </div>
 </header>
 
-<section class="statement">
-  <div class="label reveal">The problem</div>
-  <h2 class="d reveal d2">Written off is not the same as <em>worth nothing.</em></h2>
-  <div class="cols">
+<section class="sec">
+  <div class="sh grid solo ">
+    <div class="reveal"><div class="k label"><i>01</i><span>The problem</span></div></div>
+    <h2 class="d reveal d2">Written off is not the same as <em>worth nothing.</em></h2>
+  </div>
+  <div class="prose grid">
     <p class="reveal">When an early-stage company winds down, the cap table goes to zero, but what the company built often stays behind: years of operating records, engineering history, domain-specific datasets, and workflows that took real people real time to create.</p>
     <p class="reveal d2">AI teams need exactly this kind of real-world data, and most of it sits on a drive with no plan. For a fund, that is unrecovered value on a position already marked down.</p>
   </div>
 </section>
 
-<section class="manifesto" id="what">
-  <div class="bg"></div>
-  <div class="in-w">
-    <div class="label reveal">What TDC does · A sell-side advisor for company data</div>
-    <div class="vow reveal"><div class="d">We work for <em>the seller.</em></div><p>Never the buyer. We assess what a wound-down company has and estimate what it could be worth to AI buyers.</p></div>
-    <div class="vow reveal"><div class="d">Several buyers <em>compete.</em></div><p>We run a competitive process when the seller wants to go ahead, not a sale to the first buyer who asks.</p></div>
-    <div class="vow reveal"><div class="d">We never <em>hold the data.</em></div><p>It stays with the seller until a deal closes. We don't take custody of it, copy it, or warehouse it.</p></div>
-    <div class="vow reveal"><div class="d">Names stay <em>private.</em></div><p>No company name reaches a buyer without consent and an NDA. De-identification is built into the process.</p></div>
-    <div class="vow reveal"><div class="d">The seller <em>decides.</em></div><p>Every step, every offer, the final call.</p></div>
+<section class="scene">
+  <div class="bg" style="background-image:url(media/ignition.jpg)"></div>
+  <div class="w">
+  <div class="sh grid ">
+    <div class="reveal"><div class="k label"><i>02</i><span>What TDC does</span></div></div>
+    <h2 class="d reveal d2">A sell-side advisor <em>for company data.</em></h2>
+    <p class="lead reveal d3">TDC works for the seller, not the buyer. The seller approves every step, sees every offer, and makes the final call.</p>
+  </div>
+  <div class="ledger">
+    <div class="row grid  reveal"><div class="i label">01</div><div class="t2">We work for <em>the seller.</em></div><p>Never the buyer. We assess what a wound-down company has and estimate what it could be worth to AI buyers.</p></div>
+    <div class="row grid  reveal"><div class="i label">02</div><div class="t2">Several buyers <em>compete.</em></div><p>We run a competitive process when the seller wants to go ahead, not a sale to the first buyer who asks.</p></div>
+    <div class="row grid  reveal"><div class="i label">03</div><div class="t2">We never <em>hold the data.</em></div><p>It stays with the seller until a deal closes. We don't take custody of it, copy it, or warehouse it.</p></div>
+    <div class="row grid  reveal"><div class="i label">04</div><div class="t2">Names stay <em>private.</em></div><p>No company name reaches a buyer without consent and an NDA. De-identification is built into the process.</p></div>
+    <div class="row grid  reveal"><div class="i label">05</div><div class="t2">The seller <em>decides.</em></div><p>Every step, every offer, the final call.</p></div>
+  </div>
   </div>
 </section>
 
-<section class="sapph" id="investors">
-  <div class="head">
-    <div><div class="label reveal">For investors</div><h2 class="d reveal d2">One relationship, <em>many companies.</em></h2></div>
-    <p class="reveal d3">Most funds carry a handful of companies that wound down or were written off. Each one might hold licensable data, and no one at the fund has time to find out.</p>
+<section class="sec">
+  <div class="sh grid ">
+    <div class="reveal"><div class="k label"><i>03</i><span>For investors</span></div></div>
+    <h2 class="d reveal d2">One relationship, <em>many companies.</em></h2>
+    <p class="lead reveal d3">Most funds carry a handful of companies that wound down or were written off. Each one might hold licensable data, and no one at the fund has time to find out.</p>
   </div>
-  <div class="three">
-    <div class="reveal"><div class="label">You</div><div class="d">Make the intro.</div><p>Name the companies and make one warm intro per founder.</p></div>
-    <div class="reveal d2"><div class="label">TDC</div><div class="d">Run the process.</div><p>The assessment, appraisal, and buyer process, under NDA.</p></div>
-    <div class="reveal d3"><div class="label">The founder</div><div class="d">Make the call.</div><p>Approves every step, sees every offer, makes the final call.</p></div>
+  <div class="specs n3">
+    <div class="spec reveal d1"><div class="i label">You</div><div class="t2">Make the intro.</div><p>Name the companies and make one warm intro per founder.</p></div>
+    <div class="spec reveal d2"><div class="i label">TDC</div><div class="t2">Run the process.</div><p>The assessment, appraisal, and buyer process, under NDA.</p></div>
+    <div class="spec reveal d3"><div class="i label">The founder</div><div class="t2">Make the call.</div><p>Approves every step, sees every offer, makes the final call.</p></div>
   </div>
-  <a class="more" href="investors.html">For investors <span class="ar"></span></a>
+  <a class="more reveal" href="investors.html">For investors <span class="ar"></span></a>
 </section>
 
-<section class="sapph" style="background:var(--bg3);padding-top:0">
-  <div class="head" style="padding-top:clamp(80px,9vw,150px)">
-    <div><div class="label reveal">Where data is most valuable</div><h2 class="d reveal d2">Real work, in <em>specialized fields.</em></h2></div>
+<section class="sec">
+  <div class="sh grid ">
+    <div class="reveal"><div class="k label"><i>04</i><span>Where data is most valuable</span></div></div>
+    <h2 class="d reveal d2">Real work, in <em>specialized fields.</em></h2>
+    <p class="lead reveal d3">We focus on companies whose data reflects real work in specialized fields.</p>
   </div>
-  <div class="cards">
-    <article class="card reveal"><div class="img"><img src="../refs/money-press.jpg" alt="" loading="lazy"></div><div class="t"><div class="label">I</div><div class="d">Manufacturing</div><p>Process and quality records, sensor and machine data, inspection imagery, operating procedures.</p></div></article>
-    <article class="card reveal d2"><div class="img"><img src="../refs/handshake-halftone.jpg" alt="" loading="lazy"></div><div class="t"><div class="label">II</div><div class="d">Software development</div><p>Code history, issue and review records, test suites, internal tooling and documentation.</p></div></article>
-    <article class="card reveal d3"><div class="img"><img src="../refs/engraved-eye.jpg" alt="" loading="lazy" style="object-position:center 40%"></div><div class="t"><div class="label">III</div><div class="d">Healthcare</div><p>Operational and workflow data, and de-identified clinical or administrative records where permitted.</p></div></article>
+  <div class="specs n3">
+    <div class="spec reveal d1"><div class="i label">I</div><div class="t2">Manufacturing</div><div class="tags"><span>Process and quality records</span><span>Sensor and machine data</span><span>Inspection imagery</span><span>Operating procedures</span></div></div>
+    <div class="spec reveal d2"><div class="i label">II</div><div class="t2">Software development</div><div class="tags"><span>Code history</span><span>Issue and review records</span><span>Test suites</span><span>Internal tooling and documentation</span></div></div>
+    <div class="spec reveal d3"><div class="i label">III</div><div class="t2">Healthcare</div><div class="tags"><span>Operational and workflow data</span><span>De-identified clinical or administrative records, where permitted</span></div></div>
   </div>
   <p class="note reveal">Other industries can qualify. The appraisal tells you whether yours does.</p>
 </section>
 
-<section class="process" id="process">
-  <div class="head">
-    <div><div class="label reveal" >How it works</div><h2 class="d reveal d2">A careful process. <em>Your decision at every step.</em></h2></div>
+<section class="sec" id="process">
+  <div class="sh grid solo ">
+    <div class="reveal"><div class="k label"><i>05</i><span>How it works</span></div></div>
+    <h2 class="d reveal d2">A careful process. <em>Your decision at every step.</em></h2>
   </div>
-  <div class="step reveal"><div class="n">01</div><div class="d">Assessment call</div><p>A short call to understand the company, what it built, and what records remain.<b>You decide whether to continue</b></p></div>
-  <div class="step reveal"><div class="n">02</div><div class="d">Private appraisal</div><p>What the data is, what rights appear to exist, and how AI buyers may value it. Nothing is shared.<b>You decide whether to go to market</b></p></div>
-  <div class="step reveal"><div class="n">03</div><div class="d">Buyer process</div><p>Several buyers review an anonymized summary. Names are shared only under NDA.<b>You decide which offers to pursue</b></p></div>
-  <div class="step reveal"><div class="n">04</div><div class="d">Seller's final say</div><p>See the terms side by side. Accept, negotiate, or walk away.<b>You decide. Always.</b></p></div>
-  <a class="more" href="how-it-works.html">See the full process <span class="ar"></span></a>
+  <div class="ledger">
+    <div class="row grid  reveal"><div class="i label">01</div><div class="t2">Assessment call</div><p>A short call to understand the company, what it built, and what records remain.<b>You decide whether to continue</b></p></div>
+    <div class="row grid  reveal"><div class="i label">02</div><div class="t2">Private appraisal</div><p>What the data is, what rights appear to exist, and how AI buyers may value it. Nothing is shared with buyers.<b>You decide whether to take it to market</b></p></div>
+    <div class="row grid  reveal"><div class="i label">03</div><div class="t2">Buyer process</div><p>Several buyers review an anonymized summary. Names are shared only under NDA. Offers come back to you.<b>You decide which offers to pursue</b></p></div>
+    <div class="row grid  reveal"><div class="i label">04</div><div class="t2">Seller's final say</div><p>See the terms side by side. Accept, negotiate, or walk away.<b>You decide. Always</b></p></div>
+  </div>
+  <a class="more reveal" href="how-it-works.html">See the full process <span class="ar"></span></a>
 </section>
+<!-- Proof section: leave out until the first deal closes and testimonials have written consent. -->
 
-<div class="proof label">Proof section · hidden on the live site until the first deal closes and testimonials have written consent</div>
-
-<section class="close" id="appraisal">
-  <div class="bg"></div>
+<section class="scene end">
+  <div class="bg" style="background-image:url(media/ascent.jpg)"></div>
   <div class="w">
-    <div class="label reveal">Free appraisal</div>
+    <div class="reveal"><div class="k label"><i>06</i><span>Free appraisal</span></div></div>
     <h2 class="d reveal d2">Find out what's still <em>on the books.</em></h2>
-    <p class="reveal d3">A free portfolio data appraisal is private and carries no obligation.</p>
-    <a class="btn reveal d4" href="appraisal.html">Get a free portfolio data appraisal <span class="ar"></span></a>
+    <p class="lead reveal d3">A free portfolio data appraisal is private and carries no obligation.</p>
+    <div class="ctas reveal d4"><a class="btn" href="appraisal.html">Get a free portfolio data appraisal <span class="ar"></span></a></div>
     <small class="reveal d4">An appraisal is not a listing: no buyer sees anything unless you decide to go further.</small>
   </div>
 </section>
 
 <footer>
-  <a class="wm" href="home.html">The <b>Data</b> Company</a>
-  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="appraisal.html">Free appraisal</a></div>
-  <span>datacompanyusa.com</span>
+  <div class="grid">
+    <div class="fw"><a class="wm" href="home.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
+    <div class="fc"><div class="label">Site</div><a href="home.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a></div>
+    <div class="fc"><div class="label">Principles</div><span>Sell-side only</span><span>Several buyers compete</span><span>No data custody</span><span>The seller decides</span></div>
+    <div class="fc"><div class="label">Start</div><a href="appraisal.html">Free appraisal</a><a href="appraisal.html?role=investor">For a fund</a><a href="appraisal.html?role=founder">For a company</a></div>
+    <div class="base label"><span>© 2026 The Data Company</span><span>datacompanyusa.com</span></div>
+  </div>
 </footer>
 <div class="mock-tag" id="tag">v2 preview · Launch Ops</div>
-
 <script src="launch.js"></script>
 <script src="site.js"></script>
-<script>
-(function(){
-  var m=document.querySelector('.manifesto'), bg=m.querySelector('.bg');
-  function f(){
-    var r=m.getBoundingClientRect(); if(r.bottom>0&&r.top<innerHeight) bg.style.setProperty('--y',(r.top*-0.12).toFixed(1));
-    requestAnimationFrame(f);
-  }
-  requestAnimationFrame(f);
-})();
-</script>
 </body>
 </html>
