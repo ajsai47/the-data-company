@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TDC v2 — Mockups and component inventory</title>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<style>
+body{font-family:Inter,sans-serif;background:#0B1424;color:#EFEAE0;margin:0;padding:56px 24px;line-height:1.55}
+.w{max-width:1040px;margin:0 auto} h1,h2{font-family:Newsreader,serif;font-weight:400} h1{font-size:44px;margin:0 0 8px} h2{font-size:28px;margin:56px 0 16px}
+.m{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#C9A45C}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+.cards a{display:block;border:1px solid rgba(201,164,92,.4);padding:22px;color:inherit;text-decoration:none;background:#101D33}
+.cards a:hover{border-color:#C9A45C} .cards b{display:block;font-family:Newsreader,serif;font-size:24px;font-weight:400;margin:8px 0}
+.cards p{color:#AEB5C2;font-size:14.5px;margin:0}
+table{width:100%;border-collapse:collapse;font-size:14.5px} th{text-align:left;color:#C9A45C;font-weight:500;border-bottom:1px solid #C9A45C;padding:8px 10px 8px 0}
+td{border-bottom:1px solid rgba(239,234,224,.12);padding:10px 10px 10px 0;vertical-align:top} td:first-child{white-space:nowrap;color:#C9A45C;font-family:"IBM Plex Mono";font-size:12px}
+.p{color:#AEB5C2} @media(max-width:800px){.cards{grid-template-columns:1fr}}
+</style></head><body><div class="w">
+<div class="m">The Data Company · v2 · design exploration</div>
+<h1>Three home-page directions</h1>
+<p class="p">All three use the launch video as a scroll-driven hero and the approved Brand v2 copy. Scroll slowly through each hero.</p>
+<div class="cards">
+<a href="a-liftoff.html"><span class="m">A</span><b>Liftoff</b><p>Full-bleed cinematic launch, text on the left 45%. Dark navy, ivory, gold. Closest to a16z American Dynamism.</p></a>
+<a href="b-charter.html"><span class="m">B</span><b>Charter</b><p>Renaissance × Art Deco. Launch inside a gilded arch, deco line pattern, engraved plates from v1.</p></a>
+<a href="c-flightlog.html"><span class="m">C</span><b>Flight Log</b><p>Brand v2 ledger on ivory paper. Launch in a mission-control panel whose flight log is the 4-step process.</p></a>
+</div>
+<h2>Site map (Brand v2)</h2>
+<table><tr><th>Page</th><th>Job</th></tr>
+<tr><td>/</td><td>Home: pitch, problem, what TDC does, investor path, industries, process, CTA</td></tr>
+<tr><td>/investors</td><td>Main audience: who it's for, why it matters to a fund, how the intro works, forwardable founder blurb, FAQ</td></tr>
+<tr><td>/founders</td><td>Founders an investor sent: reassurance table ("your concern → how we handle it")</td></tr>
+<tr><td>/how-it-works</td><td>The 4 steps in detail, with who decides at each step</td></tr>
+<tr><td>/appraisal</td><td>Intake form (investor or founder), not a listing</td></tr>
+<tr><td>/privacy, /terms</td><td>Required before the form collects data</td></tr></table>
+<h2>Component inventory</h2>
+<table><tr><th>Component</th><th>Where</th><th>Notes</th></tr>
+<tr><td>Nav + CTA</td><td>All pages</td><td>Wordmark, 3 links, "Free appraisal" button; sticky</td></tr>
+<tr><td>Launch hero</td><td>Home</td><td>Scroll-scrubbed video, headline, subhead, 2 CTAs, trust chips; still image when reduced motion is on</td></tr>
+<tr><td>Page hero (still)</td><td>Investors, Founders, How it works, Appraisal</td><td>Headline + subhead + CTA over one frame of the launch</td></tr>
+<tr><td>Trust chips</td><td>Hero, form</td><td>Sell-side only · Buyers compete · No custody · Seller decides</td></tr>
+<tr><td>Statement block</td><td>Home, Investors</td><td>Label + headline + 1–2 paragraphs</td></tr>
+<tr><td>Do / never table</td><td>Home</td><td>Two-column covenant</td></tr>
+<tr><td>Three-party strip</td><td>Home, Investors</td><td>You do · TDC does · Founder decides</td></tr>
+<tr><td>Industry cards</td><td>Home</td><td>Manufacturing, Software, Healthcare + "others can qualify"</td></tr>
+<tr><td>Process steps</td><td>Home, How it works</td><td>4 steps, each with "who decides"</td></tr>
+<tr><td>Concern → answer table</td><td>Founders</td><td>5 rows</td></tr>
+<tr><td>Copy-to-clipboard blurb</td><td>Investors</td><td>Forwardable intro email with a Copy button</td></tr>
+<tr><td>FAQ accordion</td><td>Investors</td><td>5 questions; fee answer still TBD</td></tr>
+<tr><td>Proof block</td><td>Home</td><td>Hidden until a real deal and consented testimonials exist</td></tr>
+<tr><td>Appraisal form</td><td>Appraisal</td><td>9 fields from Brand v2 §4c; investor-only field shows conditionally; needs a backend (email/Notion)</td></tr>
+<tr><td>Closing CTA band</td><td>All pages</td><td>"Find out what's still on the books."</td></tr>
+<tr><td>Footer</td><td>All pages</td><td>Links, privacy, domain</td></tr></table>
+<h2>Decisions still open before launch</h2>
+<p class="p">Fee wording · response time · NDA template link · de-identification summary · where form submissions go · first proof point.</p>
+</div></body></html>
