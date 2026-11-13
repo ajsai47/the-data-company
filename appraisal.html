@@ -9,10 +9,15 @@
 <link id="fonts" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="themes.js"></script>
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Data Company">
+<meta property="og:title" content="Free appraisal — The Data Company"><meta property="og:description" content="Get a free portfolio data appraisal. It's private, it's free, and it is not a listing. Nothing goes to a buyer without your consent.">
+<meta property="og:image" content="https://datacompanyusa.com/media/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0B0C">
 </head>
 <body>
 <nav id="nav">
-  <a class="wm" href="home.html">The <b>Data</b> Company</a>
+  <a class="wm" href="index.html">The <b>Data</b> Company</a>
   <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a class="cta" href="appraisal.html">Free appraisal →</a></div>
   <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
 </nav>
@@ -27,6 +32,7 @@
     </div>
     <ol class="ls-track"><li data-i="0"><span class="label">T-4</span><span class="label">Who you are</span></li><li data-i="1"><span class="label">T-3</span><span class="label">The portfolio</span></li><li data-i="2"><span class="label">T-2</span><span class="label">What was built</span></li><li data-i="3"><span class="label">T-1</span><span class="label">Pre-flight check</span></li></ol>
     <form id="f" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
       <fieldset class="st on" data-step="0">
         <div class="f"><label class="label" for="n">Your name</label><input type="text" id="n" name="name" required autocomplete="name"></div>
         <div class="f"><label class="label" for="e">Email</label><input type="email" id="e" name="email" required autocomplete="email"></div>
@@ -49,12 +55,13 @@
         <button class="btn line" type="button" id="back">Back</button>
         <button class="btn" type="submit" id="next"><span id="nl">Continue</span> <span class="ar"></span></button>
       </div>
-      <p class="fine">Submitting this form doesn't share anything with buyers or commit you to anything. We'll reply within <span class="tbc">response time TBC</span>.</p>
+      <p class="fine err" id="err" hidden>We couldn't send this just now. Please try again in a minute.</p>
+      <p class="fine">Submitting this form doesn't share anything with buyers or commit you to anything. We'll reply within <span class="tbc" data-cfg="replyTime">response time TBC</span>.</p>
     </form>
     <div class="done" aria-live="polite">
       <h2 class="d">Request received. <em>We'll be in touch.</em></h2>
-      <p class="lead">Nothing has been shared with any buyer, and you haven't committed to anything. We'll reply within <span class="tbc">response time TBC</span>.</p>
-      <div class="ctas"><a class="btn line" href="how-it-works.html">See what happens next</a></div>
+      <p class="lead">Nothing has been shared with any buyer, and you haven't committed to anything. We'll reply within <span class="tbc" data-cfg="replyTime">response time TBC</span>.</p>
+      <div class="ctas"><a class="btn" id="book" data-cfg-href="bookingUrl" hidden target="_blank" rel="noopener">Book the assessment call <span class="ar"></span></a><a class="btn line" href="how-it-works.html">See what happens next</a></div>
     </div>
   </div>
   <div class="ls-hud label"><span>Sell-side only · Not a listing</span><span class="bar"><i id="bar"></i></span></div>
@@ -62,14 +69,14 @@
 
 <footer>
   <div class="grid">
-    <div class="fw"><a class="wm" href="home.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
-    <div class="fc"><div class="label">Site</div><a href="home.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a></div>
+    <div class="fw"><a class="wm" href="index.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
+    <div class="fc"><div class="label">Site</div><a href="index.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="privacy.html">Privacy</a></div>
     <div class="fc"><div class="label">Principles</div><span>Sell-side only</span><span>Several buyers compete</span><span>No data custody</span><span>The seller decides</span></div>
     <div class="fc"><div class="label">Start</div><a href="appraisal.html">Free appraisal</a><a href="appraisal.html?role=investor">For a fund</a><a href="appraisal.html?role=founder">For a company</a></div>
     <div class="base label"><span>© 2026 The Data Company</span><span>datacompanyusa.com</span></div>
   </div>
 </footer>
-<div class="mock-tag" id="tag">v2 preview · Launch Ops</div>
+<script src="config.js"></script>
 <script src="launch.js"></script>
 <script src="site.js"></script>
 <script>
@@ -93,6 +100,10 @@
   requestAnimationFrame(fly);
   var role=new URLSearchParams(location.search).get('role'),map={investor:'Investor',founder:'Founder or former officer'};
   if(map[role])f.querySelector('input[name=role][value="'+map[role]+'"]').checked=true;
+  var qp=new URLSearchParams(location.search);
+  (qp.get('industry')||'').split('|').forEach(function(x){var el=f.querySelector('input[name=industry][value="'+x+'"]');if(el)el.checked=true});
+  if(qp.get('left'))f.built.value='Left behind: '+qp.get('left').split('|').join(', ')+'.';
+  var signal=qp.get('signal')||'';
   var at=0;
   function val(n){var x=f.querySelectorAll('[name='+n+']:checked');if(x.length)return[].map.call(x,function(i){return i.value}).join(', ');var i=f.querySelector('[name='+n+']');return i&&i.type!=='radio'&&i.type!=='checkbox'?i.value.trim():''}
   function sync(){var r=val('role');count.hidden=r!=='Investor'}
@@ -115,11 +126,18 @@
   f.addEventListener('submit',function(e){
     e.preventDefault();if(!check(at))return;
     if(at<3){show(at+1);return}
-    // Preview only: not yet connected to a backend.
+    var btn=document.getElementById('next'),err=document.getElementById('err');btn.disabled=true;err.hidden=true;
+    var body={name:val('name'),email:val('email'),role:val('role'),org:val('org'),count:count.hidden?'':val('count'),status:val('status'),
+      industry:[].map.call(f.querySelectorAll('[name=industry]:checked'),function(x){return x.value}),built:val('built'),notes:val('notes'),signal:signal,page:location.pathname+location.search,website:f.website.value};
+    fetch('/api/appraisal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){if(!r.ok)throw r;liftoff()})
+      .catch(function(){err.hidden=false;btn.disabled=false});
+  });
+  function liftoff(){
     main.classList.add('sent');tm.textContent='T-0';document.querySelector('.ls-head .k span').textContent='Liftoff';target=STOPS[4];bar.style.transform='scaleX(1)';
     track.forEach(function(t){t.classList.remove('on');t.classList.add('ok')});
     document.querySelector('.ls-panel').scrollIntoView({behavior:'smooth'});
-  });
+  }
   sync();show(0);
 })();
 </script>

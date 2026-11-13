@@ -374,3 +374,9 @@ nav .links a.cta{display:none}
 @media (max-width:900px){.qa form,.qa .out{grid-column:1/-1}.qa .out{position:relative;top:0;margin-top:36px}}
 .sent .ls-track,.sent .ls-head h1,.sent .ls-head .lead{display:none}
 @media (hover:none){.btn:hover{background:var(--ac);color:var(--on-ac)}.btn.line:hover{background:transparent;color:rgb(var(--fg-rgb));box-shadow:inset 0 0 0 1px var(--line2)}}
+.fine.err{color:var(--ac)}
+#next:disabled{opacity:.6;cursor:wait}
+.privacy .pp p{color:rgba(var(--fg-rgb),.8)}
+.privacy .pp p+p{margin-top:12px}
+@media (max-width:900px){.privacy .row>.t2,.privacy .pp{grid-column:1/-1!important}.privacy .pp{margin-top:10px}}
+.cfg-link{color:var(--ac);text-decoration:underline;text-underline-offset:3px}

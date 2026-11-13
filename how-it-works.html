@@ -9,10 +9,15 @@
 <link id="fonts" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="themes.js"></script>
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Data Company">
+<meta property="og:title" content="How it works — The Data Company"><meta property="og:description" content="TDC runs a sell-side process built for discretion: one free assessment, a private appraisal, a competitive buyer process, and a final decision that is always yours.">
+<meta property="og:image" content="https://datacompanyusa.com/media/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0B0C">
 </head>
 <body>
 <nav id="nav">
-  <a class="wm" href="home.html">The <b>Data</b> Company</a>
+  <a class="wm" href="index.html">The <b>Data</b> Company</a>
   <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a class="cta" href="appraisal.html">Free appraisal →</a></div>
   <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
 </nav>
@@ -70,7 +75,7 @@
     <table class="tbl">
       <thead><tr><th></th><th>Assessment call</th><th>Private appraisal</th><th>Buyer process</th><th>Seller's final say</th></tr></thead>
       <tbody>
-        <tr><td>Cost to you</td><td data-h="Assessment call">Free</td><td data-h="Private appraisal">Free</td><td data-h="Buyer process"><span class="tbc">Fee wording TBC</span></td><td data-h="Seller's final say"><span class="tbc">Fee wording TBC</span></td></tr>
+        <tr><td>Cost to you</td><td data-h="Assessment call">Free</td><td data-h="Private appraisal">Free</td><td data-h="Buyer process"><span class="tbc" data-cfg="fee">Fee wording TBC</span></td><td data-h="Seller's final say"><span class="tbc" data-cfg="fee">Fee wording TBC</span></td></tr>
         <tr><td>Data shared</td><td data-h="Assessment call">None</td><td data-h="Private appraisal">Description and metadata only, with you</td><td data-h="Buyer process">Anonymized summary; samples only with approval</td><td data-h="Seller's final say">Per the agreement you sign</td></tr>
         <tr><td>Company name shared</td><td data-h="Assessment call">No</td><td data-h="Private appraisal">No</td><td data-h="Buyer process">Only with your OK, under NDA</td><td data-h="Seller's final say">Yes, with the chosen buyer</td></tr>
         <tr><td>Your commitment</td><td data-h="Assessment call">None</td><td data-h="Private appraisal">None</td><td data-h="Buyer process">None until you sign</td><td data-h="Seller's final say">Your call</td></tr>
@@ -92,14 +97,14 @@
 
 <footer>
   <div class="grid">
-    <div class="fw"><a class="wm" href="home.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
-    <div class="fc"><div class="label">Site</div><a href="home.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a></div>
+    <div class="fw"><a class="wm" href="index.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
+    <div class="fc"><div class="label">Site</div><a href="index.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="privacy.html">Privacy</a></div>
     <div class="fc"><div class="label">Principles</div><span>Sell-side only</span><span>Several buyers compete</span><span>No data custody</span><span>The seller decides</span></div>
     <div class="fc"><div class="label">Start</div><a href="appraisal.html">Free appraisal</a><a href="appraisal.html?role=investor">For a fund</a><a href="appraisal.html?role=founder">For a company</a></div>
     <div class="base label"><span>© 2026 The Data Company</span><span>datacompanyusa.com</span></div>
   </div>
 </footer>
-<div class="mock-tag" id="tag">v2 preview · Launch Ops</div>
+<script src="config.js"></script>
 <script src="launch.js"></script>
 <script src="site.js"></script>
 </body>

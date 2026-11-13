@@ -9,10 +9,15 @@
 <link id="fonts" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="themes.js"></script>
 <link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Data Company">
+<meta property="og:title" content="For investors — The Data Company"><meta property="og:description" content="TDC works with early-stage funds to find and license the data left behind by wound-down portfolio companies. You make the introduction. We run the process. The seller decides.">
+<meta property="og:image" content="https://datacompanyusa.com/media/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0B0C">
 </head>
 <body>
 <nav id="nav">
-  <a class="wm" href="home.html">The <b>Data</b> Company</a>
+  <a class="wm" href="index.html">The <b>Data</b> Company</a>
   <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a class="cta" href="appraisal.html">Free appraisal →</a></div>
   <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
 </nav>
@@ -103,18 +108,29 @@
     <h2 class="d reveal d2">Questions funds <em>ask first.</em></h2>
   </div>
   <div class="faq reveal">
-    <details open><summary><span class="i label">Q1</span><span class="t2">Does this cost the fund anything?</span></summary><p>No. The appraisal is free. <span class="tbc">Fee structure: wording to confirm</span></p></details>
+    <details open><summary><span class="i label">Q1</span><span class="t2">Does this cost the fund anything?</span></summary><p>No. The appraisal is free. <span class="tbc" data-cfg="fee">Fee structure: wording to confirm</span></p></details>
     <details><summary><span class="i label">Q2</span><span class="t2">Who receives the proceeds?</span></summary><p>The seller, according to the company's existing agreements, creditor obligations, and wind-down plan. TDC doesn't change who is owed what.</p></details>
     <details><summary><span class="i label">Q3</span><span class="t2">Does TDC guarantee the company has the right to sell its data?</span></summary><p>No. We review what rights appear to exist and flag issues early, but the seller confirms ownership and permissions, and buyers do their own diligence.</p></details>
-    <details><summary><span class="i label">Q4</span><span class="t2">Will buyers know which fund or company this is?</span></summary><p>Not without consent. Buyers see an anonymized summary first. Names are shared only after the seller approves and the buyer signs an NDA.</p></details>
-    <details><summary><span class="i label">Q5</span><span class="t2">What happens to personal or sensitive data?</span></summary><p>De-identification is part of the process, not an afterthought. Records that can't be handled responsibly stay out of the deal.</p></details>
+    <details><summary><span class="i label">Q4</span><span class="t2">Will buyers know which fund or company this is?</span></summary><p>Not without consent. Buyers see an anonymized summary first. Names are shared only after the seller approves and the buyer signs an NDA. <a class="cfg-link" data-cfg-href="ndaUrl" hidden>Read our standard NDA</a></p></details>
+    <details><summary><span class="i label">Q5</span><span class="t2">What happens to personal or sensitive data?</span></summary><p>De-identification is part of the process, not an afterthought. Records that can't be handled responsibly stay out of the deal. <span data-cfg="deid" data-cfg-hide></span></p></details>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sh grid solo ">
+    <div class="reveal"><div class="k label"><i>06</i><span>Who's behind TDC</span></div></div>
+    <h2 class="d reveal d2">A sell-side advisor, <em>not a marketplace.</em></h2>
+  </div>
+  <div class="grid">
+    <div class="spec reveal" style="grid-column:1/span 4"><div class="i label">Founder</div><div class="t2">AJ Green</div><p><span class="tbc">Bio: role and background TBC</span></p></div>
+    <div class="prose reveal d2" style="grid-column:6/span 7"><p style="font-size:var(--t-lead);line-height:1.55;color:rgba(var(--fg-rgb),.8)">TDC works for the seller, never the buyer. Every request is read by a person, and every appraisal is private.</p></div>
   </div>
 </section>
 
 <section class="scene end">
   <div class="bg" style="background-image:url(media/rise.jpg)"></div>
   <div class="w">
-    <div class="reveal"><div class="k label"><i>06</i><span>Free appraisal</span></div></div>
+    <div class="reveal"><div class="k label"><i>07</i><span>Free appraisal</span></div></div>
     <h2 class="d reveal d2" data-bold="Put your write-offs <em>back on the pad.</em>">Find out what's still <em>on the books.</em></h2>
     <p class="lead reveal d3">A free portfolio data appraisal is private and carries no obligation.</p>
     <div class="ctas reveal d4"><a class="btn" href="appraisal.html?role=investor">Get a free portfolio data appraisal <span class="ar"></span></a></div>
@@ -124,14 +140,14 @@
 
 <footer>
   <div class="grid">
-    <div class="fw"><a class="wm" href="home.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
-    <div class="fc"><div class="label">Site</div><a href="home.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a></div>
+    <div class="fw"><a class="wm" href="index.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
+    <div class="fc"><div class="label">Site</div><a href="index.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="privacy.html">Privacy</a></div>
     <div class="fc"><div class="label">Principles</div><span>Sell-side only</span><span>Several buyers compete</span><span>No data custody</span><span>The seller decides</span></div>
     <div class="fc"><div class="label">Start</div><a href="appraisal.html">Free appraisal</a><a href="appraisal.html?role=investor">For a fund</a><a href="appraisal.html?role=founder">For a company</a></div>
     <div class="base label"><span>© 2026 The Data Company</span><span>datacompanyusa.com</span></div>
   </div>
 </footer>
-<div class="mock-tag" id="tag">v2 preview · Launch Ops</div>
+<script src="config.js"></script>
 <script src="launch.js"></script>
 <script src="site.js"></script>
 <script>

@@ -14,6 +14,17 @@
       a.setAttribute('href', p[0] + (p[0].indexOf('?') > -1 ? '&' : '?') + carry + (p[1] ? '#' + p[1] : ''));
     }
   });
+
+  var C = window.TDC_CONFIG || {};
+  document.querySelectorAll('[data-cfg]').forEach(function (el) {
+    var v = C[el.dataset.cfg];
+    if (v) { el.textContent = v; el.classList.remove('tbc'); }
+    else if (el.hasAttribute('data-cfg-hide')) el.remove();
+  });
+  document.querySelectorAll('[data-cfg-href]').forEach(function (el) {
+    var v = C[el.dataset.cfgHref];
+    if (v) { el.href = v; el.hidden = false; }
+  });
   var menu = nav && nav.querySelector('.menu');
   if (menu) menu.addEventListener('click', function () { nav.classList.toggle('open'); });
   var bgs = [].slice.call(document.querySelectorAll('.scene .bg')).filter(function (b) { return !b.closest('.split'); });
