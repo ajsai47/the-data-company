@@ -58,7 +58,25 @@ window.TDC_THEMES = [
     v:{bg:'#07070A',bg2:'#12121A',bg3:'#0C0C12',fg:'#E8E9EE',ac:'#B9A6FF',acInk:'#6A3FD8',onAc:'#07070A',paper:'#E8E9EE',ink:'#07070A',ink2:'#2A2A33',hero:'#050508',heroFg:'#E8E9EE'},
     t:{display:'"Space Grotesk",sans-serif',body:'"Space Grotesk",sans-serif',ui:'"Space Mono",monospace',dWt:300,dLs:'-.045em',dLh:.95,dTt:'none',em:'normal',ds:.95,bWt:300},
     vf:'grayscale(.85) contrast(1.15)',
-    css:'.d em{background:linear-gradient(90deg,#A162FF,#56FAF7);-webkit-background-clip:text;background-clip:text;color:transparent!important}.btn:not(.line){background:linear-gradient(90deg,#A162FF,#56FAF7)}'}
+    css:'.d em{background:linear-gradient(90deg,#A162FF,#56FAF7);-webkit-background-clip:text;background-clip:text;color:transparent!important}.btn:not(.line){background:linear-gradient(90deg,#A162FF,#56FAF7)}'},
+  { id:'launchops', name:'Launch Ops', blend:true, note:'Blend: Swiss type with Mission Control colors. Tight grotesk, graphite, safety orange, mono labels.',
+    fonts:'Inter+Tight:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500',
+    type:['Inter Tight','Inter','JetBrains Mono'],
+    v:{bg:'#0B0B0C',bg2:'#17181A',bg3:'#111214',fg:'#F2F2F0',ac:'#FF5A1F',acInk:'#D9440F',onAc:'#0B0B0C',paper:'#EDEDEA',ink:'#0B0B0C',ink2:'#2A2B2E',hero:'#0B0B0C',heroFg:'#F2F2F0'},
+    t:{display:'"Inter Tight",sans-serif',body:'"Inter",sans-serif',ui:'"JetBrains Mono",monospace',dWt:600,dLs:'-.045em',dLh:.92,dTt:'none',em:'normal',ds:.98,bWt:300},
+    vf:'saturate(.55) contrast(1.15)'},
+  { id:'signal', name:'Signal', blend:true, note:'Blend: Mission Control condensed caps with the Swiss palette. Pure black and white, signal red, black-and-white video.',
+    fonts:'Barlow+Condensed:ital,wght@0,500;0,600;1,500&family=Inter:wght@300;400;500',
+    type:['Barlow Condensed','Inter','Inter'],
+    v:{bg:'#000000',bg2:'#111111',bg3:'#0A0A0A',fg:'#FFFFFF',ac:'#E30613',acInk:'#E30613',onAc:'#FFFFFF',paper:'#FFFFFF',ink:'#000000',ink2:'#222222',hero:'#000000',heroFg:'#FFFFFF'},
+    t:{display:'"Barlow Condensed",sans-serif',body:'"Inter",sans-serif',ui:'"Inter",sans-serif',dWt:600,dLs:'-.005em',dLh:.9,dTt:'uppercase',em:'normal',ds:1.12,bWt:300},
+    vf:'grayscale(1) contrast(1.25)'},
+  { id:'countdown', name:'Countdown', blend:true, note:'Blend: condensed caps for big headlines, Swiss grotesk for smaller titles. Black, white, orange; black-and-white video with orange fire.',
+    fonts:'Barlow+Condensed:ital,wght@0,500;0,600;1,500&family=Inter+Tight:wght@500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500',
+    type:['Barlow Condensed + Inter Tight','Inter','JetBrains Mono'],
+    v:{bg:'#000000',bg2:'#121212',bg3:'#0A0A0A',fg:'#FFFFFF',ac:'#FF5A1F',acInk:'#E04A10',onAc:'#000000',paper:'#FFFFFF',ink:'#000000',ink2:'#222222',hero:'#000000',heroFg:'#FFFFFF'},
+    t:{display:'"Barlow Condensed",sans-serif',display2:'"Inter Tight",sans-serif',d2Tt:'none',d2Ls:'-.035em',body:'"Inter",sans-serif',ui:'"JetBrains Mono",monospace',dWt:600,dLs:'-.005em',dLh:.9,dTt:'uppercase',em:'normal',ds:1.12,bWt:300},
+    vf:'grayscale(1) contrast(1.25)',tint:'#FF5A1F',tintO:.32}
 ];
 (function(){
   var q=new URLSearchParams(location.search).get('t'); if(!q) return;
@@ -69,6 +87,7 @@ window.TDC_THEMES = [
     '--paper':v.paper,'--ink':v.ink,'--ink2':v.ink2,'--h-rgb':rgb(v.hero),'--hf-rgb':rgb(v.heroFg),
     '--display':t.display,'--body':t.body,'--ui':t.ui,'--d-wt':t.dWt,'--d-ls':t.dLs,'--d-lh':t.dLh,'--d-tt':t.dTt,'--em':t.em,'--ds':t.ds,'--b-wt':t.bWt||300,
     '--vf':th.vf||'none','--tint':th.tint||'transparent','--tint-o':th.tintO||0};
+  if(t.display2){set['--display2']=t.display2;set['--d2-tt']=t.d2Tt;set['--d2-ls']=t.d2Ls}
   for(var k in set) r.setProperty(k,set[k]);
   document.documentElement.dataset.theme=th.id;
   document.addEventListener('DOMContentLoaded',function(){
