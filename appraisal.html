@@ -18,7 +18,7 @@
 <body>
 <nav id="nav">
   <a class="wm" href="index.html">The <b>Data</b> Company</a>
-  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a class="cta" href="appraisal.html">Free appraisal →</a></div>
+  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="data.html">What sells</a><a class="cta" href="appraisal.html">Free appraisal →</a></div>
   <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
 </nav>
 
@@ -40,8 +40,9 @@
       </fieldset>
       <fieldset class="st" data-step="1">
         <div class="f"><label class="label" for="o">Fund or company name <span class="opt">Kept confidential</span></label><input type="text" id="o" name="org" required></div>
+        <div class="f"><label class="label" for="site">Company website or GitHub org <span class="opt">Optional · we start from public signals</span></label><input type="text" id="site" name="site" placeholder="example.com"></div>
         <div class="f" id="count" hidden><div class="q label">Number of companies to review</div><div class="chips"><label><input type="radio" name="count" value="1"><span>1</span></label><label><input type="radio" name="count" value="2–5"><span>2–5</span></label><label><input type="radio" name="count" value="6–20"><span>6–20</span></label><label><input type="radio" name="count" value="More than 20"><span>More than 20</span></label></div></div>
-        <div class="f"><div class="q label">Company status</div><div class="chips"><label><input type="radio" name="status" value="Wound down"><span>Wound down</span></label><label><input type="radio" name="status" value="Written off"><span>Written off</span></label><label><input type="radio" name="status" value="Winding down"><span>Winding down</span></label><label><input type="radio" name="status" value="Other"><span>Other</span></label></div></div>
+        <div class="f"><div class="q label">Company status</div><div class="chips"><label><input type="radio" name="status" value="Wound down"><span>Wound down</span></label><label><input type="radio" name="status" value="Written off"><span>Written off</span></label><label><input type="radio" name="status" value="Winding down"><span>Winding down</span></label><label><input type="radio" name="status" value="Still operating"><span>Still operating</span></label><label><input type="radio" name="status" value="Other"><span>Other</span></label></div></div>
       </fieldset>
       <fieldset class="st" data-step="2">
         <div class="f"><div class="q label">Industry <span class="opt">Select any</span></div><div class="chips"><label><input type="checkbox" name="industry" value="Manufacturing"><span>Manufacturing</span></label><label><input type="checkbox" name="industry" value="Software development"><span>Software development</span></label><label><input type="checkbox" name="industry" value="Healthcare"><span>Healthcare</span></label><label><input type="checkbox" name="industry" value="Other"><span>Other</span></label></div></div>
@@ -70,7 +71,7 @@
 <footer>
   <div class="grid">
     <div class="fw"><a class="wm" href="index.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
-    <div class="fc"><div class="label">Site</div><a href="index.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="privacy.html">Privacy</a></div>
+    <div class="fc"><div class="label">Site</div><a href="index.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="data.html">What sells</a><a href="advisors.html">For advisors</a><a href="privacy.html">Privacy</a></div>
     <div class="fc"><div class="label">Principles</div><span>Sell-side only</span><span>Several buyers compete</span><span>No data custody</span><span>The seller decides</span></div>
     <div class="fc"><div class="label">Start</div><a href="appraisal.html">Free appraisal</a><a href="appraisal.html?role=investor">For a fund</a><a href="appraisal.html?role=founder">For a company</a></div>
     <div class="base label"><span>© 2026 The Data Company</span><span>datacompanyusa.com</span></div>
@@ -128,7 +129,7 @@
     if(at<3){show(at+1);return}
     var btn=document.getElementById('next'),err=document.getElementById('err');btn.disabled=true;err.hidden=true;
     var body={name:val('name'),email:val('email'),role:val('role'),org:val('org'),count:count.hidden?'':val('count'),status:val('status'),
-      industry:[].map.call(f.querySelectorAll('[name=industry]:checked'),function(x){return x.value}),built:val('built'),notes:val('notes'),signal:signal,page:location.pathname+location.search,website:f.website.value};
+      industry:[].map.call(f.querySelectorAll('[name=industry]:checked'),function(x){return x.value}),built:val('built'),site:val('site'),notes:val('notes'),signal:signal,page:location.pathname+location.search,website:f.website.value};
     fetch('/api/appraisal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
       .then(function(r){if(!r.ok)throw r;liftoff()})
       .catch(function(){err.hidden=false;btn.disabled=false});
