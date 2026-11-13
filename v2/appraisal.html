@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free appraisal — The Data Company</title>
+<meta name="description" content="Get a free portfolio data appraisal. It's private, it's free, and it is not a listing. Nothing goes to a buyer without your consent.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="fonts" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="themes.js"></script>
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<nav id="nav">
+  <a class="wm" href="home.html">The <b>Data</b> Company</a>
+  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a></div>
+  <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
+</nav>
+
+<main class="split" id="main">
+  <aside class="aside">
+    <div class="bg"></div>
+    <div class="w">
+      <div class="label">Free appraisal</div>
+      <h1 class="d">Get a free portfolio <em>data appraisal.</em></h1>
+      <p>Tell us a little about the company or companies you have in mind. It's private, it's free, and it is not a listing. Nothing goes to a buyer without your consent.</p>
+    </div>
+  </aside>
+  <div class="form">
+    <form id="f" novalidate>
+      <div class="f"><label for="n">Your name</label><input type="text" id="n" name="name" required autocomplete="name"></div>
+      <div class="f"><label for="e">Email</label><input type="email" id="e" name="email" required autocomplete="email"></div>
+      <div class="f" data-group="role"><div class="q">I am a…</div><div class="chips"><label><input type="radio" name="role" value="Investor" required><span>Investor</span></label><label><input type="radio" name="role" value="Founder or former officer" required><span>Founder or former officer</span></label><label><input type="radio" name="role" value="Other" required><span>Other</span></label></div></div>
+      <div class="f"><label for="o">Fund or company name <span class="opt">Kept confidential</span></label><input type="text" id="o" name="org" required></div>
+      <div class="f" id="count" hidden><div class="q">Number of companies to review</div><div class="chips"><label><input type="radio" name="count" value="1"><span>1</span></label><label><input type="radio" name="count" value="2–5"><span>2–5</span></label><label><input type="radio" name="count" value="6–20"><span>6–20</span></label><label><input type="radio" name="count" value="More than 20"><span>More than 20</span></label></div></div>
+      <div class="f"><div class="q">Industry <span class="opt">Select any</span></div><div class="chips"><label><input type="checkbox" name="industry" value="Manufacturing"><span>Manufacturing</span></label><label><input type="checkbox" name="industry" value="Software development"><span>Software development</span></label><label><input type="checkbox" name="industry" value="Healthcare"><span>Healthcare</span></label><label><input type="checkbox" name="industry" value="Other"><span>Other</span></label></div></div>
+      <div class="f"><div class="q">Company status</div><div class="chips"><label><input type="radio" name="status" value="Wound down"><span>Wound down</span></label><label><input type="radio" name="status" value="Written off"><span>Written off</span></label><label><input type="radio" name="status" value="Winding down"><span>Winding down</span></label><label><input type="radio" name="status" value="Other"><span>Other</span></label></div></div>
+      <div class="f"><label for="b">What did the company build or collect? <span class="opt">Optional</span></label><textarea id="b" name="built" placeholder="A sentence is enough."></textarea></div>
+      <div class="f"><label for="k">Anything we should know? <span class="opt">Optional</span></label><textarea id="k" name="notes" placeholder="E.g. customer or patient data, open obligations."></textarea></div>
+      <button class="btn submit" type="submit">Request my appraisal <span class="ar"></span></button>
+      <p class="fine">Submitting this form doesn't share anything with buyers or commit you to anything. We'll reply within <span class="tbc">response time TBC</span>.</p>
+    </form>
+    <div class="done" aria-live="polite">
+      <div class="label" style="color:var(--ac);margin-bottom:26px">Request received</div>
+      <h2 class="d">Thank you. <em>We'll be in touch.</em></h2>
+      <p>Nothing has been shared with any buyer, and you haven't committed to anything. We'll reply within <span class="tbc">response time TBC</span>.</p>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <a class="wm" href="home.html">The <b>Data</b> Company</a>
+  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="appraisal.html">Free appraisal</a></div>
+  <span>datacompanyusa.com</span>
+</footer>
+<div class="mock-tag" id="tag">v2 preview · Launch Ops</div>
+<script src="launch.js"></script>
+<script src="site.js"></script>
+<script>
+(function(){
+  var f=document.getElementById('f'),count=document.getElementById('count');
+  var role=new URLSearchParams(location.search).get('role');
+  var map={investor:'Investor',founder:'Founder or former officer'};
+  if(map[role]) f.querySelector('input[name=role][value="'+map[role]+'"]').checked=true;
+  function sync(){var r=f.querySelector('input[name=role]:checked');count.hidden=!(r&&r.value==='Investor')}
+  f.addEventListener('change',sync);sync();
+  f.addEventListener('submit',function(e){
+    e.preventDefault();var ok=true;
+    f.querySelectorAll('.f').forEach(function(x){x.classList.remove('bad')});
+    f.querySelectorAll('[required]').forEach(function(i){
+      var bad=i.type==='radio'?!f.querySelector('input[name='+i.name+']:checked'):!i.checkValidity()||!i.value.trim();
+      if(bad){i.closest('.f').classList.add('bad');ok=false}
+    });
+    if(!ok){f.querySelector('.bad').scrollIntoView({behavior:'smooth',block:'center'});return}
+    // Preview only: not yet connected to a backend.
+    document.getElementById('main').classList.add('sent');document.querySelector('.form').scrollIntoView({behavior:'smooth'});
+  });
+})();
+</script>
+</body>
+</html>

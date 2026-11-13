@@ -84,7 +84,7 @@ window.TDC_THEMES = [
   function rgb(h){h=h.replace('#','');return [0,2,4].map(function(i){return parseInt(h.substr(i,2),16)}).join(',')}
   var v=th.v,t=th.t,r=document.documentElement.style;
   var set={'--bg':v.bg,'--bg2':v.bg2,'--bg3':v.bg3,'--bg-rgb':rgb(v.bg),'--fg-rgb':rgb(v.fg),'--ac':v.ac,'--ac-rgb':rgb(v.ac),'--ac-ink':v.acInk,'--on-ac':v.onAc,
-    '--paper':v.paper,'--ink':v.ink,'--ink2':v.ink2,'--h-rgb':rgb(v.hero),'--hf-rgb':rgb(v.heroFg),
+    '--paper':v.paper,'--ink':v.ink,'--ink-rgb':rgb(v.ink),'--ink2':v.ink2,'--h-rgb':rgb(v.hero),'--hf-rgb':rgb(v.heroFg),
     '--display':t.display,'--body':t.body,'--ui':t.ui,'--d-wt':t.dWt,'--d-ls':t.dLs,'--d-lh':t.dLh,'--d-tt':t.dTt,'--em':t.em,'--ds':t.ds,'--b-wt':t.bWt||300,
     '--vf':th.vf||'none','--tint':th.tint||'transparent','--tint-o':th.tintO||0};
   if(t.display2){set['--display2']=t.display2;set['--d2-tt']=t.d2Tt;set['--d2-ls']=t.d2Ls}
