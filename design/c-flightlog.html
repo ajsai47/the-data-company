@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Data Company — Mockup C: Flight Log</title>
+<link rel="icon" href="../v1/refs/tdc-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#F7F4EE; --vellum:#EFEAE0; --ink:#14213D; --slate:#4A5363; --rule:#D8D1C3; --copper:#A8643A; --night:#0A1322; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:Inter, system-ui, sans-serif; font-size:17px; line-height:1.6; color:var(--ink); background:var(--paper); -webkit-font-smoothing:antialiased; }
+  a { color:inherit; text-decoration:none; }
+  .mono { font-family:"IBM Plex Mono", monospace; font-size:11.5px; letter-spacing:.12em; text-transform:uppercase; }
+  h1, h2, h3 { font-family:Newsreader, Georgia, serif; font-weight:400; letter-spacing:-.012em; }
+
+  nav { position:fixed; inset:0 0 auto; z-index:50; height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 40px; background:rgba(247,244,238,.94); border-bottom:1px solid var(--rule); backdrop-filter:blur(6px); }
+  .word { font-family:Newsreader, serif; font-size:22px; display:flex; flex-direction:column; line-height:1; }
+  .word::after { content:""; display:block; height:4px; margin-top:6px; border-top:1px solid var(--ink); border-bottom:1px solid var(--copper); width:100%; }
+  nav ul { display:flex; gap:32px; list-style:none; align-items:center; }
+  nav ul a { font-size:14.5px; color:var(--slate); }
+  .btn { display:inline-block; padding:13px 20px; background:var(--ink); color:var(--paper); font-size:14.5px; font-weight:500; border-radius:2px; transition:background .2s; }
+  .btn:hover { background:#22335a; }
+  nav .btn { padding:9px 15px; font-size:13.5px; color:var(--paper); }
+  .tlink { color:var(--ink); border-bottom:1px solid var(--copper); padding-bottom:2px; font-size:15px; }
+
+  .hero { height:330vh; position:relative; }
+  .stage { position:sticky; top:0; height:100vh; padding:68px 0 0; display:grid; grid-template-columns:42% 58%; }
+  .copy { padding:0 48px 0 56px; display:flex; flex-direction:column; justify-content:center; border-right:1px solid var(--rule); }
+  .copy .mono { color:var(--copper); margin-bottom:22px; }
+  h1 { font-size:clamp(42px, 4.6vw, 72px); line-height:1.04; }
+  .sub { margin-top:22px; font-size:18px; color:var(--slate); max-width:500px; }
+  .ctas { margin-top:30px; display:flex; gap:22px; align-items:center; flex-wrap:wrap; }
+  .chips { margin-top:34px; color:var(--slate); display:flex; flex-wrap:wrap; gap:6px 0; }
+  .chips span { padding-right:14px; margin-right:14px; border-right:1px solid var(--rule); }
+  .chips span:last-child { border-right:0; }
+
+  .viewport { position:relative; overflow:hidden; background:var(--night); margin:24px 24px 24px 0; }
+  .viewport video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:70% 50%; transform:scale(calc(1.1 - var(--p,0)*.1)); }
+  .viewport::after { content:""; position:absolute; inset:0; background:linear-gradient(270deg, rgba(10,19,34,.0) 40%, rgba(10,19,34,.75) 100%); pointer-events:none; }
+  .hud { position:absolute; inset:0; z-index:2; color:#E9E3D6; pointer-events:none; }
+  .hud .tl, .hud .tr, .hud .bl { position:absolute; }
+  .hud .tl { top:20px; left:22px; } .hud .tr { top:20px; right:22px; text-align:right; }
+  .crosshair { position:absolute; inset:18px; border:1px solid rgba(233,227,214,.18); }
+  .log { position:absolute; left:22px; bottom:22px; width:min(380px, 70%); background:rgba(10,19,34,.78); border:1px solid rgba(233,227,214,.2); backdrop-filter:blur(4px); }
+  .log .head { display:flex; justify-content:space-between; padding:10px 14px; border-bottom:1px solid rgba(233,227,214,.2); color:#B9B2A3; }
+  .log .row { display:grid; grid-template-columns:46px 1fr auto; gap:10px; padding:10px 14px; border-bottom:1px solid rgba(233,227,214,.1); font-size:14px; color:#7F8796; transition:color .4s; }
+  .log .row:last-child { border-bottom:0; }
+  .log .row .st { font-family:"IBM Plex Mono", monospace; font-size:10.5px; letter-spacing:.1em; }
+  .log .row.on { color:#F3EEE3; }
+  .log .row.on .st { color:#E8A877; }
+  .log .row .st::after { content:"STANDBY"; }
+  .log .row.on .st::after { content:"✓ GO"; }
+  .bar { position:absolute; right:22px; top:60px; bottom:22px; width:2px; background:rgba(233,227,214,.18); }
+  .bar::after { content:""; position:absolute; left:0; bottom:0; width:2px; height:calc(var(--p,0)*100%); background:#E8A877; }
+
+  section { padding:120px 56px; border-top:1px solid var(--rule); }
+  .wrap { max-width:1120px; margin:0 auto; }
+  .sec { display:grid; grid-template-columns:220px 1fr; gap:48px; }
+  .sec > .mono { color:var(--copper); padding-top:14px; }
+  h2 { font-size:clamp(34px, 3.6vw, 52px); line-height:1.08; max-width:760px; }
+  .lede { margin-top:20px; font-size:18.5px; color:var(--slate); max-width:680px; }
+  .reveal { opacity:0; transform:translateY(20px); transition:opacity .9s, transform .9s; }
+  .reveal.in { opacity:1; transform:none; }
+
+  table { width:100%; border-collapse:collapse; margin-top:44px; }
+  th { text-align:left; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:500; color:var(--slate); padding:0 20px 12px 0; border-bottom:1px solid var(--ink); }
+  td { padding:16px 20px 16px 0; border-bottom:1px solid var(--rule); vertical-align:top; font-size:16.5px; }
+  td.num { font-family:"IBM Plex Mono", monospace; font-size:13px; color:var(--copper); width:70px; }
+  td.dim { color:var(--slate); }
+  td.who { font-weight:500; }
+  .vellum { background:var(--vellum); }
+
+  .ledger-total { margin-top:42px; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--ink); border-bottom:3px double var(--ink); }
+  .ledger-total div { padding:22px 20px 22px 0; }
+  .ledger-total div + div { padding-left:20px; border-left:1px solid var(--rule); }
+  .ledger-total .mono { color:var(--copper); display:block; margin-bottom:8px; }
+  .ledger-total p { font-size:16px; color:var(--slate); }
+
+  .dark { background:var(--night); color:#EFEAE0; border-top:0; position:relative; overflow:hidden; }
+  .dark img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.45; }
+  .dark::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg, var(--night) 20%, rgba(10,19,34,.3)); }
+  .dark .wrap { position:relative; z-index:1; }
+  .dark .lede { color:#BFC4CE; }
+  .dark .btn { background:#EFEAE0; color:var(--ink); }
+  .dark .small { margin-top:18px; color:#8E95A3; font-size:14.5px; max-width:520px; }
+  .ph { border:1px dashed var(--copper); padding:28px; text-align:center; color:var(--slate); font-family:"IBM Plex Mono", monospace; font-size:12px; letter-spacing:.06em; }
+
+  footer { padding:36px 56px; display:flex; justify-content:space-between; align-items:center; gap:20px; flex-wrap:wrap; color:var(--slate); font-size:14.5px; border-top:1px solid var(--rule); }
+  footer ul { display:flex; gap:24px; list-style:none; }
+  .mock-tag { position:fixed; left:16px; bottom:16px; z-index:60; background:var(--paper); border:1px solid var(--ink); padding:7px 12px; font-family:"IBM Plex Mono", monospace; font-size:11px; letter-spacing:.1em; }
+
+  @media (max-width: 900px) {
+    nav { padding:0 18px; height:60px; } nav ul li:not(:last-child) { display:none; } .word { font-size:18px; }
+    nav .btn { padding:8px 12px; font-size:12.5px; }
+    .stage { grid-template-columns:1fr; grid-template-rows:auto 1fr; padding-top:60px; }
+    .copy { padding:20px 20px 14px; border-right:0; }
+    .copy .mono { margin-bottom:10px; font-size:10px; }
+    h1 { font-size:32px; } .sub { font-size:15px; margin-top:12px; }
+    .ctas { margin-top:16px; } .ctas .tlink { display:none; } .btn { padding:11px 16px; font-size:14px; }
+    .chips { display:none; }
+    .viewport { margin:0 12px 12px; }
+    .log { width:auto; right:14px; left:14px; bottom:14px; } .log .row { padding:7px 12px; font-size:13px; } .log .head { padding:8px 12px; font-size:10px; }
+    .bar, .hud .tr { display:none; }
+    section { padding:80px 20px; }
+    .sec { grid-template-columns:1fr; gap:14px; } .sec > .mono { padding-top:0; }
+    .ledger-total { grid-template-columns:1fr; } .ledger-total div + div { padding-left:0; border-left:0; border-top:1px solid var(--rule); }
+    table.stack thead { display:none; } table.stack td { display:block; padding:4px 0; border:0; } table.stack tr { display:block; padding:14px 0; border-bottom:1px solid var(--rule); }
+    table.stack td.num { width:auto; }
+    footer { padding:28px 20px; }
+    .mock-tag { left:auto; right:8px; bottom:8px; font-size:9px; padding:4px 8px; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a class="word" href="#">The Data Company</a>
+  <ul>
+    <li><a href="#investors">For investors</a></li>
+    <li><a href="#founders">For founders</a></li>
+    <li><a href="#process">How it works</a></li>
+    <li><a class="btn" href="#appraisal">Free appraisal</a></li>
+  </ul>
+</nav>
+
+<header class="hero" data-launch>
+  <div class="stage">
+    <div class="copy">
+      <div class="mono">Portfolio recovery · early-stage investors</div>
+      <h1>Your written-off companies still have value.</h1>
+      <p class="sub">TDC helps early-stage VCs recover value from wound-down portfolio companies by licensing their data to AI buyers. We never hold the data, and the seller always decides.</p>
+      <div class="ctas"><a class="btn" href="#appraisal">Get a free portfolio data appraisal</a><a class="tlink" href="#process">How it works →</a></div>
+      <div class="chips mono"><span>Sell-side only</span><span>Buyers compete</span><span>No custody</span><span>Seller decides</span></div>
+    </div>
+    <div class="viewport">
+      <video data-src="../media/launch.mp4" data-src-mobile="../media/launch-mobile.mp4" poster="../media/launch-poster.jpg" muted playsinline preload="auto"></video>
+      <div class="hud">
+        <div class="crosshair"></div>
+        <div class="tl mono">TDC · Recovery sequence</div>
+        <div class="tr mono">Seller holds the data<br>Seller holds the decision</div>
+        <div class="bar"></div>
+        <div class="log">
+          <div class="head mono"><span>Flight log</span><span>Status</span></div>
+          <div class="row" data-from="0"><span class="st"></span><span>Assessment call</span><span class="mono">01</span></div>
+          <div class="row" data-from=".25"><span class="st"></span><span>Private appraisal</span><span class="mono">02</span></div>
+          <div class="row" data-from=".5"><span class="st"></span><span>Buyer process under NDA</span><span class="mono">03</span></div>
+          <div class="row" data-from=".75"><span class="st"></span><span>Seller's final say</span><span class="mono">04</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap sec reveal">
+    <div class="mono">01 · The problem</div>
+    <div>
+      <h2>Written off is not the same as worth nothing.</h2>
+      <p class="lede">When an early-stage company winds down, the cap table goes to zero, but what the company built often stays behind: years of operating records, engineering history, domain-specific datasets, and workflows that took real people real time to create. AI teams need exactly this kind of real-world data, and most of it sits on a drive with no plan.</p>
+    </div>
+  </div>
+</section>
+
+<section class="vellum" id="founders">
+  <div class="wrap sec reveal">
+    <div class="mono">02 · What TDC does</div>
+    <div>
+      <h2>A sell-side advisor for company data.</h2>
+      <p class="lede">TDC works for the seller, not the buyer. The seller approves every step, sees every offer, and makes the final call.</p>
+      <table class="stack">
+        <thead><tr><th>What we do</th><th>What we never do</th></tr></thead>
+        <tr><td>Represent the seller only</td><td class="dim">Take a fee from buyers to steer a deal</td></tr>
+        <tr><td>Bring several qualified buyers to compete</td><td class="dim">Sell to the first buyer who asks</td></tr>
+        <tr><td>Keep data with the seller until a deal closes</td><td class="dim">Take custody of, copy, or warehouse your data</td></tr>
+        <tr><td>Require an NDA before any seller name reaches a buyer</td><td class="dim">Share a company's name without consent</td></tr>
+        <tr><td>Build de-identification into the process</td><td class="dim">Send personal or sensitive records out as-is</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="investors">
+  <div class="wrap sec reveal">
+    <div class="mono">03 · For investors</div>
+    <div>
+      <h2>One relationship, many companies.</h2>
+      <p class="lede">Most funds carry a handful of companies that wound down or were written off. Each one might hold licensable data, and no one at the fund has time to find out.</p>
+      <div class="ledger-total">
+        <div><span class="mono">You do</span><p>Name the companies. Make the intro.</p></div>
+        <div><span class="mono">TDC does</span><p>Appraisal, rights review, buyers under NDA, closing support.</p></div>
+        <div><span class="mono">The founder decides</span><p>Whether to go to market, which offers, whether to sign.</p></div>
+      </div>
+      <p style="margin-top:28px"><a class="tlink" href="#">For investors →</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="vellum">
+  <div class="wrap sec reveal">
+    <div class="mono">04 · Where data is most valuable</div>
+    <div>
+      <h2>Real work, in specialized fields.</h2>
+      <table class="stack">
+        <thead><tr><th></th><th>Industry</th><th>What may be licensable</th></tr></thead>
+        <tr><td class="num">A</td><td class="who">Manufacturing</td><td class="dim">Process and quality records, sensor and machine data, inspection imagery, operating procedures</td></tr>
+        <tr><td class="num">B</td><td class="who">Software development</td><td class="dim">Code history, issue and review records, test suites, internal tooling and documentation</td></tr>
+        <tr><td class="num">C</td><td class="who">Healthcare</td><td class="dim">Operational and workflow data, and de-identified clinical or administrative records where permitted</td></tr>
+      </table>
+      <p style="margin-top:20px; color:var(--slate); font-size:15.5px">Other industries can qualify. The appraisal tells you whether yours does.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap sec reveal">
+    <div class="mono">05 · How it works</div>
+    <div>
+      <h2>A careful process. Your decision at every step.</h2>
+      <table class="stack">
+        <thead><tr><th>Step</th><th>What happens</th><th>Who decides</th></tr></thead>
+        <tr><td class="num">01</td><td><b style="font-weight:600">Assessment call.</b> A short call to understand the company, what it built, and what records remain.</td><td class="who">You decide whether to continue.</td></tr>
+        <tr><td class="num">02</td><td><b style="font-weight:600">Private appraisal.</b> What the data is, what rights appear to exist, and how AI buyers may value it. Nothing is shared.</td><td class="who">You decide whether to go to market.</td></tr>
+        <tr><td class="num">03</td><td><b style="font-weight:600">Buyer process.</b> Several buyers review an anonymized summary. Names are shared only under NDA.</td><td class="who">You decide which offers to pursue.</td></tr>
+        <tr><td class="num">04</td><td><b style="font-weight:600">Seller's final say.</b> Terms side by side. Accept, negotiate, or walk away.</td><td class="who">You decide. Always.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section style="padding:60px 56px">
+  <div class="wrap"><div class="ph">PROOF · hidden on the live site until the first deal closes and testimonials have written consent</div></div>
+</section>
+
+<section class="dark" id="appraisal">
+  <img src="../media/ascent.jpg" alt="">
+  <div class="wrap reveal">
+    <div class="mono" style="color:#E8A877; margin-bottom:18px">06 · Free appraisal</div>
+    <h2>Find out what's still on the books.</h2>
+    <p class="lede">A free portfolio data appraisal is private and carries no obligation.</p>
+    <p style="margin-top:30px"><a class="btn" href="#">Get a free portfolio data appraisal</a></p>
+    <p class="small">An appraisal is not a listing: no buyer sees anything unless you decide to go further.</p>
+  </div>
+</section>
+
+<footer>
+  <span class="word" style="font-size:18px">The Data Company</span>
+  <ul><li><a href="#investors">For investors</a></li><li><a href="#founders">For founders</a></li><li><a href="#process">How it works</a></li><li><a href="#">Privacy</a></li></ul>
+  <span>datacompanyusa.com</span>
+</footer>
+<div class="mock-tag">MOCKUP C · FLIGHT LOG</div>
+<script src="../launch.js"></script>
+</body>
+</html>

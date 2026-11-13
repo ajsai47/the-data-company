@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free appraisal — The Data Company</title>
+<meta name="description" content="Get a free portfolio data appraisal. It's private, it's free, and it is not a listing. Nothing goes to a buyer without your consent.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link id="fonts" href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="themes.js"></script>
+<link rel="stylesheet" href="site.css">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="media/apple-touch-icon.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="The Data Company">
+<meta property="og:title" content="Free appraisal — The Data Company"><meta property="og:description" content="Get a free portfolio data appraisal. It's private, it's free, and it is not a listing. Nothing goes to a buyer without your consent.">
+<meta property="og:image" content="https://datacompanyusa.com/media/og.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0B0C">
+</head>
+<body>
+<nav id="nav">
+  <a class="wm" href="index.html">The <b>Data</b> Company</a>
+  <div class="links"><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a class="cta" href="appraisal.html">Free appraisal →</a></div>
+  <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
+</nav>
+
+<main class="ls" id="main">
+  <div class="ls-stage" aria-hidden="true"><video data-src="media/launch.mp4" data-src-mobile="media/launch-portrait.mp4" poster="media/launch-poster.jpg" data-poster-mobile="media/launch-portrait-poster.jpg" muted playsinline preload="auto"></video></div>
+  <div class="ls-panel">
+    <div class="ls-head">
+      <div class="k label"><i><b id="tm">T-4</b></i><span>Launch sequence</span></div>
+      <h1 class="d" data-bold="Start the <em>launch sequence.</em>">Get a free portfolio <em>data appraisal.</em></h1>
+      <p class="lead">Four short steps. Private, free, and not a listing.</p>
+    </div>
+    <ol class="ls-track"><li data-i="0"><span class="label">T-4</span><span class="label">Who you are</span></li><li data-i="1"><span class="label">T-3</span><span class="label">The portfolio</span></li><li data-i="2"><span class="label">T-2</span><span class="label">What was built</span></li><li data-i="3"><span class="label">T-1</span><span class="label">Pre-flight check</span></li></ol>
+    <form id="f" novalidate>
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <fieldset class="st on" data-step="0">
+        <div class="f"><label class="label" for="n">Your name</label><input type="text" id="n" name="name" required autocomplete="name"></div>
+        <div class="f"><label class="label" for="e">Email</label><input type="email" id="e" name="email" required autocomplete="email"></div>
+        <div class="f"><div class="q label">I am a…</div><div class="chips"><label><input type="radio" name="role" value="Investor" required><span>Investor</span></label><label><input type="radio" name="role" value="Founder or former officer" required><span>Founder or former officer</span></label><label><input type="radio" name="role" value="Other" required><span>Other</span></label></div></div>
+      </fieldset>
+      <fieldset class="st" data-step="1">
+        <div class="f"><label class="label" for="o">Fund or company name <span class="opt">Kept confidential</span></label><input type="text" id="o" name="org" required></div>
+        <div class="f" id="count" hidden><div class="q label">Number of companies to review</div><div class="chips"><label><input type="radio" name="count" value="1"><span>1</span></label><label><input type="radio" name="count" value="2–5"><span>2–5</span></label><label><input type="radio" name="count" value="6–20"><span>6–20</span></label><label><input type="radio" name="count" value="More than 20"><span>More than 20</span></label></div></div>
+        <div class="f"><div class="q label">Company status</div><div class="chips"><label><input type="radio" name="status" value="Wound down"><span>Wound down</span></label><label><input type="radio" name="status" value="Written off"><span>Written off</span></label><label><input type="radio" name="status" value="Winding down"><span>Winding down</span></label><label><input type="radio" name="status" value="Other"><span>Other</span></label></div></div>
+      </fieldset>
+      <fieldset class="st" data-step="2">
+        <div class="f"><div class="q label">Industry <span class="opt">Select any</span></div><div class="chips"><label><input type="checkbox" name="industry" value="Manufacturing"><span>Manufacturing</span></label><label><input type="checkbox" name="industry" value="Software development"><span>Software development</span></label><label><input type="checkbox" name="industry" value="Healthcare"><span>Healthcare</span></label><label><input type="checkbox" name="industry" value="Other"><span>Other</span></label></div></div>
+        <div class="f"><label class="label" for="b">What did the company build or collect? <span class="opt">Optional</span></label><textarea id="b" name="built" placeholder="A sentence is enough."></textarea></div>
+      </fieldset>
+      <fieldset class="st" data-step="3">
+        <div class="f"><label class="label" for="kn">Anything we should know? <span class="opt">Optional</span></label><textarea id="kn" name="notes" placeholder="E.g. customer or patient data, open obligations."></textarea></div>
+        <div class="f"><div class="q label">Your request</div><dl class="sum" id="sum"></dl></div>
+      </fieldset>
+      <div class="ls-nav">
+        <button class="btn line" type="button" id="back">Back</button>
+        <button class="btn" type="submit" id="next"><span id="nl">Continue</span> <span class="ar"></span></button>
+      </div>
+      <p class="fine err" id="err" hidden>We couldn't send this just now. Please try again in a minute.</p>
+      <p class="fine">Submitting this form doesn't share anything with buyers or commit you to anything. We'll reply within <span class="tbc" data-cfg="replyTime">response time TBC</span>.</p>
+    </form>
+    <div class="done" aria-live="polite">
+      <h2 class="d">Request received. <em>We'll be in touch.</em></h2>
+      <p class="lead">Nothing has been shared with any buyer, and you haven't committed to anything. We'll reply within <span class="tbc" data-cfg="replyTime">response time TBC</span>.</p>
+      <div class="ctas"><a class="btn" id="book" data-cfg-href="bookingUrl" hidden target="_blank" rel="noopener">Book the assessment call <span class="ar"></span></a><a class="btn line" href="how-it-works.html">See what happens next</a></div>
+    </div>
+  </div>
+  <div class="ls-hud label"><span>Sell-side only · Not a listing</span><span class="bar"><i id="bar"></i></span></div>
+</main>
+
+<footer>
+  <div class="grid">
+    <div class="fw"><a class="wm" href="index.html">The <b>Data</b> Company</a><p>Portfolio recovery for early-stage investors. We license company data to AI buyers on the seller's terms, without ever holding the data.</p></div>
+    <div class="fc"><div class="label">Site</div><a href="index.html">Home</a><a href="investors.html">For investors</a><a href="founders.html">For founders</a><a href="how-it-works.html">How it works</a><a href="privacy.html">Privacy</a></div>
+    <div class="fc"><div class="label">Principles</div><span>Sell-side only</span><span>Several buyers compete</span><span>No data custody</span><span>The seller decides</span></div>
+    <div class="fc"><div class="label">Start</div><a href="appraisal.html">Free appraisal</a><a href="appraisal.html?role=investor">For a fund</a><a href="appraisal.html?role=founder">For a company</a></div>
+    <div class="base label"><span>© 2026 The Data Company</span><span>datacompanyusa.com</span></div>
+  </div>
+</footer>
+<script src="config.js"></script>
+<script src="launch.js"></script>
+<script src="site.js"></script>
+<script>
+(function(){
+  var f=document.getElementById('f'),main=document.getElementById('main'),count=document.getElementById('count');
+  var steps=[].slice.call(f.querySelectorAll('.st')),track=[].slice.call(document.querySelectorAll('.ls-track li'));
+  var back=document.getElementById('back'),nl=document.getElementById('nl'),tm=document.getElementById('tm'),bar=document.getElementById('bar');
+  var v=document.querySelector('.ls-stage video'),small=matchMedia('(max-width:720px)').matches,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  v.muted=true;v.playsInline=true;v.src=small?v.dataset.srcMobile:v.dataset.src;if(small)v.poster=v.dataset.posterMobile;
+  var STOPS=[.35,2.6,4.6,6.6,10],target=STOPS[0],cur=0;
+  v.addEventListener('loadedmetadata',function(){STOPS[4]=v.duration-.08;v.currentTime=STOPS[0];v.pause()});
+  function fly(){
+    if(v.readyState>=1){
+      if(reduce){if(Math.abs(v.currentTime-target)>.05)v.currentTime=target}
+      else if(v.currentTime>target+.08){v.pause();v.currentTime=target}
+      else if(v.currentTime<target-.04){if(v.paused)v.play().catch(function(){})}
+      else if(!v.paused)v.pause();
+    }
+    requestAnimationFrame(fly);
+  }
+  requestAnimationFrame(fly);
+  var role=new URLSearchParams(location.search).get('role'),map={investor:'Investor',founder:'Founder or former officer'};
+  if(map[role])f.querySelector('input[name=role][value="'+map[role]+'"]').checked=true;
+  var qp=new URLSearchParams(location.search);
+  (qp.get('industry')||'').split('|').forEach(function(x){var el=f.querySelector('input[name=industry][value="'+x+'"]');if(el)el.checked=true});
+  if(qp.get('left'))f.built.value='Left behind: '+qp.get('left').split('|').join(', ')+'.';
+  var signal=qp.get('signal')||'';
+  var at=0;
+  function val(n){var x=f.querySelectorAll('[name='+n+']:checked');if(x.length)return[].map.call(x,function(i){return i.value}).join(', ');var i=f.querySelector('[name='+n+']');return i&&i.type!=='radio'&&i.type!=='checkbox'?i.value.trim():''}
+  function sync(){var r=val('role');count.hidden=r!=='Investor'}
+  function show(i){
+    at=i;steps.forEach(function(s,n){s.classList.toggle('on',n===i)});
+    track.forEach(function(t,n){t.classList.toggle('on',n===i);t.classList.toggle('ok',n<i)});
+    back.style.visibility=i?'visible':'hidden';nl.textContent=i===3?'Request my appraisal':'Continue';
+    tm.textContent='T-'+(4-i);target=STOPS[i];bar.style.transform='scaleX('+(i/4)+')';
+    if(i===3){var rows=[['Name',val('name')],['Email',val('email')],['Role',val('role')],['Fund or company',val('org')],['Companies',count.hidden?'':val('count')],['Status',val('status')],['Industry',val('industry')]];
+      document.getElementById('sum').innerHTML=rows.filter(function(r){return r[1]}).map(function(r){return '<dt class="label">'+r[0]+'</dt><dd></dd>'}).join('');
+      [].forEach.call(document.querySelectorAll('#sum dd'),function(d,n){d.textContent=rows.filter(function(r){return r[1]})[n][1]})}
+    var first=steps[i].querySelector('input[type=text],input[type=email],textarea');if(first&&!small)first.focus({preventScroll:true});
+    if(small&&i)document.querySelector('.ls-track').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function check(i){var ok=true;steps[i].querySelectorAll('.f').forEach(function(x){x.classList.remove('bad')});
+    steps[i].querySelectorAll('[required]').forEach(function(el){var bad=el.type==='radio'?!f.querySelector('input[name='+el.name+']:checked'):!el.checkValidity()||!el.value.trim();if(bad){el.closest('.f').classList.add('bad');ok=false}});return ok}
+  f.addEventListener('change',function(e){sync();var x=e.target.closest('.f');if(x)x.classList.remove('bad')});
+  f.addEventListener('input',function(e){var x=e.target.closest('.f');if(x)x.classList.remove('bad')});
+  back.addEventListener('click',function(){if(at>0)show(at-1)});
+  f.addEventListener('submit',function(e){
+    e.preventDefault();if(!check(at))return;
+    if(at<3){show(at+1);return}
+    var btn=document.getElementById('next'),err=document.getElementById('err');btn.disabled=true;err.hidden=true;
+    var body={name:val('name'),email:val('email'),role:val('role'),org:val('org'),count:count.hidden?'':val('count'),status:val('status'),
+      industry:[].map.call(f.querySelectorAll('[name=industry]:checked'),function(x){return x.value}),built:val('built'),notes:val('notes'),signal:signal,page:location.pathname+location.search,website:f.website.value};
+    fetch('/api/appraisal',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)})
+      .then(function(r){if(!r.ok)throw r;liftoff()})
+      .catch(function(){err.hidden=false;btn.disabled=false});
+  });
+  function liftoff(){
+    main.classList.add('sent');tm.textContent='T-0';document.querySelector('.ls-head .k span').textContent='Liftoff';target=STOPS[4];bar.style.transform='scaleX(1)';
+    track.forEach(function(t){t.classList.remove('on');t.classList.add('ok')});
+    document.querySelector('.ls-panel').scrollIntoView({behavior:'smooth'});
+  }
+  sync();show(0);
+})();
+</script>
+</body>
+</html>

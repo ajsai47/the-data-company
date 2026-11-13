@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TDC v2 — 10 design languages</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+<script src="../themes.js"></script>
+<style>
+body{margin:0;background:#0B0C0F;color:#ECEAE4;font-family:Inter,sans-serif;padding:56px clamp(16px,4vw,56px)}
+h1{font-size:clamp(30px,4vw,48px);font-weight:500;letter-spacing:-.02em;margin:0 0 8px}
+.m{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:#9A978F}
+.sub{color:#A7A49C;max-width:60ch;line-height:1.55}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-top:40px}
+.c{background:#14161B;border:1px solid #23262D;display:flex;flex-direction:column}
+.c .imgs{display:grid;grid-template-columns:1.6fr 1fr;gap:2px;background:#000}
+.c img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block}
+.c .b{padding:22px 24px 24px;display:grid;gap:12px}
+.c h2{margin:0;font-size:24px;font-weight:500;display:flex;gap:12px;align-items:baseline}
+.c h2 span{font-family:"IBM Plex Mono";font-size:12px;color:#7D7A73}
+.c p{margin:0;color:#B4B1A9;line-height:1.5;font-size:15px}
+.sw{display:flex;gap:6px}.sw i{width:30px;height:30px;border:1px solid rgba(255,255,255,.15)}
+.ty{font-size:13.5px;color:#D6D3CB}.ty b{font-weight:500;color:#fff}
+.c a{justify-self:start;font-size:13px;font-weight:600;letter-spacing:.04em;padding:11px 16px;background:#ECEAE4;color:#0B0C0F;text-decoration:none}
+@media(max-width:900px){.grid{grid-template-columns:1fr}}
+</style></head><body>
+<div class="m">The Data Company · v2 · design languages</div>
+<h1>Ten color and type directions</h1>
+<p class="sub">Same full-bleed layout, video and copy; only color, typography and video grade change. Open any one to scroll the full page. Mixes are fine, e.g. "Swiss type with Greenback colors."</p>
+<div class="grid" id="g"></div>
+<script>
+var g=document.getElementById('g');
+TDC_THEMES.forEach(function(t,i){
+  var v=t.v, sw=[v.bg,v.bg2,v.fg,v.ac,v.paper].map(function(c){return '<i style="background:'+c+'"></i>'}).join('');
+  g.insertAdjacentHTML('beforeend','<div class="c"><div class="imgs"><img src="../media/themes/'+t.id+'-hero.jpg" alt=""><img src="../media/themes/'+t.id+'-stmt.jpg" alt=""></div><div class="b"><h2><span>'+String(i+1).padStart(2,'0')+'</span>'+t.name+(t.blend?' <span style="color:#FF5A1F">NEW BLEND</span>':'')+'</h2><p>'+t.note+'</p><div class="sw">'+sw+'</div><div class="ty"><b>Display</b> '+t.type[0]+' · <b>Text</b> '+t.type[1]+' · <b>Labels</b> '+t.type[2]+'</div><a href="../index.html?t='+t.id+'">Open full page →</a></div></div>');
+});
+</script>
+</body></html>

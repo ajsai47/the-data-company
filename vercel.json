@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/v2/home", "destination": "/", "permanent": false },
+    { "source": "/v2/:page(investors|founders|how-it-works|appraisal)", "destination": "/:page", "permanent": false },
+    { "source": "/quote", "destination": "/appraisal", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/media/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }] }
+  ]
+}
