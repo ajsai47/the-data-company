@@ -17,35 +17,47 @@
   <a class="btn" href="appraisal.html">Free appraisal</a><button class="menu" aria-label="Menu"><i></i><i></i></button>
 </nav>
 
-<main class="split" id="main">
-  <aside class="scene">
-    <div class="bg" style="background-image:url(media/ascent.jpg);background-position:65% center"></div>
-    <div class="w">
-      <div class="k label"><i>00</i><span>Free appraisal</span></div>
-      <h1 class="d">Get a free portfolio <em>data appraisal.</em></h1>
-      <p class="lead">Tell us a little about the company or companies you have in mind. It's private, it's free, and it is not a listing. Nothing goes to a buyer without your consent.</p>
+<main class="ls" id="main">
+  <div class="ls-stage" aria-hidden="true"><video data-src="media/launch.mp4" data-src-mobile="media/launch-portrait.mp4" poster="media/launch-poster.jpg" data-poster-mobile="media/launch-portrait-poster.jpg" muted playsinline preload="auto"></video></div>
+  <div class="ls-panel">
+    <div class="ls-head">
+      <div class="k label"><i><b id="tm">T-4</b></i><span>Launch sequence</span></div>
+      <h1 class="d" data-bold="Start the <em>launch sequence.</em>">Get a free portfolio <em>data appraisal.</em></h1>
+      <p class="lead">Four short steps. Private, free, and not a listing.</p>
     </div>
-  </aside>
-  <div class="form">
+    <ol class="ls-track"><li data-i="0"><span class="label">T-4</span><span class="label">Who you are</span></li><li data-i="1"><span class="label">T-3</span><span class="label">The portfolio</span></li><li data-i="2"><span class="label">T-2</span><span class="label">What was built</span></li><li data-i="3"><span class="label">T-1</span><span class="label">Pre-flight check</span></li></ol>
     <form id="f" novalidate>
-      <div class="f"><label class="label" for="n">Your name</label><input type="text" id="n" name="name" required autocomplete="name"></div>
-      <div class="f"><label class="label" for="e">Email</label><input type="email" id="e" name="email" required autocomplete="email"></div>
-      <div class="f"><div class="q label">I am a…</div><div class="chips"><label><input type="radio" name="role" value="Investor" required><span>Investor</span></label><label><input type="radio" name="role" value="Founder or former officer" required><span>Founder or former officer</span></label><label><input type="radio" name="role" value="Other" required><span>Other</span></label></div></div>
-      <div class="f"><label class="label" for="o">Fund or company name <span class="opt">Kept confidential</span></label><input type="text" id="o" name="org" required></div>
-      <div class="f" id="count" hidden><div class="q label">Number of companies to review</div><div class="chips"><label><input type="radio" name="count" value="1"><span>1</span></label><label><input type="radio" name="count" value="2–5"><span>2–5</span></label><label><input type="radio" name="count" value="6–20"><span>6–20</span></label><label><input type="radio" name="count" value="More than 20"><span>More than 20</span></label></div></div>
-      <div class="f"><div class="q label">Industry <span class="opt">Select any</span></div><div class="chips"><label><input type="checkbox" name="industry" value="Manufacturing"><span>Manufacturing</span></label><label><input type="checkbox" name="industry" value="Software development"><span>Software development</span></label><label><input type="checkbox" name="industry" value="Healthcare"><span>Healthcare</span></label><label><input type="checkbox" name="industry" value="Other"><span>Other</span></label></div></div>
-      <div class="f"><div class="q label">Company status</div><div class="chips"><label><input type="radio" name="status" value="Wound down"><span>Wound down</span></label><label><input type="radio" name="status" value="Written off"><span>Written off</span></label><label><input type="radio" name="status" value="Winding down"><span>Winding down</span></label><label><input type="radio" name="status" value="Other"><span>Other</span></label></div></div>
-      <div class="f"><label class="label" for="b">What did the company build or collect? <span class="opt">Optional</span></label><textarea id="b" name="built" placeholder="A sentence is enough."></textarea></div>
-      <div class="f"><label class="label" for="kn">Anything we should know? <span class="opt">Optional</span></label><textarea id="kn" name="notes" placeholder="E.g. customer or patient data, open obligations."></textarea></div>
-      <button class="btn submit" type="submit">Request my appraisal <span class="ar"></span></button>
+      <fieldset class="st on" data-step="0">
+        <div class="f"><label class="label" for="n">Your name</label><input type="text" id="n" name="name" required autocomplete="name"></div>
+        <div class="f"><label class="label" for="e">Email</label><input type="email" id="e" name="email" required autocomplete="email"></div>
+        <div class="f"><div class="q label">I am a…</div><div class="chips"><label><input type="radio" name="role" value="Investor" required><span>Investor</span></label><label><input type="radio" name="role" value="Founder or former officer" required><span>Founder or former officer</span></label><label><input type="radio" name="role" value="Other" required><span>Other</span></label></div></div>
+      </fieldset>
+      <fieldset class="st" data-step="1">
+        <div class="f"><label class="label" for="o">Fund or company name <span class="opt">Kept confidential</span></label><input type="text" id="o" name="org" required></div>
+        <div class="f" id="count" hidden><div class="q label">Number of companies to review</div><div class="chips"><label><input type="radio" name="count" value="1"><span>1</span></label><label><input type="radio" name="count" value="2–5"><span>2–5</span></label><label><input type="radio" name="count" value="6–20"><span>6–20</span></label><label><input type="radio" name="count" value="More than 20"><span>More than 20</span></label></div></div>
+        <div class="f"><div class="q label">Company status</div><div class="chips"><label><input type="radio" name="status" value="Wound down"><span>Wound down</span></label><label><input type="radio" name="status" value="Written off"><span>Written off</span></label><label><input type="radio" name="status" value="Winding down"><span>Winding down</span></label><label><input type="radio" name="status" value="Other"><span>Other</span></label></div></div>
+      </fieldset>
+      <fieldset class="st" data-step="2">
+        <div class="f"><div class="q label">Industry <span class="opt">Select any</span></div><div class="chips"><label><input type="checkbox" name="industry" value="Manufacturing"><span>Manufacturing</span></label><label><input type="checkbox" name="industry" value="Software development"><span>Software development</span></label><label><input type="checkbox" name="industry" value="Healthcare"><span>Healthcare</span></label><label><input type="checkbox" name="industry" value="Other"><span>Other</span></label></div></div>
+        <div class="f"><label class="label" for="b">What did the company build or collect? <span class="opt">Optional</span></label><textarea id="b" name="built" placeholder="A sentence is enough."></textarea></div>
+      </fieldset>
+      <fieldset class="st" data-step="3">
+        <div class="f"><label class="label" for="kn">Anything we should know? <span class="opt">Optional</span></label><textarea id="kn" name="notes" placeholder="E.g. customer or patient data, open obligations."></textarea></div>
+        <div class="f"><div class="q label">Your request</div><dl class="sum" id="sum"></dl></div>
+      </fieldset>
+      <div class="ls-nav">
+        <button class="btn line" type="button" id="back">Back</button>
+        <button class="btn" type="submit" id="next"><span id="nl">Continue</span> <span class="ar"></span></button>
+      </div>
       <p class="fine">Submitting this form doesn't share anything with buyers or commit you to anything. We'll reply within <span class="tbc">response time TBC</span>.</p>
     </form>
     <div class="done" aria-live="polite">
-      <div class="k label"><i>✓</i><span>Request received</span></div>
-      <h2 class="d">Thank you. <em>We'll be in touch.</em></h2>
+      <h2 class="d">Request received. <em>We'll be in touch.</em></h2>
       <p class="lead">Nothing has been shared with any buyer, and you haven't committed to anything. We'll reply within <span class="tbc">response time TBC</span>.</p>
+      <div class="ctas"><a class="btn line" href="how-it-works.html">See what happens next</a></div>
     </div>
   </div>
+  <div class="ls-hud label"><span>Sell-side only · Not a listing</span><span class="bar"><i id="bar"></i></span></div>
 </main>
 
 <footer>
@@ -62,24 +74,53 @@
 <script src="site.js"></script>
 <script>
 (function(){
-  var f=document.getElementById('f'),count=document.getElementById('count');
-  var role=new URLSearchParams(location.search).get('role');
-  var map={investor:'Investor',founder:'Founder or former officer'};
-  if(map[role]) f.querySelector('input[name=role][value="'+map[role]+'"]').checked=true;
-  function sync(){var r=f.querySelector('input[name=role]:checked');count.hidden=!(r&&r.value==='Investor')}
-  f.addEventListener('change',function(e){sync();var x=e.target.closest('.f');if(x)x.classList.remove('bad')});sync();
+  var f=document.getElementById('f'),main=document.getElementById('main'),count=document.getElementById('count');
+  var steps=[].slice.call(f.querySelectorAll('.st')),track=[].slice.call(document.querySelectorAll('.ls-track li'));
+  var back=document.getElementById('back'),nl=document.getElementById('nl'),tm=document.getElementById('tm'),bar=document.getElementById('bar');
+  var v=document.querySelector('.ls-stage video'),small=matchMedia('(max-width:720px)').matches,reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  v.muted=true;v.playsInline=true;v.src=small?v.dataset.srcMobile:v.dataset.src;if(small)v.poster=v.dataset.posterMobile;
+  var STOPS=[.35,2.6,4.6,6.6,10],target=STOPS[0],cur=0;
+  v.addEventListener('loadedmetadata',function(){STOPS[4]=v.duration-.08;v.currentTime=STOPS[0];v.pause()});
+  function fly(){
+    if(v.readyState>=1){
+      if(reduce){if(Math.abs(v.currentTime-target)>.05)v.currentTime=target}
+      else if(v.currentTime>target+.08){v.pause();v.currentTime=target}
+      else if(v.currentTime<target-.04){if(v.paused)v.play().catch(function(){})}
+      else if(!v.paused)v.pause();
+    }
+    requestAnimationFrame(fly);
+  }
+  requestAnimationFrame(fly);
+  var role=new URLSearchParams(location.search).get('role'),map={investor:'Investor',founder:'Founder or former officer'};
+  if(map[role])f.querySelector('input[name=role][value="'+map[role]+'"]').checked=true;
+  var at=0;
+  function val(n){var x=f.querySelectorAll('[name='+n+']:checked');if(x.length)return[].map.call(x,function(i){return i.value}).join(', ');var i=f.querySelector('[name='+n+']');return i&&i.type!=='radio'&&i.type!=='checkbox'?i.value.trim():''}
+  function sync(){var r=val('role');count.hidden=r!=='Investor'}
+  function show(i){
+    at=i;steps.forEach(function(s,n){s.classList.toggle('on',n===i)});
+    track.forEach(function(t,n){t.classList.toggle('on',n===i);t.classList.toggle('ok',n<i)});
+    back.style.visibility=i?'visible':'hidden';nl.textContent=i===3?'Request my appraisal':'Continue';
+    tm.textContent='T-'+(4-i);target=STOPS[i];bar.style.transform='scaleX('+(i/4)+')';
+    if(i===3){var rows=[['Name',val('name')],['Email',val('email')],['Role',val('role')],['Fund or company',val('org')],['Companies',count.hidden?'':val('count')],['Status',val('status')],['Industry',val('industry')]];
+      document.getElementById('sum').innerHTML=rows.filter(function(r){return r[1]}).map(function(r){return '<dt class="label">'+r[0]+'</dt><dd></dd>'}).join('');
+      [].forEach.call(document.querySelectorAll('#sum dd'),function(d,n){d.textContent=rows.filter(function(r){return r[1]})[n][1]})}
+    var first=steps[i].querySelector('input[type=text],input[type=email],textarea');if(first&&!small)first.focus({preventScroll:true});
+    if(small&&i)document.querySelector('.ls-track').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  function check(i){var ok=true;steps[i].querySelectorAll('.f').forEach(function(x){x.classList.remove('bad')});
+    steps[i].querySelectorAll('[required]').forEach(function(el){var bad=el.type==='radio'?!f.querySelector('input[name='+el.name+']:checked'):!el.checkValidity()||!el.value.trim();if(bad){el.closest('.f').classList.add('bad');ok=false}});return ok}
+  f.addEventListener('change',function(e){sync();var x=e.target.closest('.f');if(x)x.classList.remove('bad')});
   f.addEventListener('input',function(e){var x=e.target.closest('.f');if(x)x.classList.remove('bad')});
+  back.addEventListener('click',function(){if(at>0)show(at-1)});
   f.addEventListener('submit',function(e){
-    e.preventDefault();var ok=true;
-    f.querySelectorAll('.f').forEach(function(x){x.classList.remove('bad')});
-    f.querySelectorAll('[required]').forEach(function(i){
-      var bad=i.type==='radio'?!f.querySelector('input[name='+i.name+']:checked'):!i.checkValidity()||!i.value.trim();
-      if(bad){i.closest('.f').classList.add('bad');ok=false}
-    });
-    if(!ok){f.querySelector('.bad').scrollIntoView({behavior:'smooth',block:'center'});return}
+    e.preventDefault();if(!check(at))return;
+    if(at<3){show(at+1);return}
     // Preview only: not yet connected to a backend.
-    document.getElementById('main').classList.add('sent');document.querySelector('.form').scrollIntoView({behavior:'smooth'});
+    main.classList.add('sent');tm.textContent='T-0';document.querySelector('.ls-head .k span').textContent='Liftoff';target=STOPS[4];bar.style.transform='scaleX(1)';
+    track.forEach(function(t){t.classList.remove('on');t.classList.add('ok')});
+    document.querySelector('.ls-panel').scrollIntoView({behavior:'smooth'});
   });
+  sync();show(0);
 })();
 </script>
 </body>

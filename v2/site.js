@@ -2,14 +2,16 @@
   var nav = document.getElementById('nav');
   var hero = document.querySelector('[data-launch]');
   var page = location.pathname.split('/').pop() || 'home.html';
-  var t = new URLSearchParams(location.search).get('t');
+  var qs = new URLSearchParams(location.search), t = qs.get('t'), copy = qs.get('copy');
+  if (copy === 'bold') document.querySelectorAll('[data-bold]').forEach(function (el) { el.innerHTML = el.dataset.bold; });
+  var carry = [t && 't=' + t, copy && 'copy=' + copy].filter(Boolean).join('&');
   document.querySelectorAll('a[href]').forEach(function (a) {
     var h = a.getAttribute('href');
     if (!/\.html/.test(h) || /^https?:/.test(h)) return;
     if (h.split(/[?#]/)[0] === page && a.closest('nav .links')) a.classList.add('on');
-    if (t) {
+    if (carry) {
       var p = h.split('#');
-      a.setAttribute('href', p[0] + (p[0].indexOf('?') > -1 ? '&' : '?') + 't=' + t + (p[1] ? '#' + p[1] : ''));
+      a.setAttribute('href', p[0] + (p[0].indexOf('?') > -1 ? '&' : '?') + carry + (p[1] ? '#' + p[1] : ''));
     }
   });
   var menu = nav && nav.querySelector('.menu');
