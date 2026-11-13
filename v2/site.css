@@ -288,3 +288,20 @@ nav .links a.cta{display:none}
 .specs.n2{--n:2}.specs.n3{--n:3}.specs.n4{--n:4}
 @media (max-width:1100px){.specs[class]{--n:2}}
 @media (max-width:900px){.specs[class]{--n:1}}
+
+/* ---------- phone: less text, rocket framed and visible ---------- */
+@media (max-width:900px){
+  :root{--t-hero:calc(clamp(38px,10.6vw,56px) * var(--ds));--t-1:calc(clamp(34px,9.4vw,52px) * var(--ds));--t-2:calc(24px * var(--ds));--t-3:calc(21px * var(--ds));--t-lead:17px;--t-body:16px;--sec:88px;--gap:44px}
+  .m-hide{display:none!important}
+  .stage:before{background:linear-gradient(0deg,rgba(var(--bg-rgb),.97) 0%,rgba(var(--bg-rgb),.86) 24%,rgba(var(--bg-rgb),.35) 44%,transparent 58%),linear-gradient(180deg,rgba(var(--bg-rgb),.55) 0%,transparent 14%)}
+  .copy{bottom:64px}
+  .phase .k{margin-bottom:18px}
+  .sub{font-size:16px;margin-top:16px}
+  .ctas{margin-top:24px}
+  .scene .bg{background-position:68% center}
+  .scene.top{--side:linear-gradient(0deg,rgba(var(--bg-rgb),.96) 0%,rgba(var(--bg-rgb),.82) 34%,rgba(var(--bg-rgb),.1) 62%,transparent 100%)}
+  .sh{margin-bottom:36px}.sh .k{margin-bottom:28px}.sh .lead{margin-top:20px;grid-column:1/-1}
+  .row{padding:20px 0}.row>.i{margin-bottom:8px}
+  .row.brief>p{display:none}
+  .grid4 p,.spec p{font-size:15px}
+}

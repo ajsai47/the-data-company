@@ -8,6 +8,7 @@
     v.playsInline = true;
     v.preload = 'auto';
     v.src = small ? v.dataset.srcMobile : v.dataset.src;
+    if (small && v.dataset.posterMobile) v.poster = v.dataset.posterMobile;
 
     var dur = 10, cur = 0, ready = false;
     v.addEventListener('loadedmetadata', function () {
