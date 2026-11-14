@@ -58,7 +58,7 @@ def validate(d):
 
 
 def text(v):
-    return {"rich_text": [{"text": {"content": v}}]} if v else {"rich_text": []}
+    return {"rich_text": [{"text": {"content": v[:2000]}}]} if v else {"rich_text": []}
 
 
 def notion_properties(r):
