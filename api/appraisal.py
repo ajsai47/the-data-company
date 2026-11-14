@@ -19,7 +19,7 @@ import urllib.request
 ROLES = {"Investor", "Founder or former officer", "Other"}
 COUNTS = {"1", "2–5", "6–20", "More than 20"}
 INDUSTRIES = {"Manufacturing", "Software development", "Healthcare", "Other"}
-STATUSES = {"Wound down", "Written off", "Winding down", "Other"}
+STATUSES = {"Wound down", "Written off", "Winding down", "Still operating", "Other"}
 SIGNALS = {"Strong signal", "Promising signal", "Early signal"}
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
@@ -39,6 +39,7 @@ def validate(d):
         "industry": [i for i in d.get("industry") or [] if i in INDUSTRIES],
         "built": clean(d.get("built")),
         "notes": clean(d.get("notes")),
+        "site": clean(d.get("site"), 300),
         "signal": clean(d.get("signal"), 40),
         "page": clean(d.get("page"), 300),
     }
@@ -57,7 +58,7 @@ def validate(d):
 
 
 def text(v):
-    return {"rich_text": [{"text": {"content": v}}]} if v else {"rich_text": []}
+    return {"rich_text": [{"text": {"content": v[:2000]}}]} if v else {"rich_text": []}
 
 
 def notion_properties(r):
@@ -68,7 +69,7 @@ def notion_properties(r):
         "Role": {"select": {"name": r["role"]}},
         "Industry": {"multi_select": [{"name": i} for i in r["industry"]]},
         "What was built": text(r["built"]),
-        "Notes": text(r["notes"]),
+        "Notes": text("\n".join(x for x in (r["notes"], r["site"] and "Website/GitHub: " + r["site"]) if x)),
         "Source page": text(r["page"]),
         "Status": {"status": {"name": "New"}},
     }

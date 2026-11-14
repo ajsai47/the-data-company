@@ -380,3 +380,5 @@ nav .links a.cta{display:none}
 .privacy .pp p+p{margin-top:12px}
 @media (max-width:900px){.privacy .row>.t2,.privacy .pp{grid-column:1/-1!important}.privacy .pp{margin-top:10px}}
 .cfg-link{color:var(--ac);text-decoration:underline;text-underline-offset:3px}
+.tbl.cmp td:nth-child(2){color:rgb(var(--fg-rgb))}
+.tbl.cmp th:nth-child(2){color:var(--ac)}
